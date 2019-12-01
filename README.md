@@ -1,0 +1,2 @@
+# snuinfoapp
+snuinfoapp
