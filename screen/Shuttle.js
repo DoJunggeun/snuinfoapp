@@ -20,7 +20,7 @@ class Shuttle extends Component {
           <View style={{height:getStatusBarHeight()}}/>
           <View style={{height:50, backgroundColor:'black', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
            <TouchableOpacity style={{height:32, width:32, position:'absolute', left:10}} onPress={()=> {navigation.push("Home")}}>
-           <Image source={require('./src/back.png')} style={{height:32, width:32, position:'absolute'}} />
+           <Image source={require('./src/home.png')} style={{height:32, width:32, position:'absolute'}} />
            </TouchableOpacity>
            <Text style={{fontSize:20, color:'white', fontWeight:'bold'}}>서울대학교 편의정보</Text>
          </View>

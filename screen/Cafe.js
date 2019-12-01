@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import { Linking, View, Text, TouchableOpacity, Image} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { WebView } from 'react-native-webview';
 import SafeAreaView from 'react-native-safe-area-view';
@@ -19,10 +19,14 @@ class Cafe extends Component {
           <View style={{height:getStatusBarHeight()}}/>
           <View style={{height:50, backgroundColor:'black', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
            <TouchableOpacity style={{height:32, width:32, position:'absolute', left:10}} onPress={()=> {navigation.push("Home")}}>
-           <Image source={require('./src/back.png')} style={{height:32, width:32, position:'absolute'}} />
+           <Image source={require('./src/home.png')} style={{height:32, width:32, position:'absolute'}} />
            </TouchableOpacity>
            <Text style={{fontSize:20, color:'white', fontWeight:'bold'}}>서울대학교 편의정보</Text>
          </View>
+         <View style={{height:50, backgroundColor:'#f1f1f1', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
+         <TouchableOpacity style={{flex:1, backgroundColor:'lightgray'}} onPress={() => Linking.openURL('http://snuco.snu.ac.kr/ko/node/21')}>
+          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:19, fontWeight:'600'}}>생협 운영 카페 운영시간 전체보기</Text></View>
+           </TouchableOpacity></View>
 
          <WebView source={{ uri: 'https://dojunggeun.github.io/snuinfo/cafe.html' }} style={{flex:1}} ref={WEBVIEW_REF} onNavigationStateChange={this.onNavigationStateChange.bind(this)}/>
 
