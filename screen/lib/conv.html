@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145841262-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-145841262-1');
+</script>
+<title>지금 매점 하나요?</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<script type="text/javascript" src="conv.js"></script>
+<script type="text/javascript" src="functions.js"></script>
+<script type="text/javascript" src="design.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:300px">
+
+    <center>
+      <span style="font-size:20px; font-weight:bold; text-decoration:underline; cursor:pointer;" onclick="window.open('http://snuco.snu.ac.kr/ko/node/19')">매점/편의점 운영시간 전체보기</span>
+    </center>
+
+    <div class="w3-light-grey" style="padding-bottom:30px">
+      <center>
+        <p>(학기 중 기준)</p>
+      </center>
+      <table class="w3-table-all w3-hoverable">
+        <thead>
+          <tr class="w3-light-grey">
+            <th>매장</th>
+            <th>위치</th>
+            <th>현재</th>
+          </tr>
+        </thead>
+        <tr>
+          <td>학생회관<br />편의점</td>
+          <td>학생회관<br />(63동 1층)</td>
+          <td>
+            <script>
+              document.write(hgconv());
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <td>학생회관<br />문구점</td>
+          <td>학생회관<br />(63동 2층)</td>
+          <td>
+            <script>
+              document.write(hgmg());
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <td>중도CU</td>
+          <td>중도<br />(62동 3층)</td>
+          <td>
+            <script>
+              document.write(jdCU());
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <td>3식당(농식)<br />편의점</td>
+          <td>3식당<br />(75-1동 4층)</td>
+          <td>
+            <script>
+              document.write(nsconv());
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <td>스누플렉스<br />(복합매장)</td>
+          <td>아시아연구소<br />(101동 1층)</td>
+          <td>
+            <script>
+              document.write(snuplex());
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <td>동원관<br />편의점</td>
+          <td>동원생활관<br />(113동)</td>
+          <td>
+            <script>
+              document.write(dwgconv());
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <td>220동<br />편의점</td>
+          <td>종합교육연구동<br />(220동 B1층)</td>
+          <td>
+            <script>
+              document.write(eeoconv());
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <td>301동<br />CU</td>
+          <td>제1공학관<br />(301동 B1층)</td>
+          <td>
+            <script>
+              document.write(engCU());
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <td>500동<br />편의점</td>
+          <td>500동 1층</td>
+          <td>
+            <script>
+              document.write(cnsconv());
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <td>기숙사<br />편의점</td>
+          <td>관악사<br />(919동 1층)</td>
+          <td>
+            <script>
+              document.write(dormconv());
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <td>GS25<br />(관악사)</td>
+          <td>관악사<br />(900동 B2층)</td>
+          <td>
+            <script>
+              document.write(allday());
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <td>수의대<br />휴게매점</td>
+          <td>수의과대학<br />(85동 3층)</td>
+          <td>
+            <script>
+              document.write(vetconv());
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <td>의대<br />CU</td>
+          <td>융합관<br />(8동 2층)</td>
+          <td>
+            <script>
+              document.write(medconv());
+            </script>
+          </td>
+        </tr>
+      </table>
+
+
+    </div>
+  </div>
+
+
+</body>
+
+</html>
