@@ -11,6 +11,7 @@ import Meal from './screen/Meal';
 import Cafe from './screen/Cafe';
 import Mart from './screen/Mart';
 import About from './screen/About';
+import Test from './screen/Test';
 
 
 const App = createStackNavigator(
@@ -21,7 +22,8 @@ const App = createStackNavigator(
       Cafe: {screen:Cafe},
       Mart: {screen:Mart},
       About: {screen:About},
-      Contact: {screen:Contact}
+      Contact: {screen:Contact},
+      Test: {screen:Test}
     },
     {headerMode: 'none', mode:'card', lazy:false, gestureDirection:'vertical'}
 );

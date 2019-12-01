@@ -33,10 +33,14 @@ class Contact extends Component {
              <View style={{flex:2, alignItems:'center', justifyContent:'center', backgroundColor:'lightgrey'}}>
              <Text style={{fontSize:18, fontWeight:'bold'}}>제보해주시면 확인 후 신속히 반영하겠습니다!{'\n'}</Text>
              <Text style={{fontSize:18, fontWeight:'bold'}}>↓클릭↓</Text></View>
-             <TouchableOpacity style={{flex:3, backgroundColor: 'dimgray', justifyContent:'center', alignItems:'center', padding:0}}
+             <TouchableOpacity style={{flex:2, backgroundColor: 'dimgray', justifyContent:'center', alignItems:'center', padding:0}}
             onPress={() => Linking.openURL('https://docs.google.com/forms/d/e/1FAIpQLSeAOS1F3bnfkikIPH11mf6EhPD0qEypeqeey7_4QkSMBaD8nw/viewform?usp=sf_link')}>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:25, fontWeight:'500',color:'white'}}>제보하기</Text></View>
          </TouchableOpacity>
+         {/* <TouchableOpacity style={{flex:1, backgroundColor: 'dimgray', justifyContent:'center', alignItems:'center', padding:0}}
+            onPress={()=> {navigation.push("Test")}}>
+         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:25, fontWeight:'500',color:'white'}}>Text Page</Text></View>
+         </TouchableOpacity> */}
 
                  
 
