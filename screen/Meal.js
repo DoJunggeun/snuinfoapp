@@ -24,105 +24,105 @@ class Meal extends Component {
            <Text style={{fontSize:20, color:'white', fontWeight:'bold'}}>서울대학교 편의정보</Text>
          </View>
          <View style={{height:50, backgroundColor:'#f1f1f1', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
-         <TouchableOpacity style={{flex:53, backgroundColor:'lightgray'}} onPress={() => Linking.openURL('http://snuco.snu.ac.kr/ko/node/20')}>
-          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:16, fontWeight:'600'}}>생협 식당 운영시간 전체보기</Text></View>
+         <TouchableOpacity style={{flex:53, backgroundColor:'#f1f1f1'}} onPress={() => Linking.openURL('http://snuco.snu.ac.kr/ko/node/20')}>
+          <View style={{height:50,justifyContent:'center', alignItems:'center',  borderWidth: 0.5 ,borderColor: 'darkgray',}}><Text style={{fontSize:16, fontWeight:'600'}}>생협 식당 운영시간 전체보기</Text></View>
            </TouchableOpacity>
-           <TouchableOpacity style={{flex:47, backgroundColor:'lightgray'}} onPress={() => Linking.openURL('http://snuco.snu.ac.kr/ko/foodmenu')}>
-          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:16, fontWeight:'600'}}>생협 식당 메뉴 전체보기</Text></View>
+           <TouchableOpacity style={{flex:47, backgroundColor:'#f1f1f1'}} onPress={() => Linking.openURL('http://snuco.snu.ac.kr/ko/foodmenu')}>
+          <View style={{height:50,justifyContent:'center', alignItems:'center',  borderWidth: 0.5 ,borderColor: 'darkgray',}}><Text style={{fontSize:16, fontWeight:'600'}}>생협 식당 메뉴 전체보기</Text></View>
            </TouchableOpacity></View>
 
          {/* <WebView source={{ uri: 'https://dojunggeun.github.io/snuinfo/meal.html' }} style={{flex:1}} ref={WEBVIEW_REF} onNavigationStateChange={this.onNavigationStateChange.bind(this)} bounces='false'/> */}
 
-      <View style={{flex:1, textAlign:'center'}} >
-        <View style={styles.container} >
+      <View style={{flex:1}} >
+        <View style={styles.containerhead}>
           <View style={styles.th}><Text style={styles.thtext}>식당</Text></View>
           <View style={styles.th}><Text style={styles.thtext}>위치</Text></View>
-          <View style={styles.th}><Text style={styles.thtext}>현재(학기중)</Text></View>
+          <View style={styles.th}><Text style={styles.thtext}>{`운영시간\n(학기중)`}</Text></View>
         </View>
 
-         <ScrollView style={{flex:1, backgroundColor:'#f1f1f1'}} bounces='false'>
+         <ScrollView style={styles.scroll} bounces='false'>
         <View style={styles.container2}>
-          <View style={styles.td}><Text>학생회관 식당</Text></View>
-          <View style={styles.td}><Text>학생회관(63동) 1층</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>학생회관 식당</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>{`학생회관(63동)\n1층`}</Text></View>
           <View style={styles.td}>{hgmeal()}</View>
         </View>
         <View style={styles.container}>
-          <View style={styles.td}><Text>학생회관 9번출구</Text></View>
-          <View style={styles.td}><Text>{`학생회관(63동)\n지하 1층`}</Text></View>
-          <View style={styles.td}><Text>{hgmeal2()}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>학생회관 9번출구</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>{`학생회관(63동)\n지하 1층`}</Text></View>
+          <View style={styles.td}>{hgmeal2()}</View>
         </View>
         <View style={styles.container2}>
-          <View style={styles.td}><Text>자하연식당</Text></View>
-          <View style={styles.td}><Text>농협(109동) 2층</Text></View>
-          <View style={styles.td}><Text>{nhmeal()}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>자하연식당</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>농협(109동) 2층</Text></View>
+          <View style={styles.td}>{nhmeal()}</View>
         </View>
         <View style={styles.container}>
-          <View style={styles.td}><Text>예술계식당</Text></View>
-          <View style={styles.td}><Text>74동 1층</Text></View>
-          <View style={styles.td}><Text>{artmeal()}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>예술계식당</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>74동 1층</Text></View>
+          <View style={styles.td}>{artmeal()}</View>
         </View>
         <View style={styles.container2}>
-          <View style={styles.td}><Text>모두의공간 (공깡)</Text></View>
-          <View style={styles.td}><Text>30-2동 1층</Text></View>
-          <View style={styles.td}><Text>{gongmeal()}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>모두의공간 (공깡)</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>30-2동 1층</Text></View>
+          <View style={styles.td}>{gongmeal()}</View>
         </View>
         <View style={styles.container}>
-          <View style={styles.td}><Text>3식당(농식)</Text></View>
-          <View style={styles.td}><Text>75-1동 4층</Text></View>
-          <View style={styles.td}><Text>{nsmeal()}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>3식당(농식)</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>75-1동 4층</Text></View>
+          <View style={styles.td}>{nsmeal()}</View>
         </View>
         <View style={styles.container2}>
-          <View style={styles.td}><Text>301동 식당</Text></View>
-          <View style={styles.td}><Text>301동 지하1층</Text></View>
-          <View style={styles.td}><Text>{eng301meal()}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>301동 식당</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>301동 지하1층</Text></View>
+          <View style={styles.td}>{eng301meal()}</View>
         </View>
         <View style={styles.container}>
-          <View style={styles.td}><Text>302동 식당</Text></View>
-          <View style={styles.td}><Text>302동 1층</Text></View>
-          <View style={styles.td}><Text>{eng302meal()}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>302동 식당</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>302동 1층</Text></View>
+          <View style={styles.td}>{eng302meal()}</View>
         </View>
         <View style={styles.container2}>
-          <View style={styles.td}><Text>동원관 식당</Text></View>
-          <View style={styles.td}><Text>동원관(113동) 2층</Text></View>
-          <View style={styles.td}><Text>{dwgmeal()}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>동원관 식당</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>동원관(113동) 2층</Text></View>
+          <View style={styles.td}>{dwgmeal()}</View>
         </View>
         <View style={styles.container}>
-          <View style={styles.td}><Text>감골식당</Text></View>
-          <View style={styles.td}><Text>{`아시아연구소\n(101동) 1층`}</Text></View>
-          <View style={styles.td}><Text>{ggmeal()}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>감골식당</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>{`아시아연구소\n(101동) 1층`}</Text></View>
+          <View style={styles.td}>{ggmeal()}</View>
         </View>
         <View style={styles.container2}>
-          <View style={styles.td}><Text>4식당</Text></View>
-          <View style={styles.td}><Text>76동 1층</Text></View>
-          <View style={styles.td}><Text>{edumeal()}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>4식당</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>76동 1층</Text></View>
+          <View style={styles.td}>{edumeal()}</View>
         </View>
         <View style={styles.container}>
-          <View style={styles.td}><Text>220동 식당</Text></View>
-          <View style={styles.td}><Text>220동 지하 1층</Text></View>
-          <View style={styles.td}><Text>{meal220()}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>220동 식당</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>220동 지하 1층</Text></View>
+          <View style={styles.td}>{meal220()}</View>
         </View>
         <View style={styles.container2}>
-          <View style={styles.td}><Text>기숙사 식당</Text></View>
-          <View style={styles.td}><Text>919동 1층</Text></View>
-          <View style={styles.td}><Text>{dormmeal()}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>기숙사 식당</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>919동 1층</Text></View>
+          <View style={styles.td}>{dormmeal()}</View>
         </View>
         <View style={styles.container}>
-          <View style={styles.td}><Text>아워홈 식당</Text></View>
-          <View style={styles.td}><Text>901 1층</Text></View>
-          <View style={styles.td}><Text>{dormmeal()}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>아워홈 식당</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>901 1층</Text></View>
+          <View style={styles.td}>{dormmeal()}</View>
         </View>
-        <View style={styles.container2} >
+        <View style={styles.containerhead} >
           <View style={styles.td}><Text style={styles.thtext}>학내 음식점</Text></View>
         </View>
         <View style={styles.container}>
-          <View style={styles.td}><Text>라운지오</Text></View>
-          <View style={styles.td}><Text>동원관(113동) 1층</Text></View>
-          <View style={styles.td}><Text>{loungeo()}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>라운지오</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>동원관(113동) 1층</Text></View>
+          <View style={styles.td}>{loungeo()}</View>
         </View>
         <View style={styles.container2}>
-          <View style={styles.td}><Text>샤반</Text></View>
-          <View style={styles.td}><Text>501동 1층</Text></View>
-          <View style={styles.td}><Text>{shaban()}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>샤반</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>501동 1층</Text></View>
+          <View style={styles.td}>{shaban()}</View>
         </View>
         <View style={styles.container} >
           <View style={styles.td}><Text style={styles.thtext}>추가 예정 : 비비큐카페, 소담마루 등</Text></View>
@@ -156,7 +156,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#f1f1f1',
     flexDirection: 'row',
     alignItems: 'center',
-    textAlign: 'center'
+  },
+  containerhead: {
+    height:60,
+    justifyContent: 'space-around',
+    backgroundColor: 'darkgray',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   container2: {
     height:60,
@@ -164,71 +170,82 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flexDirection: 'row',
     alignItems: 'center',
-    textAlign: 'center'
+  },
+  scroll: {
+    flex:1,
+    backgroundColor:'#f1f1f1',
   },
   th: {
     flex:1, 
-    alignItems:'center',
+    height: 60,
     justifyContent: 'space-around',
     borderWidth: 0.5,
     borderColor: '#d6d7da',
-    height:60,
-    textAlign: 'center'
+    alignItems: 'center',
+    backgroundColor: 'darkgray'
   },
   thtext: {
-    fontSize:15, 
-    fontWeight:'600', 
+    alignItems: 'center',
+    justifyContent:'center',
+    fontSize:18, 
+    fontWeight:'800', 
   },
   td: {
     flex:1, 
-    alignItems:'center',
+    height: 60,
     justifyContent: 'space-around',
     borderWidth: 0.5,
     borderColor: '#d6d7da',
-    height:60,
-    textAlign: 'center'
+    alignItems: 'center',
+    textAlign:'center'
   },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
+  tdtext : {
+    color:'black', textAlign:'center', fontSize:15, fontWeight:'500'
   },
+  nowon : {
+    color:'blue', textAlign:'center', fontSize:15, fontWeight:'500'
+  },
+  nowwait : {
+    color:'green',  textAlign:'center', fontSize:15, fontWeight:'500'
+  },
+  nowoff :{
+    color:'red', textAlign:'center', fontSize:15, fontWeight:'500'
+  }
 });
 
 function dormmeal() {
   var date = new Date()
   if (date.getDay() == 0 || date.getDay() == 6) {
     if (date.getHours() < 8) {
-      return <View><Text style={{color:'red'}}>미운영{'\n'}</Text><Text style={{color:'green', fontWeight:'bold'}}>8시부터{'\n'}아침시작</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시 아침시작</Text></View>
     } else if (date.getHours() == 8 || (date.getHours() == 9 && date.getMinutes() < 30)) {
-      return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}9시30분까지</Text>
+      return <Text style={styles.nowon}>운영중{'\n'}9시30분까지</Text>
     } else if ((date.getHours() == 9 && date.getMinutes() >= 30) || date.getHours() == 10 || (date.getHours() == 11 && date.getMinutes() < 30)) {
-      return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>11시30분부터{'\n'}점심시작</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시30분 점심시작</Text></View>
     } else if ((date.getHours() == 11 && date.getMinutes() >= 30) || date.getHours() == 12 || (date.getHours() == 13 && date.getMinutes() < 30)) {
-      return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}13시30분까지</Text>
+      return <Text style={styles.nowon}>운영중{'\n'}13시30분까지</Text>
     } else if ((date.getHours() == 13 && date.getMinutes() >= 30) || (date.getHours() >= 14 && date.getHours() < 17) || (date.getHours() == 17 && date.getMinutes() < 30)) {
-      return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>17시30분부터{'\n'}저녁시작</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>17시30분 저녁시작</Text></View>
     } else if ((date.getHours() == 17 && date.getMinutes() >= 30) || date.getHours() == 18 || (date.getHours() == 19 && date.getMinutes() < 30)) {
-      return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}19시30분까지</Text>
+      return <Text style={styles.nowon}>운영중{'\n'}19시30분까지</Text>
     } else {
-      return <Text style={{color:'red'}}>운영종료{'\n'}오늘은끝</Text>
+      return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
     }
   } else {
     if (date.getHours() < 7 || (date.getHours() == 7 && date.getMinutes() < 30)) {
-      return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>7시30분부터{'\n'}아침시작</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7시30분 아침시작</Text></View>
     } else if ((date.getHours() == 7 && date.getMinutes() >= 30) || (date.getHours() == 9 && date.getMinutes() < 30)) {
-      return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}9시30분까지</Text>
+      return <Text style={styles.nowon}>운영중{'\n'}9시30분까지</Text>
     } else if ((date.getHours() == 9 && date.getMinutes() >= 30) || date.getHours() == 10 || (date.getHours() == 11 && date.getMinutes() < 30)) {
-      return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>11시30분부터{'\n'}점심시작</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시30분 점심시작</Text></View>
     } else if ((date.getHours() == 11 && date.getMinutes() >= 30) || date.getHours() == 12 || (date.getHours() == 13 && date.getMinutes() < 30)) {
-      return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}13시30분까지</Text>
+      return <Text style={styles.nowon}>운영중{'\n'}13시30분까지</Text>
     } else if ((date.getHours() == 13 && date.getMinutes() >= 30) || (date.getHours() >= 14 && date.getHours() < 17) || (date.getHours() == 17 && date.getMinutes() < 30)) {
-      return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>17시30분부터{'\n'}저녁시작</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>17시30분 저녁시작</Text></View>
     } else if ((date.getHours() == 17 && date.getMinutes() >= 30) || date.getHours() == 18 || (date.getHours() == 19 && date.getMinutes() < 30)) {
-      return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}19시30분까지</Text>
+      return <Text style={styles.nowon}>운영중{'\n'}19시30분까지</Text>
     } else {
-      return <Text style={{color:'red'}}>운영종료{'\n'}오늘은끝</Text>
+      return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
     }
   }
 }
@@ -237,32 +254,32 @@ function hgmeal() {
   var date = new Date()
   if (date.getDay() > 0 && date.getDay() < 6) {
     if (date.getHours() < 8) {
-      return <View><Text style={{color:'red'}}>미운영</Text>
-      <Text style={{color:'green', fontWeight:'bold'}}>8시부터{'\n'}아침시작</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text>
+      <Text style={styles.nowwait}>8시 아침시작</Text></View>
     } else if (date.getHours() >= 8 && date.getHours() < 10) {
-      return <Text style={{color:'blue',fontWeight:'bold'}}>운영중{'\n'}10시까지</Text>
+      return <Text style={{color:'blue',fontWeight:'bold', textAlign:'center'}}>운영중{'\n'}10시까지</Text>
     } else if (date.getHours() == 10) {
-      return <View><Text style={{color:'red'}}>미운영{'\n'}</Text><Text style={{color:'green', fontWeight:'bold'}}>11시부터{'\n'}점심시작</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시 점심시작</Text></View>
     } else if (date.getHours() >= 11 && date.getHours() < 15) {
-      return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}15시까지</Text>
+      return <Text style={styles.nowon}>운영중{'\n'}15시까지</Text>
     } else if (date.getHours() == 16) {
-      return <View><Text style={{color:'red'}}>미운영{'\n'}</Text><Text style={{color:'green',fontWeight:'bold'}}>17시부터{'\n'}저녁시작</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={{color:'green',fontWeight:'bold', textAlign:'center'}}>17시 저녁시작</Text></View>
     } else if (date.getHours() == 17 || date.getHours() == 18 || (date.getHours() == 19 && date.getMinutes() < 1)) {
-      return <Text style={{color:'blue',fontWeight:'bold'}}>운영중{'\n'}19시까지</Text>
+      return <Text style={{color:'blue',fontWeight:'bold', textAlign:'center'}}>운영중{'\n'}19시까지</Text>
     } else {
-      return <Text style={{color:'red'}}>운영종료{'\n'}오늘은끝</Text>
+      return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
     }
   } else {
     if (date.getHours() < 11 || (date.getHours() == 11 && date.getMinutes() < 30)) {
-      return <View><Text style={{color:red}}>미운영{'\n'}</Text><Text style={{color:'green', fontWeight:'bold'}}>11시30분부터{'\n'}점심시작</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시30분 점심시작</Text></View>
     } else if ((date.getHours() == 11 && date.getMinutes() >= 30) || date.getHours() == 12 || date.getHours() == 13) {
-      return <Text style={{color:'blue',fontWeight:'bold'}}>운영중{'\n'}14시까지</Text>
+      return <Text style={{color:'blue',fontWeight:'bold', textAlign:'center'}}>운영중{'\n'}14시까지</Text>
     } else if (date.getHours() >= 14 && date.getHours() < 17) {
-      return <View><Text style={{color:red}}>미운영{'\n'}</Text><Text style={{color:'green',fontWeight:'bold'}}>17시부터{'\n'}저녁시작</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={{color:'green',fontWeight:'bold', textAlign:'center'}}>17시 저녁시작</Text></View>
     } else if (date.getHours() >= 17 && date.getHours() < 19) {
-      return <Text style={{color:'blue',fontWeight:'bold'}}>운영중{'\n'}19시까지</Text>
+      return <Text style={{color:'blue',fontWeight:'bold', textAlign:'center'}}>운영중{'\n'}19시까지</Text>
     } else {
-      return <Text style={{color:red}}>운영종료{'\n'}오늘은끝</Text>
+      return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
     }
   }
 } 
@@ -270,81 +287,81 @@ function hgmeal() {
 function hgmeal2() {
   var date = new Date()
   if (date.getDay() == 0 || date.getDay() == 6) {
-    return <Text style={{color:'red'}}>주말에는{'\n'}운영안함</Text>
+    return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
   } else if ((date.getHours() >= 11 && date.getHours() < 13) || (date.getHours() == 13 && date.getMinutes() < 30)) {
-    return <Text style={{alignItems:'center', justifyContent:'center', color:'blue', fontWeight:'bold'}}>운영중{'\n'}13시30분까지</Text>
+    return <Text style={{textAlign:'center', color:'blue', fontWeight:'bold', textAlign:'center'}}>운영중{'\n'}13시30분까지</Text>
   } else if ((date.getDay() > 0 && date.getDay() < 6) && (date.getHours() >= 14 && date.getHours() < 18)) {
-    return <Text style={{color:'blue', fontWeight:'bold'}}>운영중(분식){'\n'}18시까지</Text>
+    return <Text style={styles.nowon}>운영중(분식){'\n'}18시까지</Text>
   } else if (date.getHours() < 11) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>11시부터{'\n'}점심시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시 점심시작</Text></View>
   } else if (date.getHours() == 13) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>14시부터{'\n'}9출시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>14시 9출시작</Text></View>
   } else {
-    return <Text style={{color:'red'}}>운영종료{'\n'}오늘은끝</Text>
+    return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
   }
 }
 
 function gongmeal() {
   var date = new Date()
   if (date.getDay() == 0 || date.getDay() == 6) {
-    return <Text style={{color:'red'}}>주말에는{'\n'}운영안함</Text>
+    return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
   } else if (date.getHours() >= 11 && date.getHours() < 19) {
-    return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}19시까지</Text>
+    return <Text style={styles.nowon}>운영중{'\n'}19시까지</Text>
   } else if (date.getHours() < 11) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>11시부터{'\n'}운영시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시 운영시작</Text></View>
   } else {
-    return <Text style={{color:'red'}}>운영종료{'\n'}오늘은끝</Text>
+    return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
   }
 }
 
 function eng302meal() {
   var date = new Date()
   if (date.getDay() == 0 || date.getDay() == 6) {
-    return <Text style={{color:'red'}}>주말에는{'\n'}운영안함</Text>
+    return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
   } else if ((date.getHours() > 11 && date.getHours() < 14) || (date.getHours() == 11 && date.getMinutes() >= 15)) {
-    return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}14시까지</Text>
+    return <Text style={styles.nowon}>운영중{'\n'}14시까지</Text>
   } else if (date.getHours() >= 17 && date.getHours() < 19) {
-    return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}19시까지</Text>
+    return <Text style={styles.nowon}>운영중{'\n'}19시까지</Text>
   } else if (date.getHours() < 11 || (date.getHours() == 11 && date.getMinutes() < 15)) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>11시15분부터{'\n'}점심시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시15분 점심시작</Text></View>
   } else if (date.getHours() < 17 && date.getHours() >= 14) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>17시부터{'\n'}저녁시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>17시 저녁시작</Text></View>
   } else {
-    return <Text style={{color:'red'}}>운영종료</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
 function eng301meal() {
   var date = new Date()
   if (date.getDay() == 0 || date.getDay() == 6) {
-    return <Text style={{color:'red'}}>주말에는{'\n'}운영안함</Text>
+    return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
   } else if (date.getHours() >= 11 && date.getHours() < 14) {
-    return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}14시까지</Text>
+    return <Text style={styles.nowon}>운영중{'\n'}14시까지</Text>
   } else if (date.getHours() >= 17 && date.getHours() < 19) {
-    return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}19시까지</Text>
+    return <Text style={styles.nowon}>운영중{'\n'}19시까지</Text>
   } else if (date.getHours() < 11) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>11시부터{'\n'}점심시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시 점심시작</Text></View>
   } else if (date.getHours() < 17 && date.getHours() >= 14) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>17시부터{'\n'}저녁시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>17시 저녁시작</Text></View>
   } else {
-    return <Text style={{color:'red'}}>운영종료</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
 function artmeal() {
   var date = new Date()
   if (date.getDay() == 0 || date.getDay() == 6) {
-    return <Text style={{color:'red'}}>주말에는{'\n'}운영안함</Text>
+    return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
   } else if ((date.getHours() == 11 && date.getMinutes() >= 30) || (date.getHours() > 11 && date.getHours() < 14)) {
-    return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}14시까지</Text>
+    return <Text style={styles.nowon}>운영중{'\n'}14시까지</Text>
   } else if (date.getHours() >= 17 && date.getHours() < 19) {
-    return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}19시까지</Text>
+    return <Text style={styles.nowon}>운영중{'\n'}19시까지</Text>
   } else if (date.getHours() < 11 || (date.getHours() == 11 && date.getMinutes() < 30)) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>11시30분부터{'\n'}점심시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시30분 점심시작</Text></View>
   } else if (date.getHours() < 17 && date.getHours() >= 14) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>17시부터{'\n'}저녁시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>17시 저녁시작</Text></View>
   } else {
-    return <Text style={{color:'red'}}>운영종료</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
@@ -352,17 +369,17 @@ function artmeal() {
 function ggmeal() {
   var date = new Date()
   if (date.getDay() == 0 || date.getDay() == 6) {
-    return <Text style={{color:'red'}}>주말에는{'\n'}운영안함</Text>
+    return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
   } else if (date.getHours() >= 11 && date.getHours() < 14) {
-    return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}14시까지</Text>
+    return <Text style={styles.nowon}>운영중{'\n'}14시까지</Text>
   } else if ((date.getHours() >= 17 && date.getHours() < 18) || (date.getHours() == 18 && date.getMinutes() < 30)) {
-    return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}18시30분까지</Text>
+    return <Text style={styles.nowon}>운영중{'\n'}18시30분까지</Text>
   } else if (date.getHours() < 11) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>11시부터{'\n'}점심시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시 점심시작</Text></View>
   } else if (date.getHours() < 17 && date.getHours() >= 14) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>17시부터{'\n'}저녁시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>17시 저녁시작</Text></View>
   } else {
-    return <Text style={{color:'red'}}>미운영</Text>
+    return <Text style={styles.nowoff}>미운영</Text>
   }
 }
 
@@ -378,13 +395,13 @@ function nhmeal() {
 function dwgmeal() {
   var date = new Date()
   if (date.getDay() == 0 || date.getDay() == 6) {
-    return <Text style={{color:'red'}}>주말에는{'\n'}운영안함</Text>
+    return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
   } else if (date.getHours() >= 11 && date.getHours() < 14) {
-    return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}14시까지</Text>
+    return <Text style={styles.nowon}>운영중{'\n'}14시까지</Text>
   } else if (date.getHours() < 11) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>11시부터{'\n'}점심시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시 점심시작</Text></View>
   } else {
-    return <Text style={{color:'red'}}>운영종료</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
@@ -399,17 +416,17 @@ function meal220() {
 function m11141719() {
   var date = new Date()
   if (date.getDay() == 0 || date.getDay() == 6) {
-    return <Text style={{color:'red'}}>주말에는{'\n'}운영안함</Text>
+    return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
   } else if (date.getHours() >= 11 && date.getHours() < 14) {
-    return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}14시까지</Text>
+    return <Text style={styles.nowon}>운영중{'\n'}14시까지</Text>
   } else if (date.getHours() >= 17 && date.getHours() < 19) {
-    return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}19시까지</Text>
+    return <Text style={styles.nowon}>운영중{'\n'}19시까지</Text>
   } else if (date.getHours() < 11) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>11시부터{'\n'}점심시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시 점심시작</Text></View>
   } else if (date.getHours() < 17 && date.getHours() >= 14) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>17시부터{'\n'}저녁시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>17시 저녁시작</Text></View>
   } else {
-    return <Text style={{color:'red'}}>운영종료</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
@@ -417,36 +434,36 @@ function m11141719() {
 function loungeo() {
   var date = new Date()
   if (date.getHours() >= 11 && date.getHours() < 21) {
-    return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}21시까지</Text>
+    return <Text style={styles.nowon}>운영중{'\n'}21시까지</Text>
   } else if (date.getHours() < 11) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>11시부터{'\n'}운영시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시 운영시작</Text></View>
   } else {
-    return <Text style={{color:'red'}}>운영종료{'\n'}오늘은끝</Text>
+    return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
   }
 }
 
 function shaban() {  
   var date = new Date()
   if (date.getDay() == 0) {
-    return <Text style={{color:'red'}}>일요일은{'\n'}운영안함</Text>
+    return <Text style={styles.nowoff}>일요일은{'\n'}운영안함</Text>
   } else if (date.getDay() == 6) {
     if (date.getHours() < 11 || (date.getHours() == 11 && date.getMinutes() < 30)) {
-      return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>11시30분부터{'\n'}점심시작</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시30분 점심시작</Text></View>
     } else if ((date.getHours() >= 12 && date.getHours() < 14) || (date.getHours() == 11 && date.getMinutes() >= 30)) {
-      return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}14시까지</Text>
+      return <Text style={styles.nowon}>운영중{'\n'}14시까지</Text>
     } else {
-      return <Text style={{color:'red'}}>운영종료{'\n'}오늘은끝</Text>
+      return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
     }
   } else if (date.getHours() < 11) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>11시부터{'\n'}점심시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시 점심시작</Text></View>
   } else if ((date.getHours() >= 11 && date.getHours() < 14) || (date.getHours() == 14 && date.getMinutes() < 30)) {
-    return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}14시30분까지</Text>
+    return <Text style={styles.nowon}>운영중{'\n'}14시30분까지</Text>
   } else if ((date.getHours() == 14 && date.getMinutes() >= 30) || date.getHours() == 15 || (date.getHours() == 16 && date.getMinutes() < 30)) {
-    return <View><Text style={{color:'red'}}>미운영</Text>{'\n'}<Text style={{color:'green', fontWeight:'bold'}}>16시30분부터{'\n'}저녁시작</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>16시30분 저녁시작</Text></View>
   } else if ((date.getHours() >= 17 && date.getHours() < 20) || (date.getHours() == 16 && date.getMinutes() >= 30)) {
-    return <Text style={{color:'blue', fontWeight:'bold'}}>운영중{'\n'}20시까지</Text>
+    return <Text style={styles.nowon}>운영중{'\n'}20시까지</Text>
   } else {
-    return <Text style={{color:'red'}}>운영종료{'\n'}오늘은끝</Text>
+    return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
   }
 }
 

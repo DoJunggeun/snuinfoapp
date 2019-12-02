@@ -51,7 +51,7 @@ class Home extends Component {
         <TouchableOpacity style={{width:'50%', height:'100%', backgroundColor: 'lightskyblue', justifyContent:'center', alignItems:'center', padding:0}}
             onPress={()=> {navigation.push("Contact")}}>
          <Image source={require('./src/contact.png')} style={{width:105, height:105, margin:15}}/>
-         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:17}}>제보하기</Text></View>
+         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:17}}>개발자에게 </Text></View>
          </TouchableOpacity>
          <TouchableOpacity style={{width:'50%', height:'100%', backgroundColor: 'lightslategray', justifyContent:'center', alignItems:'center', padding:0}}
             onPress={()=> {navigation.push("About")}}>
