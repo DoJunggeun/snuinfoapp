@@ -27,7 +27,8 @@ class Mart extends Component {
          <TouchableOpacity style={{flex:1, backgroundColor:'lightgray'}} onPress={() => Linking.openURL('http://snuco.snu.ac.kr/ko/node/19')}>
           <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:19, fontWeight:'600'}}>생협 편의점/매점 운영시간 전체보기</Text></View>
            </TouchableOpacity></View>
-         <WebView source={{ uri: 'https://dojunggeun.github.io/snuinfo/conv.html' }} style={{flex:10}} ref={WEBVIEW_REF} onNavigationStateChange={this.onNavigationStateChange.bind(this)}/>
+         <WebView source={{ uri: 'https://dojunggeun.github.io/snuinfo/conv.html' }} style={{flex:10}} ref={WEBVIEW_REF} onNavigationStateChange={this.onNavigationStateChange.bind(this)}
+         bounces='false'/>
 
 
           <View style={{height:40, backgroundColor:'black', justifyContent:'center', alignItems:'center'}}>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { WebView } from 'react-native-webview';
 import SafeAreaView from 'react-native-safe-area-view';
@@ -12,7 +12,6 @@ class Shuttle extends Component {
         super(props);
         this.state = { canGoBack: false };
       }
-    
     render() {
         const {navigation} = this.props;
         return ( 
@@ -25,8 +24,8 @@ class Shuttle extends Component {
            <Text style={{fontSize:20, color:'white', fontWeight:'bold'}}>서울대학교 편의정보</Text>
          </View>
 
-         <WebView source={{ uri: 'https://dojunggeun.github.io/snuinfo/shuttle.html' }} style={{flex:1}} ref={WEBVIEW_REF} onNavigationStateChange={this.onNavigationStateChange.bind(this)}/>
-
+         <WebView source={{ uri: 'https://dojunggeun.github.io/snuinfo/shuttle.html' }} style={{flex:1}} ref={WEBVIEW_REF} onNavigationStateChange={this.onNavigationStateChange.bind(this)}
+         bounces='false'/>
 
           <View style={{height:40, backgroundColor:'black', justifyContent:'center', alignItems:'center'}}>
            <Text style={{fontSize:12, color:'white'}}>© 2019 도정근 All Rights Reserved</Text>
@@ -45,6 +44,7 @@ class Shuttle extends Component {
           this.refs[WEBVIEW_REF].goBack();
       }
 }
+
 
 export default Shuttle;
 
