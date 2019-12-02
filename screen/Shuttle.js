@@ -3,7 +3,6 @@ import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { WebView } from 'react-native-webview';
 import SafeAreaView from 'react-native-safe-area-view';
-const Shuttlehtml = require('./lib/shuttle.html');
 const WEBVIEW_REF = "WEBVIEW_REF";
 
 
