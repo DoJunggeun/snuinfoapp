@@ -5,7 +5,6 @@ import { WebView } from 'react-native-webview';
 import SafeAreaView from 'react-native-safe-area-view';
 const WEBVIEW_REF = "WEBVIEW_REF";
 
-
 class Shuttle extends Component { 
     constructor(props) {
         super(props);
@@ -16,17 +15,10 @@ class Shuttle extends Component {
         return ( 
         <View style={{flex:1, flexDirection:'column'}}> 
           <View style={{height:getStatusBarHeight()}}/>
-          <View style={{height:50, backgroundColor:'black', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
-           <TouchableOpacity style={{height:32, width:32, position:'absolute', left:10}} onPress={()=> {navigation.push("Home")}}>
-           <Image source={require('./src/home.png')} style={{height:32, width:32, position:'absolute'}} />
-           </TouchableOpacity>
-           <Text style={{fontSize:20, color:'white', fontWeight:'bold'}}>서울대학교 편의정보</Text>
-         </View>
 
-         {/* <WebView source={{ uri: 'https://dojunggeun.github.io/snuinfo/shuttle.html' }} style={{flex:1}} ref={WEBVIEW_REF} onNavigationStateChange={this.onNavigationStateChange.bind(this)} bounces='false'/> */}
-         <View style={{height:50, backgroundColor:'#f1f1f1', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
-         <TouchableOpacity style={{flex:1, backgroundColor:'#f1f1f1'}} onPress={() => Linking.openURL('https://github.com/DoJunggeun/snuinfoapp/blob/master/screen/lib/img/sttt.jpg')}>
-          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:19, fontWeight:'600'}}>셔틀버스 운행시간 전체보기</Text></View>
+         <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
+         <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => Linking.openURL('https://github.com/DoJunggeun/snuinfoapp/blob/master/screen/lib/img/sttt.jpg')}>
+          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>셔틀버스 운행시간 전체보기</Text></View>
            </TouchableOpacity></View>
 
          <View style={{flex:1}} >
@@ -53,7 +45,7 @@ class Shuttle extends Component {
         <View style={styles.container2}>
         <View style={styles.td}><Text style={styles.tdtext}>{`서울대입구역\n→윗공대`}</Text></View>
           <View style={styles.td}><Text style={styles.tdtext}>08:00~11:00</Text></View>
-          <View style={styles.td}><Text>7~10분</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>7~10분</Text></View>
           <View style={styles.td}>{steng()}</View>
         </View>
         <View style={styles.container}>
@@ -105,11 +97,25 @@ class Shuttle extends Component {
       </View>
 
 
-          <View style={{height:40, backgroundColor:'black', justifyContent:'center', alignItems:'center'}}>
-           <Text style={{fontSize:12, color:'white'}}>© 2019 도정근 All Rights Reserved</Text>
-         </View>
+          <View style={{height:60, backgroundColor:'rgb(176,155,222)', justifyContent:'space-evenly', flexDirection:'row', alignItems:'center'}}>
+            <TouchableOpacity onPress={()=> {navigation.push("Home")}}>
+              <Image source={require('./src/home.png')} style={styles.icon}/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> {navigation.push("Shuttle")}}>
+            <Image source={require('./src/shuttle_w.png')} style={styles.icon}/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> {navigation.push("Meal")}}>
+            <Image source={require('./src/meal.png')} style={styles.icon}/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> {navigation.push("Cafe")}}>
+            <Image source={require('./src/cafe.png')} style={styles.icon}/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> {navigation.push("Mart")}}>
+            <Image source={require('./src/mart.png')} style={styles.icon}/>
+            </TouchableOpacity>
  
-       </View>
+            </View>
+            </View>
         );
     }
     onNavigationStateChange(navState) {
@@ -123,17 +129,17 @@ class Shuttle extends Component {
       }
 }
 const styles = StyleSheet.create({
-  container: {
-    height:60,
-    justifyContent: 'space-around',
-    backgroundColor: '#f1f1f1',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   containerhead: {
     height:60,
     justifyContent: 'space-around',
-    backgroundColor: 'darkgray',
+    backgroundColor: 'rgb(218,218,218)',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  container: {
+    height:60,
+    justifyContent: 'space-around',
+    backgroundColor: 'rgb(244,244,244)',
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -153,7 +159,7 @@ const styles = StyleSheet.create({
     height: 60,
     justifyContent: 'space-around',
     borderWidth: 0.5,
-    borderColor: '#d6d7da',
+    borderColor: 'rgb(218,218,218)',
     alignItems: 'center',
   },
   thtext: {
@@ -167,7 +173,7 @@ const styles = StyleSheet.create({
     height: 60,
     justifyContent: 'space-around',
     borderWidth: 0.5,
-    borderColor: '#d6d7da',
+    borderColor: 'rgb(218,218,218)',
     alignItems: 'center',
     textAlign:'center'
   },
@@ -182,6 +188,9 @@ const styles = StyleSheet.create({
   },
   nowoff :{
     color:'red', textAlign:'center', fontSize:14, fontWeight:'500'
+  },
+  icon:{
+    width:40, height:40
   }
 });
 
@@ -310,55 +319,54 @@ function stnight2() {
 function ststationinterval() {
   var date = new Date();
   if (date.getDay() == 0 || date.getDay() == 6) {
-    return <Text>5~15분</Text>
+    return <Text style={styles.tdtext}>5~15분</Text>
   } else if (date.getHours() > 19 || date.getHours() < 7) {
-    return <Text>5~15분</Text>
+    return <Text style={styles.tdtext}>5~15분</Text>
   } else if (date.getHours() == 7) {
-    return <Text>15분</Text>
+    return <Text style={styles.tdtext}>15분</Text>
   } else if (date.getHours() >= 8 && date.getHours() < 11) {
-    return <Text>5~7분</Text>
+    return <Text style={styles.tdtext}>5~7분</Text>
   } else if ((date.getHours() >= 11 && date.getHours() < 15) || (date.getHours() == 15 && date.getMinutes() < 30)) {
-    return <Text>10분</Text>
+    return <Text style={styles.tdtext}>10분</Text>
   } else if (date.getHours() >= 15 || date.getHours() < 17) {
-    return <Text>7~10분</Text>
+    return <Text style={styles.tdtext}>7~10분</Text>
   } else if (date.getHours() == 17 || date.getHours() == 18) {
-    return <Text>5~7분</Text>
+    return <Text style={styles.tdtext}>5~7분</Text>
   }
 }
 
 function stdhdinterval() {
   var date = new Date();
   if (date.getDay() == 0 || date.getDay() == 6) {
-    return <Text>6~15분</Text>
+    return <Text style={styles.tdtext}>6~15분</Text>
   } else if (date.getHours() > 19 || date.getHours() < 7) {
-    return <Text>5~15분</Text>
+    return <Text style={styles.tdtext}>5~15분</Text>
   } else if (date.getHours() == 7) {
-    return <Text>15분</Text>
+    return <Text style={styles.tdtext}>15분</Text>
   } else if (date.getHours() >= 8 && date.getHours() < 10) {
-    return <Text>6분</Text>
+    return <Text style={styles.tdtext}>6분</Text>
   } else if ((date.getHours() >= 10 && date.getHours() < 12) || (date.getHours() == 12 && date.getMinutes() < 10)) {
-    return <Text>10분</Text>
+    return <Text style={styles.tdtext}>10분</Text>
   } else if (date.getHours() == 12 || (date.getHours() == 13 && date.getMinutes() < 30)) {
-    return <Text>15분</Text>
+    return <Text style={styles.tdtext}>15분</Text>
   } else if (date.getHours() >= 13 && date.getHours() < 17) {
-    return <Text>10분</Text>
+    return <Text style={styles.tdtext}>10분</Text>
   } else if (date.getHours() == 17 || date.getHours() == 18) {
-    return <Text>6분</Text>
+    return <Text style={styles.tdtext}>6분</Text>
   }
 }
 
 function stinnerinterval() {
   var date = new Date();
   if (date.getDay() == 0 || date.getDay() == 6) {
-    return <Text>7~20분</Text>
+    return <Text style={styles.tdtext}>7~20분</Text>
   } else if (date.getHours() > 20 || date.getHours() < 7) {
-    return <Text>7~20분</Text>
+    return <Text style={styles.tdtext}>7~20분</Text>
   } else if (date.getHours() < 19) {
-    return <Text>7분</Text>
+    return <Text style={styles.tdtext}>7분</Text>
   } else if (date.getHours() == 19 || date.getHours() == 20) {
-    return <Text>20분</Text>
+    return <Text style={styles.tdtext}>20분</Text>
   }
 }
 
 export default Shuttle;
-

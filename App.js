@@ -28,42 +28,4 @@ const App = createStackNavigator(
     {headerMode: 'none', mode:'card', lazy:false, gestureDirection:'vertical'}
 );
 
-
-
 export default createAppContainer(App);
-
-
-
-// export default class App extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {text: ''};
-//   }
-
-//   render() {
-
-//   return (
-//     <View style={{flex:1}}>
-//       <View style={{height:getStatusBarHeight()}} />
-//       <WebView source={{ uri: 'http://www.snunews.com/' }} style={{flex:1}}/>
-//       <View style={{height:2*getStatusBarHeight()}}> 
-//           <Text>네이버</Text>
-//       </View>
-
-//     </View>
-  
-//   );
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-//   text: {
-//     fontSize:30
-//   }
-// });

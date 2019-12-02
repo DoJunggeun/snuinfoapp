@@ -17,17 +17,11 @@ class Mart extends Component {
         return ( 
         <View style={{flex:1, flexDirection:'column'}}> 
           <View style={{height:getStatusBarHeight()}}/>
-          <View style={{height:50, backgroundColor:'black', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
-           <TouchableOpacity style={{height:32, width:32, position:'absolute', left:10}} onPress={()=> {navigation.push("Home")}}>
-           <Image source={require('./src/home.png')} style={{height:32, width:32, position:'absolute'}} />
-           </TouchableOpacity>
-           <Text style={{fontSize:20, color:'white', fontWeight:'bold'}}>서울대학교 편의정보</Text>
-         </View>
-         <View style={{height:50, backgroundColor:'#f1f1f1', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
-         <TouchableOpacity style={{flex:1, backgroundColor:'#f1f1f1'}} onPress={() => Linking.openURL('http://snuco.snu.ac.kr/ko/node/19')}>
-          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:19, fontWeight:'600'}}>생협 편의점/매점 운영시간 전체보기</Text></View>
+
+         <View style={{height:50, backgroundColor:'#rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
+         <TouchableOpacity style={{flex:1, backgroundColor:'#rgb(176,155,222)'}} onPress={() => Linking.openURL('http://snuco.snu.ac.kr/ko/node/19')}>
+          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>생협 편의점·매점 운영시간 전체보기</Text></View>
            </TouchableOpacity></View>
-         {/* <WebView source={{ uri: 'https://dojunggeun.github.io/snuinfo/conv.html' }} style={{flex:10}} ref={WEBVIEW_REF} onNavigationStateChange={this.onNavigationStateChange.bind(this)}  bounces='false'/> */}
 
          <View style={{flex:1}} >
         <View style={styles.containerhead}>
@@ -115,11 +109,25 @@ class Mart extends Component {
       </View>
 
 
-          <View style={{height:40, backgroundColor:'black', justifyContent:'center', alignItems:'center'}}>
-           <Text style={{fontSize:12, color:'white'}}>© 2019 도정근 All Rights Reserved</Text>
-         </View>
+      <View style={{height:60, backgroundColor:'rgb(176,155,222)', justifyContent:'space-evenly', flexDirection:'row', alignItems:'center'}}>
+            <TouchableOpacity onPress={()=> {navigation.push("Home")}}>
+              <Image source={require('./src/home.png')} style={styles.icon}/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> {navigation.push("Shuttle")}}>
+            <Image source={require('./src/shuttle.png')} style={styles.icon}/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> {navigation.push("Meal")}}>
+            <Image source={require('./src/meal.png')} style={styles.icon}/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> {navigation.push("Cafe")}}>
+            <Image source={require('./src/cafe.png')} style={styles.icon}/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> {navigation.push("Mart")}}>
+            <Image source={require('./src/mart_w.png')} style={styles.icon}/>
+            </TouchableOpacity>
  
-       </View>
+            </View>
+            </View>
         );
     }
     onNavigationStateChange(navState) {
@@ -133,17 +141,17 @@ class Mart extends Component {
       }
 }
 const styles = StyleSheet.create({
-  container: {
-    height:60,
-    justifyContent: 'space-around',
-    backgroundColor: '#f1f1f1',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   containerhead: {
     height:60,
     justifyContent: 'space-around',
-    backgroundColor: 'darkgray',
+    backgroundColor: 'rgb(218,218,218)',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  container: {
+    height:60,
+    justifyContent: 'space-around',
+    backgroundColor: 'rgb(244,244,244)',
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -163,7 +171,7 @@ const styles = StyleSheet.create({
     height: 60,
     justifyContent: 'space-around',
     borderWidth: 0.5,
-    borderColor: '#d6d7da',
+    borderColor: 'rgb(218,218,218)',
     alignItems: 'center',
   },
   thtext: {
@@ -177,7 +185,7 @@ const styles = StyleSheet.create({
     height: 60,
     justifyContent: 'space-around',
     borderWidth: 0.5,
-    borderColor: '#d6d7da',
+    borderColor: 'rgb(218,218,218)',
     alignItems: 'center',
     textAlign:'center'
   },
@@ -192,6 +200,9 @@ const styles = StyleSheet.create({
   },
   nowoff :{
     color:'red', textAlign:'center', fontSize:15, fontWeight:'500'
+  },
+  icon:{
+    width:40, height:40
   }
 });
 

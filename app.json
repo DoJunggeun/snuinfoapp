@@ -15,7 +15,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#B09BDE"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -25,11 +25,22 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.dojunggeun.snuinfo"
+      "bundleIdentifier": "com.dojunggeun.snuinfo",
+      "splash": {
+        "image": "./assets/splash.png",
+        "resizeMode": "cover"
+      }
     },
     "android": {
-      "package": "com.dojunggeun.snuinfo"
-      
+      "package": "com.dojunggeun.snuinfo",
+      "splash": {
+        "mdpi": "./assets/splash.png",
+        "hdpi": "./assets/splash.png",
+        "xhdpi": "./assets/splash.png",
+        "xxhdpi": "./assets/splash.png",
+        "xxxhdpi": "./assets/splash.png",
+        "resizeMode": "cover"
+      }
   }
  }
 }
