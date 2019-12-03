@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, Linking, View, Text, TouchableOpacity, Image} f
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { WebView } from 'react-native-webview';
 import SafeAreaView from 'react-native-safe-area-view';
+import { NavigationActions } from 'react-navigation';
 const WEBVIEW_REF = "WEBVIEW_REF";
 
 
@@ -132,25 +133,6 @@ class Cafe extends Component {
 
       </ScrollView>
       </View>
-
-      <View style={{height:60, backgroundColor:'rgb(176,155,222)', justifyContent:'space-evenly', flexDirection:'row', alignItems:'center'}}>
-            <TouchableOpacity onPress={()=> {navigation.push("Home")}}>
-              <Image source={require('./src/home.png')} style={styles.icon}/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=> {navigation.push("Shuttle")}}>
-            <Image source={require('./src/shuttle.png')} style={styles.icon}/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=> {navigation.push("Meal")}}>
-            <Image source={require('./src/meal.png')} style={styles.icon}/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=> {navigation.push("Cafe")}}>
-            <Image source={require('./src/cafe_w.png')} style={styles.icon}/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=> {navigation.push("Mart")}}>
-            <Image source={require('./src/mart.png')} style={styles.icon}/>
-            </TouchableOpacity>
- 
-            </View>
  
        </View>
         );

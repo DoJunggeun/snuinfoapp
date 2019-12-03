@@ -28,8 +28,11 @@
       "bundleIdentifier": "com.dojunggeun.snuinfo",
       "splash": {
         "image": "./assets/splash.png",
-        "resizeMode": "cover"
-      }
+        "resizeMode": "cover",
+        "backgroundColor": "#B09BDE"
+      },
+      "icon":"./assets/icon.png",
+      "userInterfaceStyle": "automatic"
     },
     "android": {
       "package": "com.dojunggeun.snuinfo",
@@ -39,8 +42,10 @@
         "xhdpi": "./assets/splash.png",
         "xxhdpi": "./assets/splash.png",
         "xxxhdpi": "./assets/splash.png",
-        "resizeMode": "cover"
-      }
+        "resizeMode": "cover",
+        "backgroundColor": "#B09BDE"
+      },
+      "icon":"./assets/icon.png"
   }
  }
 }

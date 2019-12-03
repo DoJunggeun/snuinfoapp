@@ -3,7 +3,8 @@ import { StyleSheet, View, Text, TouchableOpacity, ImageBackground, Image} from 
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { WebView } from 'react-native-webview';
 import SafeAreaView from 'react-native-safe-area-view';
-import * as Font from 'expo-font';
+import { NavigationActions } from 'react-navigation';
+
 const WEBVIEW_REF = "WEBVIEW_REF";
 
 class Home extends Component { 
@@ -22,40 +23,40 @@ class Home extends Component {
                 return ( 
         <View style={{flex:1, flexDirection:'column', justifyContent:'space-around'}}> 
           <View style={{height:getStatusBarHeight()}}/>
-          <View style={{height:140, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center'}}>
+          <View style={{height:'22%', backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center'}}>
            <Text style={{fontSize:40, color:'white', fontWeight:'bold'}}>서울대학교 편의정보</Text>
          </View>
 
           <View style={{flex:1, backgroundColor:'rgb(244,244,244)'}}>
 
          <View style={{flex: 1, top:'1%', flexDirection: 'row', justifyContent:'space-evenly', alignItems:'center'}}>
-         <TouchableOpacity style={styles.menu} onPress={()=> {navigation.push("Shuttle")}}>
+         <TouchableOpacity style={styles.menu} onPress={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Shuttle'}));}}>
          <Image source={require('./src/shuttle.png')} style={styles.menuimg}/>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={styles.menufont}>셔틀버스</Text></View>
          </TouchableOpacity>
-         <TouchableOpacity style={styles.menu} onPress={()=> {navigation.push("Meal")}}>
+         <TouchableOpacity style={styles.menu} onPress={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Meal'}));}}>
          <Image source={require('./src/meal.png')} style={styles.menuimg}/>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={styles.menufont}>식당</Text></View>
          </TouchableOpacity>
         </View>
 
         <View style={{flex: 1, flexDirection: 'row', justifyContent:'space-evenly', alignItems:'center'}}>
-        <TouchableOpacity style={styles.menu} onPress={()=> {navigation.push("Cafe")}}>
+        <TouchableOpacity style={styles.menu} onPress={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Cafe'}));}}>
          <Image source={require('./src/cafe.png')} style={styles.menuimg}/>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={styles.menufont}>카페</Text></View>
          </TouchableOpacity>
-         <TouchableOpacity style={styles.menu} onPress={()=> {navigation.push("Mart")}}>
+         <TouchableOpacity style={styles.menu} onPress={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Mart'}));}}>
          <Image source={require('./src/mart.png')} style={styles.menuimg}/>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={styles.menufont}>편의점·매점</Text></View>
          </TouchableOpacity>
         </View>
 
         <View style={{flex: 1, bottom:'1%', flexDirection: 'row', justifyContent:'space-evenly', alignItems:'center'}}>
-        <TouchableOpacity style={styles.menu} onPress={()=> {navigation.push("Contact")}}>
+        <TouchableOpacity style={styles.menu} onPress={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Contact'}));}}>
          <Image source={require('./src/contact.png')} style={styles.menuimg}/>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={styles.menufont}>제작자에게</Text></View>
          </TouchableOpacity>
-         <TouchableOpacity style={styles.menu} onPress={()=> {navigation.push("About")}}>
+         <TouchableOpacity style={styles.menu} onPress={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'About'}));}}>
          <Image source={require('./src/about.png')} style={styles.menuimg}/>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={styles.menufont}>앱 정보</Text></View>
          </TouchableOpacity>
@@ -79,7 +80,7 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
   menu: {
-    width:150, height:150, backgroundColor: 'white', justifyContent:'center', alignItems:'center', borderRadius:10,
+    width:'40%', aspectRatio:1, maxWidth:230, backgroundColor: 'white', justifyContent:'center', alignItems:'center', borderRadius:10,
     shadowColor: "#000",
     shadowOffset: {
 	    width: 0,

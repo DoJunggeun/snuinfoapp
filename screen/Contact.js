@@ -3,6 +3,8 @@ import { StyleSheet, Linking, Button, View, Text, TouchableOpacity, Image} from 
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { WebView } from 'react-native-webview';
 import SafeAreaView from 'react-native-safe-area-view';
+import { NavigationActions } from 'react-navigation';
+
 const WEBVIEW_REF = "WEBVIEW_REF";
 
 
@@ -42,11 +44,11 @@ class Contact extends Component {
 
                  
 
-         <View style={{height:60, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', justifyContent:'center'}}>
-           <TouchableOpacity style={{height:40, width:40, position:'absolute', left:30}} onPress={()=> {navigation.push("Home")}}>
-           <Image source={require('./src/home.png')} style={{height:40, width:40, position:'absolute'}} />
+         <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center'}}>
+           <TouchableOpacity style={{height:40, width:'20%', position:'absolute', left:0}} onPress={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Home'}));}}>
+           <Image source={require('./src/home.png')} style={{height:40, width:40, alignSelf:'center'}} />
            </TouchableOpacity>
-           <Text style={{fontSize:12, color:'white'}}>© 2019 도정근 All Rights Reserved</Text>
+           <Text style={{fontSize:12, color:'white', alignSelf:'center'}}>© 2019 도정근 All Rights Reserved</Text>
          </View>
  
        </View>
