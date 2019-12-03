@@ -34,21 +34,21 @@ const Bottom = createMaterialTopTabNavigator(
       )}),
     },
     Meal:{
-      screen:Shuttle,
+      screen:Meal,
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor, focused }) => (
           focused ? <View style={styles.iconbg}><Image source={require('./screen/src/meal_w.png')} style={styles.icon} /></View> : <View style={styles.iconbg}><Image source={require('./screen/src/meal.png')} style={styles.icon} /></View>
       )}),
     },
     Cafe:{
-      screen:Shuttle,
+      screen:Cafe,
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor, focused }) => (
           focused ? <View style={styles.iconbg}><Image source={require('./screen/src/cafe_w.png')} style={styles.icon} /></View> : <View style={styles.iconbg}><Image source={require('./screen/src/cafe.png')} style={styles.icon} /></View>
       )}),
     },
     Mart:{
-      screen:Shuttle,
+      screen:Mart,
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor, focused }) => (
           focused ? <View style={styles.iconbg}><Image source={require('./screen/src/mart_w.png')} style={styles.icon} /></View> : <View style={styles.iconbg}><Image source={require('./screen/src/mart.png')} style={styles.icon} /></View>
