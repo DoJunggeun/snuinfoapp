@@ -76,6 +76,7 @@ const Cont = createMaterialTopTabNavigator(
       screen:Bottom,
       navigationOptions: () => ({
         tabBarVisible:false,
+        swipeEnabled: false
     }),
     },
     Contact: {
@@ -96,6 +97,7 @@ const Ab = createMaterialTopTabNavigator(
       screen:Cont,
       navigationOptions: () => ({
         tabBarVisible:false,
+        swipeEnabled: false
     }),
     },
     About: {
