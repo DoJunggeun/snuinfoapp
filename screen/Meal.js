@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { ScrollView, StyleSheet, Linking, View, Text, TouchableOpacity, Image} from 'react-native';
+import { Dimensions, Modal, ScrollView, StyleSheet, Linking, View, Text, TouchableOpacity, Image} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { WebView } from 'react-native-webview';
 import SafeAreaView from 'react-native-safe-area-view';
@@ -10,9 +10,12 @@ const WEBVIEW_REF = "WEBVIEW_REF";
 class Meal extends Component { 
     constructor(props) {
         super(props);
-        this.state = { canGoBack: false };
+        this.state = { canGoBack: false, modalVisible: false };
       }
-    
+      setModalVisible(visible) {
+        this.setState({modalVisible: visible});
+      }
+
     render() {
         const {navigation} = this.props;
         return ( 
@@ -20,12 +23,17 @@ class Meal extends Component {
           <View style={{height:getStatusBarHeight()}}/>
 
          <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
-         <TouchableOpacity style={{flex:53, backgroundColor:'rgb(176,155,222)'}} onPress={() => Linking.openURL('http://snuco.snu.ac.kr/ko/node/20')}>
+         <TouchableOpacity style={{flex:53, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setModalVisible(true);}}>
           <View style={{height:50,justifyContent:'center', alignItems:'center',  borderWidth: 0.5 ,borderColor: 'darkgray',}}><Text style={{color:'white', fontSize:22, fontWeight:'bold'}}>생협 식당 운영시간 전체보기</Text></View></TouchableOpacity>
-           {/* <TouchableOpacity style={{flex:47, backgroundColor:'rgb(176,155,222)'}} onPress={() => Linking.openURL('http://snuco.snu.ac.kr/ko/foodmenu')}>
-          <View style={{height:50,justifyContent:'center', alignItems:'center',  borderWidth: 0.5 ,borderColor: 'darkgray',}}><Text style={{color:'white', fontSize:16, fontWeight:'bold'}}>생협 식당 메뉴 전체보기</Text></View></TouchableOpacity> */}
            </View>
 
+           <Modal animationType="slide" transparent={false} visible={this.state.modalVisible}>
+           <View style={{height:getStatusBarHeight()}}/><WebView source={{uri: 'http://snuco.snu.ac.kr/ko/node/20'}} style={{flex:7}}/>
+           <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
+         <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setModalVisible(false) }}>
+          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
+           </TouchableOpacity></View>
+           </Modal>
 
       <View style={{flex:1}} >
         <View style={styles.containerhead}>

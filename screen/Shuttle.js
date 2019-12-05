@@ -30,19 +30,17 @@ class Shuttle extends Component {
           <View style={{height:getStatusBarHeight()}}/>
 
          <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
-         <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {
-            this.setModalVisible(true);
-          }}>
+         <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setModalVisible(true);}}>
           <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>셔틀버스 운행시간 전체보기</Text></View>
            </TouchableOpacity></View>
 
            <Modal animationType="slide" transparent={false} visible={this.state.modalVisible}>
-           <ImageViewer imageUrls={sttt} saveToLocalByLongPress={true} style={{flex:7}}/>
-           <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
-         <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {
-            this.setModalVisible(false) }}>
-          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
-           </TouchableOpacity></View>
+            <ImageViewer imageUrls={sttt} style={{flex:7}}/>
+            <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
+              <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setModalVisible(false) }}>
+             <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
+              </TouchableOpacity>
+            </View>
            </Modal>
 
 
