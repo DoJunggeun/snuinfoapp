@@ -11,10 +11,10 @@ const WEBVIEW_REF = "WEBVIEW_REF";
 class Contact extends Component { 
     constructor(props) {
         super(props);
-        this.state = { canGoBack: false };
+        this.state = { canGoBack: false , modalVisible: false};
       }
       setModalVisible(visible) {
-        this.setState({modalVisible: visible, modalVisible: false});
+        this.setState({modalVisible: visible});
       }
 
     render() {
