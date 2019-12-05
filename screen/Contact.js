@@ -14,7 +14,7 @@ class Contact extends Component {
         this.state = { canGoBack: false };
       }
       setModalVisible(visible) {
-        this.setState({modalVisible: visible});
+        this.setState({modalVisible: visible, modalVisible: false});
       }
 
     render() {
