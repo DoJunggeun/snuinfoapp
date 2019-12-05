@@ -56,7 +56,7 @@ class Shuttle extends Component {
           <View style={styles.th}><Text style={styles.thtext}>현재</Text></View>
         </View>
 
-         <ScrollView style={styles.scroll} bounces='false'>
+         <ScrollView style={styles.scroll}>
         <View style={styles.container2}>
           <View style={styles.td}><Text style={styles.tdtext}>{`서울대입구역\n↔행정관`}</Text></View>
           <View style={styles.td}><Text style={styles.tdtext}>07:00~19:00</Text></View>

@@ -27,8 +27,8 @@ class Cafe extends Component {
           <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>생협 카페 운영시간 전체보기</Text></View>
            </TouchableOpacity></View>
 
-           <Modal animationType="slide" transparent={false} visible={this.state.modalVisible}>
-           <View style={{height:getStatusBarHeight()}}/><WebView source={{uri: 'http://snuco.snu.ac.kr/ko/node/21'}} style={{flex:7}}/>
+           <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} style={{marginTop :getStatusBarHeight()}}>
+           <WebView source={{uri: 'http://snuco.snu.ac.kr/ko/node/21'}} style={{flex:7}}/>
            <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
          <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setModalVisible(false) }}>
           <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
@@ -43,7 +43,7 @@ class Cafe extends Component {
           <View style={styles.th}><Text style={styles.thtext}>{`운영시간\n(학기중)`}</Text></View>
         </View>
 
-         <ScrollView style={styles.scroll} bounces='false'>
+         <ScrollView style={styles.scroll}>
         <View style={styles.container2}>
           <View style={styles.td}><Text style={styles.tdtext}>중도 느티나무</Text></View>
           <View style={styles.td}><Text style={styles.tdtext}>중앙도서관</Text></View>

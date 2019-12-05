@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Linking, Button, View, Text, TouchableOpacity, Image} from 'react-native';
+import { Dimensions, Modal, ScrollView, StyleSheet, Linking, View, Text, TouchableOpacity, Image} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { WebView } from 'react-native-webview';
 import SafeAreaView from 'react-native-safe-area-view';
@@ -13,7 +13,10 @@ class Contact extends Component {
         super(props);
         this.state = { canGoBack: false };
       }
-    
+      setModalVisible(visible) {
+        this.setState({modalVisible: visible});
+      }
+
     render() {
         const {navigation} = this.props;
         return ( 
@@ -31,10 +34,16 @@ class Contact extends Component {
              <Text style={{left:30, fontSize:18}}>▶ 사실과 다른 정보{'\n'}</Text>
              <Text style={{left:30, fontSize:18}}>▶ 추가되면 좋을 것 같은 정보·기능{'\n'}</Text>
              <Text style={{left:30, fontSize:18}}>▶ 기타 개선을 원하시는 사항</Text></View>
-             <TouchableOpacity style={{flex:4, backgroundColor: 'rgba(176,155,222,0.6)', justifyContent:'center', alignItems:'center', borderBottomRightRadius:15,borderBottomLeftRadius:15}}
-            onPress={() => Linking.openURL('https://docs.google.com/forms/d/e/1FAIpQLSeAOS1F3bnfkikIPH11mf6EhPD0qEypeqeey7_4QkSMBaD8nw/viewform?usp=sf_link')}>
+             <TouchableOpacity style={{flex:4, backgroundColor: 'rgba(176,155,222,0.6)', justifyContent:'center', alignItems:'center', borderBottomRightRadius:15,borderBottomLeftRadius:15}} onPress={() => {this.setModalVisible(true);}}>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:25, fontWeight:'500',color:'black'}}>제보하기</Text></View>
          </TouchableOpacity>
+         <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} style={{marginTop :getStatusBarHeight()}}>
+           <WebView source={{uri: 'https://docs.google.com/forms/d/e/1FAIpQLSeAOS1F3bnfkikIPH11mf6EhPD0qEypeqeey7_4QkSMBaD8nw/viewform?usp=sf_link'}} style={{flex:7, backgroundColor:'rgb(240,235,248)'}}/>
+           <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
+         <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setModalVisible(false) }}>
+          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
+           </TouchableOpacity></View>
+           </Modal>
 
 
          </View>
@@ -74,7 +83,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5
+    elevation: 5,
 
   },
   menufont:{

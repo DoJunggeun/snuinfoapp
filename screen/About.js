@@ -23,9 +23,10 @@ class About extends Component {
           <View style={{height:50, backgroundColor:'rgb(176,155,222)', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
            <Text style={{fontSize:22, color:'white', fontWeight:'bold'}}>앱 정보</Text>
          </View>
+
          <View style={{flex:1, justifyContent:'center', alignItems:'center', borderRadius:15}}>
           <View style={styles.menu}>
-             <View style={{flex:1, justifyContent:'center', backgroundColor:'rgb(230,230,230)'}}><Text style={{left:15, fontSize:17, fontWeight:'bold',borderTopRightRadius:15,borderTopLeftRadius:15}}>Version</Text></View>
+             <View style={{flex:1, justifyContent:'center', backgroundColor:'rgb(230,230,230)', borderTopRightRadius:15,borderTopLeftRadius:15}}><Text style={{left:15, fontSize:17, fontWeight:'bold'}}>Version</Text></View>
              <View style={{flex:1, justifyContent:'center', backgroundColor:'white'}}><Text style={{left:15, fontSize:17}}>1.0.0</Text></View>
              <View style={{flex:1, justifyContent:'center', backgroundColor:'rgb(230,230,230)'}}><Text style={{left:15, fontSize:17, fontWeight:'bold'}}>각종 문의</Text></View>
              <View style={{flex:1, justifyContent:'center', backgroundColor:'white'}}><Text style={{left:15, fontSize:17}}>jg.do@snu.ac.kr</Text></View>
@@ -39,6 +40,7 @@ class About extends Component {
                  <Text style={{fontSize:23, fontWeight:'bold'}}>^_^</Text></View>
                  </View>
                  </View>
+
 
                  <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center'}}>
            <TouchableOpacity style={{height:40, width:'20%', position:'absolute', left:0}} onPress={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Home'}));}}>
@@ -66,11 +68,11 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
 	    width: 0,
-	    height: 2,
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5
+    elevation: 5,
 
   },
   menufont:{
