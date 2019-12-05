@@ -23,7 +23,6 @@ const Bottom = createMaterialTopTabNavigator(
         tabBarIcon: ({ tintColor, focused }) => (
           focused ? <View style={styles.iconbg}><Image source={require('./screen/src/home_w.png')} style={styles.icon} /></View> : <View style={styles.iconbg}><Image source={require('./screen/src/home.png')} style={styles.icon} /></View>
         ),
-        swipeEnabled: false
     }),
     },
     Shuttle:{
