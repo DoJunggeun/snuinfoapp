@@ -73,22 +73,24 @@ class Mealtable extends Component {
             menus[13].dinner = menus[13].dinner.replace('00원', '00원\n');
 
             if (today.getDay() == 0){
-                menulist[0] = `\n아침\n${data[0].breakfast}\n\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
-                menulist[5] = `\n아침\n${data[1].breakfast}\n\n점심\n${data[1].lunch}\n\n저녁\n${data[1].dinner}\n\n`;
+                menulist[0] = `\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
+                menulist[5] = `\n점심\n${data[1].lunch}\n\n저녁\n${data[1].dinner}\n\n`;
                 menulist[8] = `\n아침\n${data[2].breakfast}\n\n점심\n${data[2].lunch}\n\n저녁\n${data[2].dinner}\n\n`;
 
             } else if (today.getDay() == 6){
-                menulist[0] = `\n아침\n${data[0].breakfast}\n\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
-                menulist[3] = `\n아침\n${data[1].breakfast}\n\n점심\n${data[1].lunch}\n\n저녁\n${data[1].dinner}\n\n`;
-                menulist[4] = `\n아침\n${data[2].breakfast}\n\n점심\n${data[2].lunch}\n\n저녁\n${data[2].dinner}\n\n`;
-                menulist[5] = `\n아침\n${data[3].breakfast}\n\n점심\n${data[3].lunch}\n\n저녁\n${data[3].dinner}\n\n`;
-                menulist[6] = `\n아침\n${data[4].breakfast}\n\n점심\n${data[4].lunch}\n\n저녁\n${data[4].dinner}\n\n`;
+                menulist[0] = `\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
+                menulist[3] = `\n점심\n${data[1].lunch}\n\n저녁\n${data[1].dinner}\n\n`;
+                menulist[4] = `\n점심\n${data[2].lunch}\n\n저녁\n${data[2].dinner}\n\n`;
+                menulist[5] = `\n점심\n${data[3].lunch}\n\n저녁\n${data[3].dinner}\n\n`;
+                menulist[6] = `\n점심\n${data[4].lunch}\n\n저녁\n${data[4].dinner}\n\n`;
                 menulist[8] = `\n아침\n${data[5].breakfast}\n\n점심\n${data[5].lunch}\n\n저녁\n${data[5].dinner}\n\n`;
 
             } else {
                 for (var i = 0; i < data.length; i++) {
-                    menulist[i] = `\n아침\n${data[i].breakfast}\n\n점심\n${data[i].lunch}\n\n저녁\n${data[i].dinner}\n\n`;
+                    menulist[i] = `\n점심\n${data[i].lunch}\n\n저녁\n${data[i].dinner}\n\n`;
                 }
+                menulist[0] = `\n아침\n${data[0].breakfast}\n\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
+                menulist[8] = `\n아침\n${data[8].breakfast}\n\n점심\n${data[8].lunch}\n\n저녁\n${data[8].dinner}\n\n`;
             }
 
 
