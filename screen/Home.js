@@ -30,14 +30,16 @@ class Home extends Component {
           <View style={{flex:1, backgroundColor:'rgb(244,244,244)'}}>
 
          <View style={{flex: 1, top:'1%', flexDirection: 'row', justifyContent:'space-evenly', alignItems:'center'}}>
-         <TouchableOpacity style={styles.menu} onPress={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Shuttle'}));}}>
-         <Image source={require('./src/shuttle.png')} style={styles.menuimg}/>
-         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={styles.menufont}>셔틀버스</Text></View>
-         </TouchableOpacity>
          <TouchableOpacity style={styles.menu} onPress={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Meal'}));}}>
          <Image source={require('./src/meal.png')} style={styles.menuimg}/>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={styles.menufont}>식당</Text></View>
          </TouchableOpacity>
+
+         <TouchableOpacity style={styles.menu} onPress={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Mart'}));}}>
+         <Image source={require('./src/mart.png')} style={styles.menuimg}/>
+         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={styles.menufont}>편의점·매점</Text></View>
+         </TouchableOpacity>
+
         </View>
 
         <View style={{flex: 1, flexDirection: 'row', justifyContent:'space-evenly', alignItems:'center'}}>
@@ -45,10 +47,11 @@ class Home extends Component {
          <Image source={require('./src/cafe.png')} style={styles.menuimg}/>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={styles.menufont}>카페</Text></View>
          </TouchableOpacity>
-         <TouchableOpacity style={styles.menu} onPress={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Mart'}));}}>
-         <Image source={require('./src/mart.png')} style={styles.menuimg}/>
-         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={styles.menufont}>편의점·매점</Text></View>
+         <TouchableOpacity style={styles.menu} onPress={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Shuttle'}));}}>
+         <Image source={require('./src/shuttle.png')} style={styles.menuimg}/>
+         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={styles.menufont}>셔틀버스</Text></View>
          </TouchableOpacity>
+
         </View>
 
         <View style={{flex: 1, bottom:'1%', flexDirection: 'row', justifyContent:'space-evenly', alignItems:'center'}}>

@@ -25,25 +25,11 @@ const Bottom = createMaterialTopTabNavigator(
         ),
     }),
     },
-    Shuttle:{
-      screen:Shuttle,
-      navigationOptions: () => ({
-        tabBarIcon: ({ tintColor, focused }) => (
-          focused ? <View style={styles.iconbg}><Image source={require('./screen/src/shuttle_w.png')} style={styles.icon} /></View> : <View style={styles.iconbg}><Image source={require('./screen/src/shuttle.png')} style={styles.icon} /></View>
-      )}),
-    },
     Meal:{
       screen:Meal,
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor, focused }) => (
           focused ? <View style={styles.iconbg}><Image source={require('./screen/src/meal_w.png')} style={styles.icon} /></View> : <View style={styles.iconbg}><Image source={require('./screen/src/meal.png')} style={styles.icon} /></View>
-      )}),
-    },
-    Cafe:{
-      screen:Cafe,
-      navigationOptions: () => ({
-        tabBarIcon: ({ tintColor, focused }) => (
-          focused ? <View style={styles.iconbg}><Image source={require('./screen/src/cafe_w.png')} style={styles.icon} /></View> : <View style={styles.iconbg}><Image source={require('./screen/src/cafe.png')} style={styles.icon} /></View>
       )}),
     },
     Mart:{
@@ -53,6 +39,20 @@ const Bottom = createMaterialTopTabNavigator(
           focused ? <View style={styles.iconbg}><Image source={require('./screen/src/mart_w.png')} style={styles.icon} /></View> : <View style={styles.iconbg}><Image source={require('./screen/src/mart.png')} style={styles.icon} /></View>
       )}),
     },
+    Cafe:{
+      screen:Cafe,
+      navigationOptions: () => ({
+        tabBarIcon: ({ tintColor, focused }) => (
+          focused ? <View style={styles.iconbg}><Image source={require('./screen/src/cafe_w.png')} style={styles.icon} /></View> : <View style={styles.iconbg}><Image source={require('./screen/src/cafe.png')} style={styles.icon} /></View>
+      )}),
+    },
+    Shuttle:{
+      screen:Shuttle,
+      navigationOptions: () => ({
+        tabBarIcon: ({ tintColor, focused }) => (
+          focused ? <View style={styles.iconbg}><Image source={require('./screen/src/shuttle_w.png')} style={styles.icon} /></View> : <View style={styles.iconbg}><Image source={require('./screen/src/shuttle.png')} style={styles.icon} /></View>
+      )}),
+    }
   }, 
   {
     tabBarOptions: {
