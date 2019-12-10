@@ -146,8 +146,8 @@ class Contact extends Component {
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:20, fontWeight:'500',color:'black'}}>학내 은행·ATM 정보</Text></View>
          </TouchableOpacity>
          <Modal animationType="slide" transparent={true} visible={this.state.bankVisible} style={{justifyContent:'center', alignItems:'center'}}>
-           <View style={{flex:1, justifyContent:'center', alignItems:'center', alignSelf:'center'}}> 
-           <View style={{height:'50%', width:'80%', backgroundColor:'rgb(240,235,248)', padding:15, borderRadius:15,
+           <View style={{height:'100%', width:'100%', justifyContent:'center', alignItems:'center', alignSelf:'center'}}> 
+           <View style={{height:'70%', width:'90%', backgroundColor:'rgb(240,235,248)', padding:15, borderRadius:15,
                   shadowColor: "#000",
                   shadowOffset: {
                       width: 1,
@@ -156,15 +156,18 @@ class Contact extends Component {
                   shadowOpacity: 0.4,
                   shadowRadius: 4.5,
                   elevation: 5}}>
-             <View style={{flex:1}}>
+             <ScrollView style={{flex:1, paddingTop:10}}>
+             <View style={{flex:1, alignItems:'center', justifyContent:'center', borderBottomWidth:2, borderColor:'lightgray', paddingBottom:10}}>
              <Text style={{fontSize:20, alignSelf:'center'}}>학내 은행·ATM 정보</Text>
-            <Text style={{fontSize:18, lineHeight:30}}>{`\n`}
-            1. 위치 : 행정관 1층 (학생회관 식당 앞){`\n`}
-2. 운영 시간 : 평일 09:00~18:00{`\n`}
-   (금융서비스는 09:00 ~ 16:30){`\n`}
-3. 연락처 : 02-889-0205
-            </Text>
-            </View>
+             </View>
+             <View style={styles.printmodal}>
+              <View style={{flex:2, alignItems:'center', justifyContent:'center', margin:7}}><Text>은행</Text></View>
+              <View style={styles.banktd}><Text>위치</Text></View>
+              </View>
+
+                  {banks()}
+                  <View style={{height:30}}/>
+            </ScrollView>
            <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
          <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setbankVisible(false) }}>
           <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
@@ -220,20 +223,6 @@ class Contact extends Component {
 
          </View>
 
-         {/* <View style={styles.menu}>
-             <TouchableOpacity style={{flex:1, backgroundColor: 'rgba(176,155,222,0.45)', justifyContent:'center', alignItems:'center', borderRadius:15}} onPress={() => {this.setsyVisible(true);}}>
-         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:20, fontWeight:'500',color:'black'}}>신양관 사용 신청 방법</Text></View>
-         </TouchableOpacity>
-         <Modal animationType="slide" transparent={false} visible={this.state.syVisible} style={{marginTop :getStatusBarHeight()}}>
-           <WebView source={{uri: 'http://sysocial.snu.ac.kr/'}} style={{flex:7, backgroundColor:'rgb(240,235,248)'}}/>
-           <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
-         <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setsyVisible(false) }}>
-          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
-           </TouchableOpacity></View>
-           </Modal>
-         </View> */}
-
-
          </ScrollView>
 
 
@@ -287,7 +276,81 @@ const styles = StyleSheet.create({
   },
   printtext: {
     fontSize:14
+  },
+  banktd:{
+    flex:4, alignItems:'center', justifyContent:'center', margin:7
+  },
+  bankth: {
+    flex:1, alignItems:'center', justifyContent:'center', margin:7
+  }, 
+  banktext:{
+    fontSize:14
   }
 });
+
+var banklist = 
+[ 
+  ['우리', '은행', '인문대 신양(4동) 1층'],
+  ['우리', 'ATM', '인문대 신양(4동) 1층'],
+  ['우리', 'ATM', '학생회관 1층 앞'],
+  ['우리', 'ATM', '기숙사 900동 지하1층 복도'],
+  ['우리', 'ATM', '공대 해동(32-1동) 1층'],
+  ['우리', 'ATM', '공대 302동 1층'],
+  ['농협', '은행', '자하연(109동) 1층'],
+  ['농협', '은행', '공대 39동 1층'],
+  ['농협', '은행', '공대 301동 지하1층'],
+  ['농협', '은행', '농생대 200동'],
+  ['농협', 'ATM', '자하연(109동) 1층'],
+  ['농협', 'ATM', '공대 301동 지하1층'],
+  ['농협', 'ATM', '농생대 200동'],
+  ['농협', 'ATM', '학생회관 1층 앞'],
+  ['농협', 'ATM', '행정관 1층 학사과 입구'],
+  ['농협', 'ATM', '기숙사 900동 지하 2층 출입구'],
+  ['농협', 'ATM', '기숙사 919동 1층 식당 앞'],
+  ['농협', 'ATM', '경영대 58동 앞'],
+  ['농협', 'ATM', '공대 39동 1층 '],
+  ['농협', 'ATM', '공대 301동 2층 '],
+  ['농협', 'ATM', '공대 302동 2층 '],
+  ['농협', 'ATM', '수의대 85동 5층 '],
+  ['농협', 'ATM', '사범대 11동 '],
+  ['농협', 'ATM', '사회대 16동 2층 '],
+  ['농협', 'ATM', '음대 53동 1층 '],
+  ['농협', 'ATM', '자연대 500동 1층'],
+  ['농협', 'ATM', '약대 143동 1층 '],
+  ['신한', '은행', '학생회관 1.5층'],
+  ['신한', '은행', '공대 신양(44-1동) 1층'],
+  ['신한', 'ATM', '학생회관 1.5층'],
+  ['신한', 'ATM', '공대 신양(44-1동) 1층'],
+  ['신한', 'ATM', '기숙사 900동 지하 2층 출입구'],
+  ['신한', 'ATM', '기숙사 919동 1층 매점 옆'],
+  ['신한', 'ATM', '공대 301동 2층'],
+  ['신한', 'ATM', '220동 2층'],
+  ['신한', 'ATM', '사회대 16동 2층'],
+  ['신한', 'ATM', '약대 143동 1층']
+];
+
+function banks() {
+  var n = banklist.length;
+  var res = [];
+  for (var i = 0; i<n ; i++){
+    var temp1 = banklist[i][0];
+    var temp2 = banklist[i][1];
+    var temp3 = banklist[i][2];
+    res.push(
+    <View key={i} style={styles.printmodal}>
+      <View style={styles.bankth}>
+        <Text>{temp1}</Text>
+      </View>
+      <View style={styles.bankth}>
+       <Text>{temp2}</Text>
+      </View>
+      <View style={styles.banktd}>
+        <Text>{temp3}</Text>
+      </View>
+    </View>)
+  }
+
+  return res
+}
 
 export default Contact;
