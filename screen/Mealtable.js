@@ -66,7 +66,7 @@ class Mealtable extends Component {
             menus[1].dinner = menus[1].dinner.replace('00원', '00원\n');
             menus[8].breakfast = menus[8].breakfast.replace('00원', '00원\n');
             menus[8].lunch = menus[8].lunch.replace('00원', '00원\n');
-            menus[8].dinner = menus[8].dinner.replaceAll('00원', '00원\n');
+            menus[8].dinner = menus[8].dinner.replace('00원', '00원\n');
             menus[11].lunch = menus[11].lunch.replace('00원', '00원\n');
             menus[11].dinner = menus[11].dinner.replace('00원', '00원\n');
             menus[13].lunch = menus[13].lunch.replace('00원', '00원\n');
@@ -91,6 +91,7 @@ class Mealtable extends Component {
                 }
                 menulist[0] = `\n아침\n${data[0].breakfast}\n\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
                 menulist[8] = `\n아침\n${data[8].breakfast}\n\n점심\n${data[8].lunch}\n\n저녁\n${data[8].dinner}\n\n`;
+                menulist[7] = `\n아침\n${data[8].breakfast}\n\n점심\n${data[8].lunch}\n\n`;
             }
 
 
