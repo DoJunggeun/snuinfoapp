@@ -435,6 +435,12 @@ class Mealtable extends Component {
                             <Text style={styles.menu}>쌀국수 등</Text>
                         </View>
                     </View>
+                    <View style={styles.container2}>
+          <View style={styles.td}><Text style={styles.tdtext}>퀴즈노스</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>301동 지하1층</Text></View>
+          <View style={styles.td}>{quiz()}</View>
+        </View>
+
                 </ScrollView>
             </View>
         );
@@ -1051,4 +1057,22 @@ function pho(){
       }
 }
 
+function quiz() {
+    var date = new Date();
+    var day = date.getDay()
+    var hours = date.getHours()
+    if ((day == 0 || day == 6) && (hours >= 9 && hours < 19)) {
+      return <Text style={styles.nowon}>{`운영중\n19시까지`}</Text>
+    } else if ((day > 0 && day < 6) && (hours >= 7 && hours < 20)) {
+      return <Text style={styles.nowon}>{`운영중\n20시까지`}</Text>
+    } else if ((day == 0 || day == 6) && (hours < 9)) {
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9시부터</Text></View>
+    } else if ((day > 0 && day < 6) && (hours < 7)) {
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7시부터</Text></View>
+    } else {
+      return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
+    }
+  }
+  
+  
 export default Mealtable;
