@@ -16,7 +16,8 @@ class Contact extends Component {
           bankVisible: false,
           libVisible: false,
           postVisible: false,
-          syVisible: false
+          syVisible: false,
+          dormVisible: false
         };
       }
       setprintVisible(visible) {
@@ -33,6 +34,9 @@ class Contact extends Component {
       }
       setsyVisible(visible) {
         this.setState({syVisible: visible});
+      }
+      setdormVisible(visible) {
+        this.setState({dormVisible: visible});
       }
 
     render() {
@@ -177,19 +181,6 @@ class Contact extends Component {
          </View>
 
          <View style={styles.menu}>
-             <TouchableOpacity style={{flex:1, backgroundColor: 'rgba(176,155,222,0.45)', justifyContent:'center', alignItems:'center', borderRadius:15}} onPress={() => {this.setlibVisible(true);}}>
-         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:20, fontWeight:'500',color:'black'}}>도서관 운영시간</Text></View>
-         </TouchableOpacity>
-         <Modal animationType="slide" transparent={false} visible={this.state.libVisible} style={{marginTop :getStatusBarHeight()}}>
-           <WebView source={{uri: 'http://lib.snu.ac.kr/hours'}} style={{flex:7}}/>
-           <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
-         <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setlibVisible(false) }}>
-          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
-           </TouchableOpacity></View>
-           </Modal>
-         </View>
-
-         <View style={styles.menu}>
              <TouchableOpacity style={{flex:1, backgroundColor: 'rgba(176,155,222,0.45)', justifyContent:'center', alignItems:'center', borderRadius:15}} onPress={() => {this.setpostVisible(true);}}>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:20, fontWeight:'500',color:'black'}}>우체국 운영 정보</Text></View>
          </TouchableOpacity>
@@ -221,6 +212,32 @@ class Contact extends Component {
            </View>
            </Modal>
 
+         </View>
+
+         <View style={styles.menu}>
+             <TouchableOpacity style={{flex:1, backgroundColor: 'rgba(176,155,222,0.45)', justifyContent:'center', alignItems:'center', borderRadius:15}} onPress={() => {this.setlibVisible(true);}}>
+         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:20, fontWeight:'500',color:'black'}}>도서관 운영시간</Text></View>
+         </TouchableOpacity>
+         <Modal animationType="slide" transparent={false} visible={this.state.libVisible} style={{marginTop :getStatusBarHeight()}}>
+           <WebView source={{uri: 'http://lib.snu.ac.kr/hours'}} style={{flex:7}}/>
+           <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
+         <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setlibVisible(false) }}>
+          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
+           </TouchableOpacity></View>
+           </Modal>
+         </View>
+
+         <View style={styles.menu}>
+             <TouchableOpacity style={{flex:1, backgroundColor: 'rgba(176,155,222,0.45)', justifyContent:'center', alignItems:'center', borderRadius:15}} onPress={() => {this.setdormVisible(true);}}>
+         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:20, fontWeight:'500',color:'black'}}>기숙사 편의시설</Text></View>
+         </TouchableOpacity>
+         <Modal animationType="slide" transparent={false} visible={this.state.dormVisible} style={{marginTop :getStatusBarHeight()}}>
+           <WebView source={{uri: 'https://dorm.snu.ac.kr/dk_board/dk_dormitory/dorm_content.php?ht_id=snu2_1_1'}} style={{flex:7}}/>
+           <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
+         <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setdormVisible(false) }}>
+          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
+           </TouchableOpacity></View>
+           </Modal>
          </View>
 
          </ScrollView>
