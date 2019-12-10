@@ -418,6 +418,15 @@ class Mealtable extends Component {
                     </View>
                     <View style={styles.container2}>
                         <View style={styles.td}>
+                            <Text style={styles.tdtext}>BBQ 프리미엄</Text>
+                        </View>
+                        <View style={styles.td}>{bbq()}</View>
+                        <View style={styles.td}>
+                            <Text style={styles.menu}>치킨 등</Text>
+                        </View>
+                    </View>
+                    <View style={styles.container}>
+                        <View style={styles.td}>
                             <Text style={styles.tdtext}>텐카이핀</Text>
                         </View>
                         <View style={styles.td}>{tenk()}</View>
@@ -426,7 +435,7 @@ class Mealtable extends Component {
                             </View>
                         </View>
 
-                        <View style={styles.container}>
+                        <View style={styles.container2}>
                         <View style={styles.td}>
                             <Text style={styles.tdtext}>포포인</Text>
                         </View>
@@ -435,7 +444,7 @@ class Mealtable extends Component {
                             <Text style={styles.menu}>쌀국수 등</Text>
                         </View>
                     </View>
-                    <View style={styles.container2}>
+                    <View style={styles.container}>
                         <View style={styles.td}>
                             <Text style={styles.tdtext}>퀴즈노스</Text>
                         </View>
@@ -1017,11 +1026,9 @@ function hyu() {
     }
 function bbq(){
     var date = new Date()
-    var day = date.getDay()
     var hours = date.getHours()
-    var minutes = date.getMinutes()
-    if (hours < 9){
-        return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9시부터</Text></View>
+    if (hours < 11){
+        return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시부터</Text></View>
       } else if (hours < 21) {
         return <Text style={styles.nowon}>{`운영중\n21시까지`}</Text>
       } else {
