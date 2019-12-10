@@ -70,6 +70,8 @@ class Mealtable extends Component {
             menus[11].dinner = menus[11].dinner.replace('00원', '00원\n');
             menus[13].lunch = menus[13].lunch.replace('00원', '00원\n');
             menus[13].dinner = menus[13].dinner.replace('00원', '00원\n');
+            menus[9].lunch = menus[9].lunch.replaceAll('00원', '00원\n');
+            menus[9].dinner = menus[9].dinner.replaceAll('00원', '00원\n');
 
             if (today.getDay() == 0){
                 menulist[0] = `\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;

@@ -129,9 +129,6 @@ class Mart extends Component {
           <View style={styles.td}><Text style={styles.tdtext}>융합관(8동) 2층</Text></View>
           <View style={styles.td}>{medconv()}</View>
         </View>
-        <View style={styles.container} >
-          <View style={styles.td}><Text style={styles.thtext}>추후 추가 예정</Text></View>
-        </View>
 
       </ScrollView>
       </View>

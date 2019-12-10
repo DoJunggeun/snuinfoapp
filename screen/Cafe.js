@@ -158,10 +158,6 @@ class Cafe extends Component {
           <View style={styles.td}>{moaart()}</View>
         </View>
 
-        <View style={styles.container0} >
-          <View style={styles.td}><Text style={styles.thtext}>추가 예정 : 카페드림, 인문대머그, 공대머그, 사범대더랩, 봉구스밥버거 등</Text></View>
-        </View>
-
       </ScrollView>
       </View>
  
