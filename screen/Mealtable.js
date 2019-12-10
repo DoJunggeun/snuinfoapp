@@ -414,7 +414,25 @@ class Mealtable extends Component {
                             <Text style={styles.menu}>치킨 등</Text>
                         </View>
                     </View>
+                    <View style={styles.container2}>
+                        <View style={styles.td}>
+                            <Text style={styles.tdtext}>텐카이핀</Text>
+                        </View>
+                        <View style={styles.td}>{tenk()}</View>
+                        <View style={styles.td}>
+                            <Text style={styles.menu}>일식</Text>
+                            </View>
+                        </View>
 
+                        <View style={styles.container}>
+                        <View style={styles.td}>
+                            <Text style={styles.tdtext}>포포인</Text>
+                        </View>
+                        <View style={styles.td}>{pho()}</View>
+                        <View style={styles.td}>
+                            <Text style={styles.menu}>쌀국수 등</Text>
+                        </View>
+                    </View>
                 </ScrollView>
             </View>
         );
@@ -992,6 +1010,38 @@ function bbq(){
     var minutes = date.getMinutes()
     if (hours < 9){
         return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9시부터</Text></View>
+      } else if (hours < 21) {
+        return <Text style={styles.nowon}>{`운영중\n21시까지`}</Text>
+      } else {
+        return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
+      }
+}
+
+function tenk(){
+    var date = new Date()
+    var day = date.getDay()
+    var hours = date.getHours()
+    var minutes = date.getMinutes()
+    if (day == 0) {
+        return <Text style={styles.nowoff}>{`일요일은\n운영안함함`}</Text>
+    } else {
+        if (hours < 11){
+            return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시부터</Text></View>
+          } else if (hours < 20) {
+            return <Text style={styles.nowon}>{`운영중\n20시까지`}</Text>
+          } else {
+            return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
+          }    
+    }
+}
+
+function pho(){
+    var date = new Date()
+    var day = date.getDay()
+    var hours = date.getHours()
+    var minutes = date.getMinutes()
+    if (hours < 10){
+        return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>10시부터</Text></View>
       } else if (hours < 21) {
         return <Text style={styles.nowon}>{`운영중\n21시까지`}</Text>
       } else {
