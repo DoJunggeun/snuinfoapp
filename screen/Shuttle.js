@@ -117,12 +117,9 @@ class Shuttle extends Component {
           <View style={styles.td}><Text style={styles.tdtext}>30분</Text></View>
           <View style={styles.td}>{stnight2()}</View>
         </View>
-        <View style={styles.container} >
-          <View style={styles.td}><Text style={styles.thtext}>추후 추가 예정</Text></View>
-        </View>
       </ScrollView>
       </View>
-            </View>
+    </View>
         );
     }
     onNavigationStateChange(navState) {
@@ -203,13 +200,16 @@ const styles = StyleSheet.create({
 
 function ststation() {
   var date = new Date();
-  if (date.getDay() == 0 || date.getDay() == 6) {
+  var day = date.getDay();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
-  } else if (date.getHours() >= 19) {
+  } else if (hours >= 19) {
     return <Text style={styles.nowoff}>운행종료</Text>
-  } else if (date.getHours() == 19) {
+  } else if (hours == 19) {
     return <Text style={styles.nowon}>{`학교→설입\n19시까지`}</Text>
-  } else if (date.getHours() < 8) {
+  } else if (hours < 8) {
     return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>7시부터</Text></View>
   } else {
     return <Text style={styles.nowon}>{`운행중\n19시까지`}</Text>
@@ -218,13 +218,16 @@ function ststation() {
 
 function stdhd() {
   var date = new Date();
-  if (date.getDay() == 0 || date.getDay() == 6) {
+  var day = date.getDay();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
-  } else if (date.getHours() >= 19) {
+  } else if (hours >= 19) {
     return <Text style={styles.nowoff}>운행종료</Text>
-  } else if (date.getHours() == 19) {
+  } else if (hours == 19) {
     return <Text style={styles.nowon}>{`학교→녹두\n19시까지`}</Text>
-  } else if (date.getHours() < 8) {
+  } else if (hours < 8) {
     return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>7시부터</Text></View>
   } else {
     return <Text style={styles.nowon}>{`운행중\n19시까지`}</Text>
@@ -233,11 +236,14 @@ function stdhd() {
 
 function stsdstation() {
   var date = new Date();
-  if (date.getDay() == 0 || date.getDay() == 6) {
+  var day = date.getDay();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
-  } else if (date.getHours() > 10) {
+  } else if (hours > 10) {
     return <Text style={styles.nowoff}>운행종료</Text>
-  } else if (date.getHours() < 8) {
+  } else if (hours < 8) {
     return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8시부터</Text></View>
   } else {
     return <Text style={styles.nowon}>{`운행중\n11시까지`}</Text>
@@ -246,11 +252,14 @@ function stsdstation() {
 
 function stinner() {
   var date = new Date();
-  if (date.getDay() == 0 || date.getDay() == 6) {
+  var day = date.getDay();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
-  } else if (date.getHours() > 20) {
+  } else if (hours > 20) {
     return <Text style={styles.nowoff}>운행종료</Text>
-  } else if (date.getHours() < 8) {
+  } else if (hours < 8) {
     return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8시부터</Text></View>
   } else {
     return <Text style={styles.nowon}>{`운행중\n21시까지`}</Text>
@@ -259,11 +268,14 @@ function stinner() {
 
 function stnight() {
   var date = new Date();
-  if (date.getDay() == 0 || date.getDay() == 6) {
+  var day = date.getDay();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
-  } else if (date.getHours() > 23 && date.getMinutes() > 10) {
+  } else if (hours > 23 && minutes > 10) {
     return <Text style={styles.nowoff}>운행종료</Text>
-  } else if (date.getHours() < 21 || ((date.getHours() == 21) && (date.getMinutes() < 10))) {
+  } else if (hours < 21 || ((hours == 21) && (minutes < 10))) {
     return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>21시10분부터</Text></View>
   } else {
     return <Text style={styles.nowon}>{`운행중\n23시10분까지`}</Text>
@@ -272,11 +284,14 @@ function stnight() {
 
 function stnsdstation() {
   var date = new Date();
-  if (date.getDay() == 0 || date.getDay() == 6) {
+  var day = date.getDay();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
-  } else if (date.getHours() > 10) {
+  } else if (hours > 10) {
     return <Text style={styles.nowoff}>운행종료</Text>
-  } else if (date.getHours() < 8 || (date.getHours() == 8 && date.getMinutes() < 30)) {
+  } else if (hours < 8 || (hours == 8 && minutes < 30)) {
     return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8시30분부터</Text></View>
   } else {
     return <Text style={styles.nowon}>{`운행중\n11시까지`}</Text>
@@ -285,11 +300,14 @@ function stnsdstation() {
 
 function steng() {
   var date = new Date();
-  if (date.getDay() == 0 || date.getDay() == 6) {
+  var day = date.getDay();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
-  } else if (date.getHours() > 10) {
+  } else if (hours > 10) {
     return <Text style={styles.nowoff}>운행종료</Text>
-  } else if (date.getHours() < 8) {
+  } else if (hours < 8) {
   return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8시부터</Text></View>
 } else {
   return <Text style={styles.nowon}>{`운행중\n11시까지`}</Text>
@@ -298,11 +316,14 @@ function steng() {
 
 function stinnerreverse() {
   var date = new Date();
-  if (date.getDay() == 0 || date.getDay() == 6) {
+  var day = date.getDay();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
-  } else if (date.getHours() > 17 || (date.getHours() == 17 && date.getMinutes() > 50)) {
+  } else if (hours > 17 || (hours == 17 && minutes > 50)) {
     return <Text style={styles.nowoff}>운행종료</Text>
-  } else if (date.getHours() < 9 || (date.getHours() == 9 && date.getMinutes() < 50)) {
+  } else if (hours < 9 || (hours == 9 && minutes < 50)) {
   return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>9시50분부터</Text></View>
 } else {
   return <Text style={styles.nowon}>{`운행중\n17시50분까지`}</Text>
@@ -311,9 +332,12 @@ function stinnerreverse() {
 
 function stnight2() {
   var date = new Date();
-  if (date.getDay() == 0 || (date.getDay() == 6 && date.getHours() >= 2)) {
+  var day = date.getDay();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  if (day == 0 || (day == 6 && hours >= 2)) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
-  } else if (date.getHours() >= 2) {
+  } else if (hours >= 2) {
     return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>자정부터</Text></View>
 } else {
   return <Text style={styles.nowon}>{`운행중\n02시까지`}</Text>
@@ -325,53 +349,62 @@ function stnight2() {
 
 function ststationinterval() {
   var date = new Date();
-  if (date.getDay() == 0 || date.getDay() == 6) {
+  var day = date.getDay();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  if (day == 0 || day == 6) {
     return <Text style={styles.tdtext}>5~15분</Text>
-  } else if (date.getHours() > 19 || date.getHours() < 7) {
+  } else if (hours > 19 || hours < 7) {
     return <Text style={styles.tdtext}>5~15분</Text>
-  } else if (date.getHours() == 7) {
+  } else if (hours == 7) {
     return <Text style={styles.tdtext}>15분</Text>
-  } else if (date.getHours() >= 8 && date.getHours() < 11) {
+  } else if (hours >= 8 && hours < 11) {
     return <Text style={styles.tdtext}>5~7분</Text>
-  } else if ((date.getHours() >= 11 && date.getHours() < 15) || (date.getHours() == 15 && date.getMinutes() < 30)) {
+  } else if ((hours >= 11 && hours < 15) || (hours == 15 && minutes < 30)) {
     return <Text style={styles.tdtext}>10분</Text>
-  } else if (date.getHours() >= 15 || date.getHours() < 17) {
+  } else if (hours >= 15 || hours < 17) {
     return <Text style={styles.tdtext}>7~10분</Text>
-  } else if (date.getHours() == 17 || date.getHours() == 18) {
+  } else if (hours == 17 || hours == 18) {
     return <Text style={styles.tdtext}>5~7분</Text>
   }
 }
 
 function stdhdinterval() {
   var date = new Date();
-  if (date.getDay() == 0 || date.getDay() == 6) {
+  var day = date.getDay();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  if (day == 0 || day == 6) {
     return <Text style={styles.tdtext}>6~15분</Text>
-  } else if (date.getHours() > 19 || date.getHours() < 7) {
+  } else if (hours > 19 || hours < 7) {
     return <Text style={styles.tdtext}>5~15분</Text>
-  } else if (date.getHours() == 7) {
+  } else if (hours == 7) {
     return <Text style={styles.tdtext}>15분</Text>
-  } else if (date.getHours() >= 8 && date.getHours() < 10) {
+  } else if (hours >= 8 && hours < 10) {
     return <Text style={styles.tdtext}>6분</Text>
-  } else if ((date.getHours() >= 10 && date.getHours() < 12) || (date.getHours() == 12 && date.getMinutes() < 10)) {
+  } else if ((hours >= 10 && hours < 12) || (hours == 12 && minutes < 10)) {
     return <Text style={styles.tdtext}>10분</Text>
-  } else if (date.getHours() == 12 || (date.getHours() == 13 && date.getMinutes() < 30)) {
+  } else if (hours == 12 || (hours == 13 && minutes < 30)) {
     return <Text style={styles.tdtext}>15분</Text>
-  } else if (date.getHours() >= 13 && date.getHours() < 17) {
+  } else if (hours >= 13 && hours < 17) {
     return <Text style={styles.tdtext}>10분</Text>
-  } else if (date.getHours() == 17 || date.getHours() == 18) {
+  } else if (hours == 17 || hours == 18) {
     return <Text style={styles.tdtext}>6분</Text>
   }
 }
 
 function stinnerinterval() {
   var date = new Date();
-  if (date.getDay() == 0 || date.getDay() == 6) {
+  var day = date.getDay();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  if (day == 0 || day == 6) {
     return <Text style={styles.tdtext}>7~20분</Text>
-  } else if (date.getHours() > 20 || date.getHours() < 7) {
+  } else if (hours > 20 || hours < 7) {
     return <Text style={styles.tdtext}>7~20분</Text>
-  } else if (date.getHours() < 19) {
+  } else if (hours < 19) {
     return <Text style={styles.tdtext}>7분</Text>
-  } else if (date.getHours() == 19 || date.getHours() == 20) {
+  } else if (hours == 19 || hours == 20) {
     return <Text style={styles.tdtext}>20분</Text>
   }
 }

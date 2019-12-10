@@ -55,13 +55,13 @@ class Home extends Component {
         </View>
 
         <View style={{flex: 1, bottom:'1%', flexDirection: 'row', justifyContent:'space-evenly', alignItems:'center'}}>
-        <TouchableOpacity style={styles.menu} onPress={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Contact'}));}}>
-         <Image source={require('./src/contact.png')} style={styles.menuimg}/>
-         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={styles.menufont}>제작자에게</Text></View>
+        <TouchableOpacity style={styles.menu} onPress={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Etc'}));}}>
+         <Image source={require('./src/about.png')} style={styles.menuimg}/>
+         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={styles.menufont}>기타 편의정보</Text></View>
          </TouchableOpacity>
          <TouchableOpacity style={styles.menu} onPress={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'About'}));}}>
-         <Image source={require('./src/about.png')} style={styles.menuimg}/>
-         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={styles.menufont}>앱 정보</Text></View>
+         <Image source={require('./src/contact.png')} style={styles.menuimg}/>
+         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={styles.menufont}>앱 정보 및 문의</Text></View>
          </TouchableOpacity>
         </View>
 

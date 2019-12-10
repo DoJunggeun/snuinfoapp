@@ -12,7 +12,7 @@ import Meal from './screen/Meal';
 import Cafe from './screen/Cafe';
 import Mart from './screen/Mart';
 import About from './screen/About';
-import Contact from './screen/Contact';
+import Etc from './screen/Etc';
 
 const Bottom = createMaterialTopTabNavigator(
   {
@@ -78,8 +78,8 @@ const Cont = createMaterialTopTabNavigator(
         swipeEnabled: false
     }),
     },
-    Contact: {
-      screen:Contact,
+    Etc: {
+      screen:Etc,
       navigationOptions: () => ({
         tabBarVisible:false,
     }),

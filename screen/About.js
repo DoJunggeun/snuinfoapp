@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
+import { Modal, StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { WebView } from 'react-native-webview';
 import SafeAreaView from 'react-native-safe-area-view';
@@ -10,11 +10,14 @@ const WEBVIEW_REF = "WEBVIEW_REF";
 
 
 class About extends Component { 
-    constructor(props) {
-        super(props);
-        this.state = { canGoBack: false };
-      }
-    
+  constructor(props) {
+    super(props);
+    this.state = { canGoBack: false , modalVisible: false};
+  }
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+
     render() {
         const {navigation} = this.props;
         return ( 
@@ -29,15 +32,22 @@ class About extends Component {
              <View style={{flex:1, justifyContent:'center', backgroundColor:'rgb(230,230,230)', borderTopRightRadius:15,borderTopLeftRadius:15}}><Text style={{left:15, fontSize:17, fontWeight:'bold'}}>Version</Text></View>
              <View style={{flex:1, justifyContent:'center', backgroundColor:'white'}}><Text style={{left:15, fontSize:17}}>1.0.0</Text></View>
              <View style={{flex:1, justifyContent:'center', backgroundColor:'rgb(230,230,230)'}}><Text style={{left:15, fontSize:17, fontWeight:'bold'}}>각종 문의</Text></View>
-             <View style={{flex:1, justifyContent:'center', backgroundColor:'white'}}><Text style={{left:15, fontSize:17}}>jg.do@snu.ac.kr</Text></View>
-             <View style={{flex:1, justifyContent:'center', backgroundColor:'rgb(230,230,230)'}}><Text style={{left:15, fontSize:17, fontWeight:'bold'}}>정보 출처</Text></View>
-             <View style={{flex:2, justifyContent:'center', backgroundColor:'white'}}>
-                 <Text style={{left:15, fontSize:17}}>▶ 마이스누 (my.snu.ac.kr)</Text>
-                 <Text style={{left:15, fontSize:17}}>▶ 생활협동조합 (snuco.snu.ac.kr)</Text>
-                 <Text style={{left:15, fontSize:17}}>▶ 이용자의 제보</Text></View>
-             <View style={{flex:2, alignItems:'center', justifyContent:'center', backgroundColor:'rgb(230,230,230)',borderBottomRightRadius:15,borderBottomLeftRadius:15}}>
-                 <Text style={{fontSize:20, fontWeight:'bold'}}>각 페이지에서 제목을 눌러보세요</Text>
-                 <Text style={{fontSize:23, fontWeight:'bold'}}>^_^</Text></View>
+             <View style={{flex:1, justifyContent:'center', backgroundColor:'white'}}><Text style={{left:15, fontSize:17}}>snuinfoapp@gmail.com</Text></View>
+             <View style={{flex:1, justifyContent:'center', backgroundColor:'rgb(230,230,230)'}}><Text style={{left:15, fontSize:17, fontWeight:'bold'}}>개선사항 제보</Text></View>
+             <View style={{flex:1, justifyContent:'center', backgroundColor:'white'}}><Text style={{left:15, fontSize:17}}>정보 수정, 기능 추가, 어플 개선을 원하시면</Text></View>
+
+           <TouchableOpacity style={{flex:2, backgroundColor: 'rgba(176,155,222,0.4)', justifyContent:'center', alignItems:'center', borderBottomRightRadius:15,borderBottomLeftRadius:15}} onPress={() => {this.setModalVisible(true);}}>
+         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:25, fontWeight:'500',color:'black'}}>제보해주세요!</Text></View>
+         </TouchableOpacity>
+
+         <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} style={{marginTop :getStatusBarHeight()}}>
+           <WebView source={{uri: 'https://docs.google.com/forms/d/e/1FAIpQLSeAOS1F3bnfkikIPH11mf6EhPD0qEypeqeey7_4QkSMBaD8nw/viewform?usp=sf_link'}} style={{flex:7, backgroundColor:'rgb(240,235,248)'}}/>
+           <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
+         <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setModalVisible(false) }}>
+          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
+           </TouchableOpacity></View>
+           </Modal>
+
                  </View>
                  </View>
 
