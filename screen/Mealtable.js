@@ -91,7 +91,7 @@ class Mealtable extends Component {
                 }
                 menulist[0] = `\n아침\n${data[0].breakfast}\n\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
                 menulist[8] = `\n아침\n${data[8].breakfast}\n\n점심\n${data[8].lunch}\n\n저녁\n${data[8].dinner}\n\n`;
-                menulist[7] = `\n아침\n${data[8].breakfast}\n\n점심\n${data[8].lunch}\n\n`;
+                menulist[7] = `\n점심\n${data[8].lunch}\n\n`;
             }
 
 
