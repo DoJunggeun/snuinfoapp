@@ -436,10 +436,14 @@ class Mealtable extends Component {
                         </View>
                     </View>
                     <View style={styles.container2}>
-          <View style={styles.td}><Text style={styles.tdtext}>퀴즈노스</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>301동 지하1층</Text></View>
-          <View style={styles.td}>{quiz()}</View>
-        </View>
+                        <View style={styles.td}>
+                            <Text style={styles.tdtext}>퀴즈노스</Text>
+                        </View>
+                        <View style={styles.td}>{quiz()}</View>
+                        <View style={styles.td}>
+                            <Text style={styles.menu}>샌드위치</Text>
+                        </View>
+                    </View>
 
                 </ScrollView>
             </View>

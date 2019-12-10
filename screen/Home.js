@@ -19,7 +19,7 @@ class Home extends Component {
     
     
     render() {
-        const {navigation} = this.props;
+              const {navigation} = this.props;
                 return ( 
         <View style={{flex:1, flexDirection:'column', justifyContent:'space-around'}}> 
           <View style={{height:getStatusBarHeight()}}/>
