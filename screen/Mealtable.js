@@ -17,24 +17,28 @@ String.prototype.replaceAll = function(org, dest) {
 
 
 
-var checkmsg = '\n인터넷 연결 상태를 확인하신 후 상단의 새로고침 버튼을 눌러주세요!'
+var checkmsg = '\n\n\n\n인터넷 연결 상태를 확인하신 후 상단의 새로고침 버튼을 눌러주세요!'
 var menulist = [checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg];
+var menulist2 = [checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg];
 var meallist = ['학생회관식당(880-5543)','자하연식당(880-7888)','예술계식당(876-1006)','소담마루(880-8698)','샤반(871-6933)','라운지오(882-7005)','두레미담(880-9358)','동원관식당(880-8697)','기숙사식당(881-9072)','공대간이식당(889-8956)','감골식당(880-5544)','4식당(889-6946)','3식당(880-5545)','302동식당(880-1939)','301동식당(889-8955','220동식당(875-0240)'];
+
+
 
 class Mealtable extends Component {
     constructor(props) {
         super(props);
         this.state = {
             menu: -1,
+            menuday: 1
         };
     }
     setModal(visible) {
         this.setState({menu: visible});
     };
-    componentDidMount() {
-    
-    }
     Modals(number) {
+        var date = new Date()
+        var months = date.getMonth()
+        var days = date.getDate()
         return (
             <Modal
             animationType="slide"
@@ -53,11 +57,7 @@ class Mealtable extends Component {
     
                 <View style={styles.modalbody}>
     
-                    <ScrollView style={styles.modalinside}>
-                        <Text style={styles.modalhead}>{meallist[number]}</Text>
-                        <Text style={styles.modaltext}>{menulist[number]}</Text>
-                    </ScrollView>
-    
+                    {this.setmenuday(number)}    
                     <TouchableOpacity
                         style={{
                         height: 50,
@@ -66,7 +66,8 @@ class Mealtable extends Component {
                         borderBottomRightRadius: 15
                     }}
                         onPress={() => {
-                        this.setModal(-1)
+                        this.setModal(-1);
+                        this.setState({menuday:1})
                     }}>
                         <View
                             style={{
@@ -89,14 +90,71 @@ class Mealtable extends Component {
         );
     }
 
-    render() {
-        var date = new Date()
-        var day = date.getDay()
-        var hours = date.getHours()
-        var minutes = date.getMinutes()
+    setmenuday(number) {
+        var today = new Date();
+        var tomorrow = today;
+        var months = today.getMonth();
+        var days = today.getDate();
+        tomorrow.setDate(tomorrow.getDate() + 1)
+        var months2 = tomorrow.getMonth();
+        var days2 = tomorrow.getDate();
         
-        async function loadmenu() {
-            var html = await axios.get("http://snuco.snu.ac.kr/ko/foodmenu");
+
+
+        if (this.state.menuday == 1) {
+            return <ScrollView style={styles.modalinside}>
+            <Text style={styles.modalhead}>{meallist[number]}</Text>
+            <View style={{flexDirection:'row'}}>
+                <View style={{flex:1}}>
+            <Text style={{fontSize: 17, fontWeight: '500', textAlign: 'center', lineHeight: 22}}>{'\n'}- {months}월 {days}일 메뉴 -</Text>
+            </View>
+            <View style={{position:'absolute', right:0}}>
+                <TouchableOpacity onPress={ () => {this.state.menuday = 2; this.forceUpdate()} } >
+                <Text style={{fontSize: 15, fontWeight: '500', textAlign: 'center', lineHeight: 22, color:'blue', borderColor:'lightgray', borderWidth:1, borderRadius:3 ,paddingVertical:3, paddingHorizontal:7}} >내일{'\n'}메뉴{'\n'}보기</Text>
+                </TouchableOpacity>
+                </View>
+            </View>
+            <Text style={styles.modaltext}>{menulist[number]}</Text>
+        </ScrollView>
+    
+        } else if (this.state.menuday == 2) {
+            return <ScrollView style={styles.modalinside}>
+            <Text style={styles.modalhead}>{meallist[number]}</Text>
+            <View style={{flexDirection:'row'}}>
+                <View style={{flex:1}}>
+            <Text style={{fontSize: 17, fontWeight: '500', textAlign: 'center', lineHeight: 22}}>{'\n'}- {months2}월 {days2}일 메뉴 -</Text>
+            </View>
+                <View style={{position:'absolute', right:0}}>
+                <TouchableOpacity onPress={ () => {this.state.menuday = 1; this.forceUpdate()} } >
+                <Text style={{fontSize: 15, fontWeight: '500', textAlign: 'center', lineHeight: 22, color:'blue', borderColor:'lightgray', borderWidth:1, borderRadius:3 ,paddingVertical:3, paddingHorizontal:7}} >오늘{'\n'}메뉴{'\n'}보기</Text>
+                </TouchableOpacity>
+                </View>
+            </View>
+            <Text style={styles.modaltext}>{menulist2[number]}</Text>
+        </ScrollView>
+        }
+    }
+    
+
+    render() {
+        var today = new Date();
+        var day = today.getDay()
+        var hours = today.getHours()
+        var minutes = today.getMinutes()
+        var days = today.getDate()
+        var months = today.getMonth() + 1
+        var years = today.getFullYear()
+
+        var tomorrow = new Date()
+        tomorrow.setDate(today.getDate() + 1)
+        var days2 = tomorrow.getDate()
+        var months2 = tomorrow.getMonth() + 1
+        var years2 = tomorrow.getFullYear()
+
+
+        async function loadmenu(months, days, years) {
+            var url_todaymenu = 'http://snuco.snu.ac.kr/ko/foodmenu?field_menu_date_value_1[value][date]=&field_menu_date_value[value][date]=' + months + '/' + days + '/' + years
+            var html = await axios.get(url_todaymenu);
             let ulList = [];
             const $ = await cheerio.load(html.data);
             const $bodyList = await $("table.views-table tbody").children("tr");
@@ -524,8 +582,7 @@ class Mealtable extends Component {
             }
           }
         
-        loadmenu().then((data) => {
-            var today = new Date();
+        loadmenu(months, days, years).then((data) => {
             var menus  = data;
             menus[8].breakfast = menus[8].breakfast.replace('00원', '00원\n');
             menus[8].lunch = menus[8].lunch.replace('00원', '00원\n');
@@ -537,12 +594,12 @@ class Mealtable extends Component {
             menus[9].lunch = menus[9].lunch.replaceAll('00원', '00원\n');
             menus[9].dinner = menus[9].dinner.replaceAll('00원', '00원\n');
 
-            if (today.getDay() == 0){
+            if (day == 0){
                 menulist[0] = `\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
                 menulist[5] = `\n점심\n${data[1].lunch}\n\n저녁\n${data[1].dinner}\n\n`;
                 menulist[8] = `\n아침\n${data[2].breakfast}\n\n점심\n${data[2].lunch}\n\n저녁\n${data[2].dinner}\n\n`;
 
-            } else if (today.getDay() == 6){
+            } else if (day == 6){
                 menulist[0] = `\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
                 menulist[3] = `\n점심\n${data[1].lunch}\n\n저녁\n${data[1].dinner}\n\n`;
                 menulist[4] = `\n점심\n${data[2].lunch}\n\n저녁\n${data[2].dinner}\n\n`;
@@ -557,6 +614,41 @@ class Mealtable extends Component {
                 menulist[0] = `\n아침\n${data[0].breakfast}\n\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
                 menulist[8] = `\n아침\n${data[8].breakfast}\n\n점심\n${data[8].lunch}\n\n저녁\n${data[8].dinner}\n\n`;
                 menulist[7] = `\n점심\n${data[7].lunch}\n\n`;
+            }
+        })
+
+        loadmenu(months2, days2, years2).then((data) => {
+            var menus  = data;
+            menus[8].breakfast = menus[8].breakfast.replace('00원', '00원\n');
+            menus[8].lunch = menus[8].lunch.replace('00원', '00원\n');
+            menus[8].dinner = menus[8].dinner.replaceAll('00원', '00원\n');
+            menus[11].lunch = menus[11].lunch.replace('00원', '00원\n');
+            menus[11].dinner = menus[11].dinner.replace('00원', '00원\n');
+            menus[13].lunch = menus[13].lunch.replace('00원', '00원\n');
+            menus[13].dinner = menus[13].dinner.replace('00원', '00원\n');
+            menus[9].lunch = menus[9].lunch.replaceAll('00원', '00원\n');
+            menus[9].dinner = menus[9].dinner.replaceAll('00원', '00원\n');
+
+            if (day == 6){
+                menulist2[0] = `\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
+                menulist2[5] = `\n점심\n${data[1].lunch}\n\n저녁\n${data[1].dinner}\n\n`;
+                menulist2[8] = `\n아침\n${data[2].breakfast}\n\n점심\n${data[2].lunch}\n\n저녁\n${data[2].dinner}\n\n`;
+
+            } else if (day == 5){
+                menulist2[0] = `\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
+                menulist2[3] = `\n점심\n${data[1].lunch}\n\n저녁\n${data[1].dinner}\n\n`;
+                menulist2[4] = `\n점심\n${data[2].lunch}\n\n저녁\n${data[2].dinner}\n\n`;
+                menulist2[5] = `\n점심\n${data[3].lunch}\n\n저녁\n${data[3].dinner}\n\n`;
+                menulist2[6] = `\n점심\n${data[4].lunch}\n\n저녁\n${data[4].dinner}\n\n`;
+                menulist2[8] = `\n아침\n${data[5].breakfast}\n\n점심\n${data[5].lunch}\n\n저녁\n${data[5].dinner}\n\n`;
+
+            } else {
+                for (var i = 0; i < data.length; i++) {
+                    menulist2[i] = `\n점심\n${data[i].lunch}\n\n저녁\n${data[i].dinner}\n\n`;
+                }
+                menulist2[0] = `\n아침\n${data[0].breakfast}\n\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
+                menulist2[8] = `\n아침\n${data[8].breakfast}\n\n점심\n${data[8].lunch}\n\n저녁\n${data[8].dinner}\n\n`;
+                menulist2[7] = `\n점심\n${data[7].lunch}\n\n`;
             }
         })
 
@@ -958,8 +1050,8 @@ const styles = StyleSheet.create({
         height: 40
     },
     modalbody: {
-        height: '60%',
-        width: '92%',
+        height: '65%',
+        width: '96%',
         minHeight: 400,
         minWidth: 300,
         justifyContent: 'center',

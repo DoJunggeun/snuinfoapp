@@ -56,7 +56,7 @@ class Contact extends Component {
          </TouchableOpacity>
          <Modal animationType="slide" transparent={true} visible={this.state.printVisible} style={{justifyContent:'center', alignItems:'center'}}>
            <View style={{height:'100%', width:'100%', justifyContent:'center', alignItems:'center', alignSelf:'center'}}> 
-           <View style={{height:'70%', width:'90%', backgroundColor:'rgb(240,235,248)', padding:15, borderRadius:15,
+           <View style={{height:'80%', width:'95%', backgroundColor:'rgb(240,235,248)', padding:15, borderRadius:15,
                   shadowColor: "#000",
                   shadowOffset: {
                       width: 1,
@@ -151,7 +151,7 @@ class Contact extends Component {
          </TouchableOpacity>
          <Modal animationType="slide" transparent={true} visible={this.state.bankVisible} style={{justifyContent:'center', alignItems:'center'}}>
            <View style={{height:'100%', width:'100%', justifyContent:'center', alignItems:'center', alignSelf:'center'}}> 
-           <View style={{height:'70%', width:'90%', backgroundColor:'rgb(240,235,248)', padding:15, borderRadius:15,
+           <View style={{height:'80%', width:'95%', backgroundColor:'rgb(240,235,248)', padding:15, borderRadius:15,
                   shadowColor: "#000",
                   shadowOffset: {
                       width: 1,
@@ -187,7 +187,7 @@ class Contact extends Component {
 
          <Modal animationType="slide" transparent={true} visible={this.state.postVisible} style={{justifyContent:'center', alignItems:'center'}}>
            <View style={{height:'100%', width:'100%', justifyContent:'center', alignItems:'center', alignSelf:'center'}}> 
-           <View style={{height:'50%', width:'80%', backgroundColor:'rgb(240,235,248)', padding:15, borderRadius:15,
+           <View style={{height:'50%', width:'95%', backgroundColor:'rgb(240,235,248)', padding:15, borderRadius:15,
                   shadowColor: "#000",
                   shadowOffset: {
                       width: 1,
