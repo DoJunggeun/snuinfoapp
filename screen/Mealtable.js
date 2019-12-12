@@ -93,10 +93,10 @@ class Mealtable extends Component {
     setmenuday(number) {
         var today = new Date();
         var tomorrow = today;
-        var months = today.getMonth();
+        var months = today.getMonth() +1;
         var days = today.getDate();
         tomorrow.setDate(tomorrow.getDate() + 1)
-        var months2 = tomorrow.getMonth();
+        var months2 = tomorrow.getMonth() +1;
         var days2 = tomorrow.getDate();
         
 
