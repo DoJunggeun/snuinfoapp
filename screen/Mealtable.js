@@ -583,73 +583,89 @@ class Mealtable extends Component {
           }
         
         loadmenu(months, days, years).then((data) => {
+            var checkmsg2 = '\n\n\n\n생활협동조합 식단 정보의 오류 혹은 해당 식당의 휴무로 메뉴 정보를 받아오지 못했습니다. '
+            menulist = [checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2];
+
             var menus  = data;
-            menus[8].breakfast = menus[8].breakfast.replace('00원', '00원\n');
-            menus[8].lunch = menus[8].lunch.replace('00원', '00원\n');
-            menus[8].dinner = menus[8].dinner.replaceAll('00원', '00원\n');
-            menus[11].lunch = menus[11].lunch.replace('00원', '00원\n');
-            menus[11].dinner = menus[11].dinner.replace('00원', '00원\n');
-            menus[13].lunch = menus[13].lunch.replace('00원', '00원\n');
-            menus[13].dinner = menus[13].dinner.replace('00원', '00원\n');
-            menus[9].lunch = menus[9].lunch.replaceAll('00원', '00원\n');
-            menus[9].dinner = menus[9].dinner.replaceAll('00원', '00원\n');
-
-            if (day == 0){
-                menulist[0] = `\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
-                menulist[5] = `\n점심\n${data[1].lunch}\n\n저녁\n${data[1].dinner}\n\n`;
-                menulist[8] = `\n아침\n${data[2].breakfast}\n\n점심\n${data[2].lunch}\n\n저녁\n${data[2].dinner}\n\n`;
-
-            } else if (day == 6){
-                menulist[0] = `\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
-                menulist[3] = `\n점심\n${data[1].lunch}\n\n저녁\n${data[1].dinner}\n\n`;
-                menulist[4] = `\n점심\n${data[2].lunch}\n\n저녁\n${data[2].dinner}\n\n`;
-                menulist[5] = `\n점심\n${data[3].lunch}\n\n저녁\n${data[3].dinner}\n\n`;
-                menulist[6] = `\n점심\n${data[4].lunch}\n\n저녁\n${data[4].dinner}\n\n`;
-                menulist[8] = `\n아침\n${data[5].breakfast}\n\n점심\n${data[5].lunch}\n\n저녁\n${data[5].dinner}\n\n`;
-
-            } else {
-                for (var i = 0; i < data.length; i++) {
-                    menulist[i] = `\n점심\n${data[i].lunch}\n\n저녁\n${data[i].dinner}\n\n`;
+            var firstletter = ['?', '자', '예', '소', '?', '?', '?', '?', '?', '공', '감', '4', '?', '?', '?', '2']
+            for (var i = 0; i < menus.length; i++) {
+                if (menus[i].title.charAt(0) == '4'){
+                    menus[i].lunch = menus[i].lunch.replace('00원', '00원\n');
+                    menus[i].dinner = menus[i].dinner.replace('00원', '00원\n');        
+                } else if (menus[i].title.charAt(0) == '공') {
+                    menus[i].lunch = menus[i].lunch.replaceAll('00원', '00원\n');
+                    menus[i].dinner = menus[i].dinner.replaceAll('00원', '00원\n');        
                 }
-                menulist[0] = `\n아침\n${data[0].breakfast}\n\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
-                menulist[8] = `\n아침\n${data[8].breakfast}\n\n점심\n${data[8].lunch}\n\n저녁\n${data[8].dinner}\n\n`;
-                menulist[7] = `\n점심\n${data[7].lunch}\n\n`;
+                if (menus[i].title.charAt(0) == '3') {
+                    if (menus[i].title.charAt(2) == '당') {
+                        menulist[12] = `\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
+                    } else if (menus[i].title.charAt(2) == '2') {
+                        menus[i].lunch = menus[i].lunch.replace('00원', '00원\n');
+                        menus[i].dinner = menus[i].dinner.replace('00원', '00원\n');            
+                        menulist[13] = `\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
+                    } else if (menus[i].title.charAt(2) == '1') {
+                        menulist[14] = `\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
+                    }
+                } else if (menus[i].title.charAt(0) == '학'){
+                    menulist[0] = `\n아침\n${menus[i].breakfast}\n\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
+                } else if (menus[i].title.charAt(0) == '기'){
+                    menus[i].breakfast = menus[i].breakfast.replace('00원', '00원\n');
+                    menus[i].lunch = menus[i].lunch.replace('00원', '00원\n');
+                    menus[i].dinner = menus[i].dinner.replaceAll('00원', '00원\n');        
+                    menulist[8] = `\n아침\n${menus[i].breakfast}\n\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
+                } else if (menus[i].title.charAt(0) == '동') {
+                    menulist[7] = `\n점심\n${menus[i].lunch}\n\n`;
+                }
+                for (var j = 0; j < firstletter.length ; j++){
+                    if ( menus[i].title.charAt(0) == firstletter[j]) {
+                        menulist[j] = `\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
+                }
+                }
             }
+
         })
 
         loadmenu(months2, days2, years2).then((data) => {
+            var checkmsg2 = '\n\n\n\n생활협동조합 식단 정보의 오류 혹은 해당 식당의 휴무로 메뉴 정보를 받아오지 못했습니다. '
+            menulist2 = [checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2];
+
             var menus  = data;
-            menus[8].breakfast = menus[8].breakfast.replace('00원', '00원\n');
-            menus[8].lunch = menus[8].lunch.replace('00원', '00원\n');
-            menus[8].dinner = menus[8].dinner.replaceAll('00원', '00원\n');
-            menus[11].lunch = menus[11].lunch.replace('00원', '00원\n');
-            menus[11].dinner = menus[11].dinner.replace('00원', '00원\n');
-            menus[13].lunch = menus[13].lunch.replace('00원', '00원\n');
-            menus[13].dinner = menus[13].dinner.replace('00원', '00원\n');
-            menus[9].lunch = menus[9].lunch.replaceAll('00원', '00원\n');
-            menus[9].dinner = menus[9].dinner.replaceAll('00원', '00원\n');
-
-            if (day == 6){
-                menulist2[0] = `\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
-                menulist2[5] = `\n점심\n${data[1].lunch}\n\n저녁\n${data[1].dinner}\n\n`;
-                menulist2[8] = `\n아침\n${data[2].breakfast}\n\n점심\n${data[2].lunch}\n\n저녁\n${data[2].dinner}\n\n`;
-
-            } else if (day == 5){
-                menulist2[0] = `\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
-                menulist2[3] = `\n점심\n${data[1].lunch}\n\n저녁\n${data[1].dinner}\n\n`;
-                menulist2[4] = `\n점심\n${data[2].lunch}\n\n저녁\n${data[2].dinner}\n\n`;
-                menulist2[5] = `\n점심\n${data[3].lunch}\n\n저녁\n${data[3].dinner}\n\n`;
-                menulist2[6] = `\n점심\n${data[4].lunch}\n\n저녁\n${data[4].dinner}\n\n`;
-                menulist2[8] = `\n아침\n${data[5].breakfast}\n\n점심\n${data[5].lunch}\n\n저녁\n${data[5].dinner}\n\n`;
-
-            } else {
-                for (var i = 0; i < data.length; i++) {
-                    menulist2[i] = `\n점심\n${data[i].lunch}\n\n저녁\n${data[i].dinner}\n\n`;
+            var firstletter = ['?', '자', '예', '소', '?', '?', '?', '?', '?', '공', '감', '4', '?', '?', '?', '2']
+            for (var i = 0; i < menus.length; i++) {
+                if (menus[i].title.charAt(0) == '4'){
+                    menus[i].lunch = menus[i].lunch.replace('00원', '00원\n');
+                    menus[i].dinner = menus[i].dinner.replace('00원', '00원\n');        
+                } else if (menus[i].title.charAt(0) == '공') {
+                    menus[i].lunch = menus[i].lunch.replaceAll('00원', '00원\n');
+                    menus[i].dinner = menus[i].dinner.replaceAll('00원', '00원\n');        
                 }
-                menulist2[0] = `\n아침\n${data[0].breakfast}\n\n점심\n${data[0].lunch}\n\n저녁\n${data[0].dinner}\n\n`;
-                menulist2[8] = `\n아침\n${data[8].breakfast}\n\n점심\n${data[8].lunch}\n\n저녁\n${data[8].dinner}\n\n`;
-                menulist2[7] = `\n점심\n${data[7].lunch}\n\n`;
+                if (menus[i].title.charAt(0) == '3') {
+                    if (menus[i].title.charAt(2) == '당') {
+                        menulist2[12] = `\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
+                    } else if (menus[i].title.charAt(2) == '2') {
+                        menus[i].lunch = menus[i].lunch.replace('00원', '00원\n');
+                        menus[i].dinner = menus[i].dinner.replace('00원', '00원\n');            
+                        menulist2[13] = `\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
+                    } else if (menus[i].title.charAt(2) == '1') {
+                        menulist2[14] = `\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
+                    }
+                } else if (menus[i].title.charAt(0) == '학'){
+                    menulist2[0] = `\n아침\n${menus[i].breakfast}\n\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
+                } else if (menus[i].title.charAt(0) == '기'){
+                    menus[i].breakfast = menus[i].breakfast.replace('00원', '00원\n');
+                    menus[i].lunch = menus[i].lunch.replace('00원', '00원\n');
+                    menus[i].dinner = menus[i].dinner.replaceAll('00원', '00원\n');        
+                    menulist2[8] = `\n아침\n${menus[i].breakfast}\n\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
+                } else if (menus[i].title.charAt(0) == '동') {
+                    menulist2[7] = `\n점심\n${menus[i].lunch}\n\n`;
+                }
+                for (var j = 0; j < firstletter.length ; j++){
+                    if ( menus[i].title.charAt(0) == firstletter[j]) {
+                        menulist2[j] = `\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
+                }
+                }
             }
+
         })
 
         return (
@@ -1316,7 +1332,7 @@ function ggmeal() {
             <Text style={styles.nowwait}>17시 저녁시작</Text>
         </View>
     } else {
-        return <Text style={styles.nowoff}>미운영</Text>
+        return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
     }
 }
 

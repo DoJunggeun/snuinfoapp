@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import { Dimensions, Modal, ScrollView, StyleSheet, Linking, View, Text, TouchableOpacity, Image} from 'react-native';
+import { Modal, ScrollView, StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { WebView } from 'react-native-webview';
-import SafeAreaView from 'react-native-safe-area-view';
 import { NavigationActions } from 'react-navigation';
 
 const WEBVIEW_REF = "WEBVIEW_REF";
