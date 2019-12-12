@@ -211,11 +211,12 @@ const styles = StyleSheet.create({
   }
 });
 
+var date = new Date();
+var day = date.getDay()
+var hours = date.getHours()
+var minutes = date.getMinutes()
+
 function hgconv() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if ((day == 0 || day == 6) && (hours >= 10 && hours < 19)) {
     return <Text style={styles.nowon}>{`운영중\n19시까지`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 8 && hours < 19) || (hours == 19 && minutes < 30))) {
@@ -232,10 +233,6 @@ function hgconv() {
 }
 
 function hgmg() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if ((day == 6) && (hours >= 10 && hours < 17)) {
     return <Text style={styles.nowon}>{`운영중\n17시까지`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 9 && hours < 18) || (hours == 18 && minutes < 30))) {
@@ -252,10 +249,6 @@ function hgmg() {
 }
 
 function jdCU() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if ((day == 0 || day == 6) && (hours >= 8 && hours < 20)) {
     return <Text style={styles.nowon}>{`운영중\n20시까지`}</Text>
   } else if ((day > 0 && day < 6) && (hours >= 8 && hours < 22)) {
@@ -268,10 +261,6 @@ function jdCU() {
 }
 
 function nsconv() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else if ((day > 0 && day < 6) && (hours >= 10 && hours < 19)) {
@@ -284,10 +273,6 @@ function nsconv() {
 }
 
 function snuplex() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 9 && hours < 18) || (hours == 18 && minutes < 30))) {
@@ -300,10 +285,6 @@ function snuplex() {
 }
 
 function dwgconv() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if (day == 0) {
     return <Text style={styles.nowoff}>{`일요일은\n운영안함`}</Text>
   } else if ((day == 6) && (hours >= 9 && hours < 17)) {
@@ -321,10 +302,6 @@ function dwgconv() {
 
 
 function eeoconv() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else if ((day > 0 && day < 6) && (hours >= 9 && hours < 19)) {
@@ -338,10 +315,6 @@ function eeoconv() {
 
 
 function engCU() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if ((day == 0 || day == 6) && (hours >= 9 && hours < 18)) {
     return <Text style={styles.nowon}>{`운영중\n18시까지`}</Text>
   } else if ((day > 0 && day < 6) && (hours >= 8 && hours < 22)) {
@@ -357,10 +330,6 @@ function engCU() {
 
 
 function cnsconv() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if (day == 0) {
     return <Text style={styles.nowoff}>{`일요일은\n운영안함`}</Text>
   } else if ((day == 6) && (hours >= 10 && hours < 17)) {
@@ -377,10 +346,6 @@ function cnsconv() {
 }
 
 function dormconv() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if (hours >= 8 && hours < 24) {
     return <Text style={styles.nowon}>{`운영중\n밤1시반까지`}</Text>
   } else if (hours == 0 || (hours == 1 && minutes < 30)) {
@@ -393,10 +358,6 @@ function dormconv() {
 }
 
 function vetconv() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else if ((day > 0 && day < 6) && (hours >= 9 && hours < 18)) {
@@ -409,10 +370,6 @@ function vetconv() {
 }
 
 function medconv() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if (day == 0) {
     return <Text style={styles.nowoff}>{`일요일은\n운영안함`}</Text>
   } else if ((day == 6) && (hours >= 9 && hours < 18)) {
@@ -433,9 +390,6 @@ function allday(){
 }
 
 function haedong() {
-  var date = new Date();
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if ( hours < 8 ) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시부터</Text></View>
   } else if (hours>22 || (hours==22 && minutes >30 )) {

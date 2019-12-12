@@ -235,10 +235,12 @@ const styles = StyleSheet.create({
   }
 });
 
+var date = new Date();
+var day = date.getDay()
+var hours = date.getHours()
+var minutes = date.getMinutes()
+
 function musicnn() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else if ((day > 0 && day < 6) && (hours >= 9 && hours < 19)) {
@@ -251,10 +253,6 @@ function musicnn() {
 }
 
 function jhynn() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 9 && hours < 19) || (hours == 8 && minutes >= 30))) {
@@ -268,10 +266,6 @@ function jhynn() {
 
 
 function cafe104() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 9 && hours < 18) || (hours == 8 && minutes >= 30) || (hours == 18 && minutes < 30))) {
@@ -284,9 +278,6 @@ function cafe104() {
 }
 
 function moaart() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else if ((day > 0 && day < 6) && (hours >= 8 && hours < 17)) {
@@ -299,10 +290,6 @@ function moaart() {
 }
 
 function tea() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 10 && hours < 17) || (hours == 17 && minutes < 30))) {
@@ -315,10 +302,6 @@ function tea() {
 }
 
 function lannn() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if ((day == 6) && ((hours > 9 && hours < 16) || (hours == 9 && minutes >= 30))) {
     return <Text style={styles.nowon}>{`운영중\n16시까지`}</Text>
   } else if ((day > 0 && day < 6) && (hours >= 8 && hours < 19)) {
@@ -335,10 +318,6 @@ function lannn() {
 }
 
 function dwgnn() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if ((day == 6) && (hours >= 9 && hours < 16)) {
     return <Text style={styles.nowon}>{`운영중\n16시까지`}</Text>
   } else if ((day > 0 && day < 6) && ((hours > 8 && hours < 19) || (hours == 8 && minutes >= 30))) {
@@ -355,9 +334,6 @@ function dwgnn() {
 }
 
 function belepi() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
   if ((day == 6) && (hours >= 8 && hours < 18)) {
     return <Text style={styles.nowon}>{`운영중\n18시까지`}</Text>
   } else if ((day > 0 && day < 6) && (hours >= 8 && hours < 20)) {
@@ -374,10 +350,6 @@ function belepi() {
 }
 
 function eyagi() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if ((day == 6) && (hours >= 10 && hours < 18)) {
     return <Text style={styles.nowon}>{`운영중\n18시까지`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 8 && hours < 19) || (hours == 19 && minutes < 30))) {
@@ -394,10 +366,6 @@ function eyagi() {
 }
 
 function snack() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if ((day == 6) && ((hours >= 8 && hours < 15) || (hours == 7 && minutes >= 30))) {
     return <Text style={styles.nowon}>{`운영중\n15시까지`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 8 && hours < 19) || (hours == 7 && minutes >= 30))) {
@@ -414,9 +382,6 @@ function snack() {
 }
 
 function vetsnack() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
   if ((day == 6) && (hours >= 9 && hours < 14)) {
     return <Text style={styles.nowon}>{`운영중\n14시까지`}</Text>
   } else if ((day > 0 && day < 6) && (hours >= 9 && hours < 19)) {
@@ -433,10 +398,6 @@ function vetsnack() {
 }
 
 function libnn() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if ((day == 0 || day == 6) && (hours >= 11 && hours < 19)) {
     return <Text style={styles.nowon}>{`운영중\n19시까지`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 8 && hours < 19) || (hours == 19 && minutes < 30))) {
@@ -451,10 +412,6 @@ function libnn() {
 }
 
 function fluid() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if ((day == 0 || day == 6) && (hours >= 10 && hours < 15)) {
     return <Text style={styles.nowon}>{`운영중\n15시까지`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 8 && hours < 19) || (hours == 19 && minutes < 30))) {
@@ -469,8 +426,6 @@ function fluid() {
 }
 
 function twosome() {
-  var date = new Date();
-  var hours = date.getHours()
   if (hours >= 8 && hours < 22) {
     return <Text style={styles.nowon}>{`운영중\n22시까지`}</Text>
   } else if (hours < 8) {
@@ -493,9 +448,6 @@ function pascucci() {
 }
 
 function hollys() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
   if (hours >= 8 && hours < 22) {
     return <Text style={styles.nowon}>{`운영중\n22시까지`}</Text>
   } else if (hours < 8) {
@@ -506,10 +458,6 @@ function hollys() {
 }
 
 function cafegran() {
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if ((day == 0 || day == 6) && ((hours >= 8 && hours < 21) || (hours == 7 && minutes >= 30))) {
     return <Text style={styles.nowon}>{`운영중\n21시까지`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 8 && hours < 22) || (hours == 7 && minutes >= 30))) {
@@ -524,8 +472,6 @@ function cafegran() {
 }
 
 function paba() {
-  var date = new Date();
-  var hours = date.getHours()
   if (hours < 7){
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7시부터</Text></View>
   } else if (hours < 22) {
@@ -536,9 +482,6 @@ function paba() {
 }
 
 function mug_inmun(){
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
   if ( day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else {
@@ -553,9 +496,6 @@ function mug_inmun(){
 }
 
 function mug_gong(){
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
   if ( day == 0 || day == 6) {
     if (hours<9) {
       return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9시부터</Text></View>
@@ -576,10 +516,6 @@ function mug_gong(){
 }
 
 function thelab_edu(){
-  var date = new Date();
-  var day = date.getDay()
-  var hours = date.getHours()
-  var minutes = date.getMinutes()
   if (day == 0) {
     return <Text style={styles.nowoff}>{`일요일은\n운영안함`}</Text>
   }

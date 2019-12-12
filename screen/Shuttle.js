@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import { Dimensions, Modal, ScrollView, StyleSheet, Linking, View, Text, TouchableOpacity, Image} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { WebView } from 'react-native-webview';
-import SafeAreaView from 'react-native-safe-area-view';
-import { NavigationActions } from 'react-navigation';
+// import { WebView } from 'react-native-webview';
+// import SafeAreaView from 'react-native-safe-area-view';
+// import { NavigationActions } from 'react-navigation';
 import ImageViewer from 'react-native-image-zoom-viewer';
 
 const WEBVIEW_REF = "WEBVIEW_REF";
@@ -13,6 +13,12 @@ const sttt = [{
     source: require('./lib/img/sttt.jpg')
   }
 }]
+
+var date = new Date();
+var day = date.getDay();
+var hours = date.getHours();
+var minutes = date.getMinutes();
+
 
 class Shuttle extends Component { 
     constructor(props) {
@@ -199,10 +205,6 @@ const styles = StyleSheet.create({
 });
 
 function ststation() {
-  var date = new Date();
-  var day = date.getDay();
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours >= 19) {
@@ -217,10 +219,6 @@ function ststation() {
 }
 
 function stdhd() {
-  var date = new Date();
-  var day = date.getDay();
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours >= 19) {
@@ -235,10 +233,6 @@ function stdhd() {
 }
 
 function stsdstation() {
-  var date = new Date();
-  var day = date.getDay();
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours > 10) {
@@ -251,10 +245,6 @@ function stsdstation() {
 }
 
 function stinner() {
-  var date = new Date();
-  var day = date.getDay();
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours > 20) {
@@ -267,10 +257,6 @@ function stinner() {
 }
 
 function stnight() {
-  var date = new Date();
-  var day = date.getDay();
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours > 23 && minutes > 10) {
@@ -283,10 +269,6 @@ function stnight() {
 }
 
 function stnsdstation() {
-  var date = new Date();
-  var day = date.getDay();
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours > 10) {
@@ -299,10 +281,6 @@ function stnsdstation() {
 }
 
 function steng() {
-  var date = new Date();
-  var day = date.getDay();
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours > 10) {
@@ -315,10 +293,6 @@ function steng() {
 }
 
 function stinnerreverse() {
-  var date = new Date();
-  var day = date.getDay();
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours > 17 || (hours == 17 && minutes > 50)) {
@@ -331,10 +305,6 @@ function stinnerreverse() {
 }
 
 function stnight2() {
-  var date = new Date();
-  var day = date.getDay();
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
   if (day == 0 || (day == 6 && hours >= 2)) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours >= 2) {
@@ -348,10 +318,6 @@ function stnight2() {
 
 
 function ststationinterval() {
-  var date = new Date();
-  var day = date.getDay();
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
   if (day == 0 || day == 6) {
     return <Text style={styles.tdtext}>5~15분</Text>
   } else if (hours > 19 || hours < 7) {
@@ -370,10 +336,6 @@ function ststationinterval() {
 }
 
 function stdhdinterval() {
-  var date = new Date();
-  var day = date.getDay();
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
   if (day == 0 || day == 6) {
     return <Text style={styles.tdtext}>6~15분</Text>
   } else if (hours > 19 || hours < 7) {
@@ -394,10 +356,6 @@ function stdhdinterval() {
 }
 
 function stinnerinterval() {
-  var date = new Date();
-  var day = date.getDay();
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
   if (day == 0 || day == 6) {
     return <Text style={styles.tdtext}>7~20분</Text>
   } else if (hours > 20 || hours < 7) {

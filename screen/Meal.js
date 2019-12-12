@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import {
-    Dimensions,
     Modal,
-    ScrollView,
     StyleSheet,
-    Linking,
     View,
     Text,
     TouchableOpacity,
@@ -12,7 +9,7 @@ import {
 } from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {WebView} from 'react-native-webview';
-import SafeAreaView from 'react-native-safe-area-view';
+// import SafeAreaView from 'react-native-safe-area-view';
 import {NavigationActions} from 'react-navigation';
 import Mealtable from './Mealtable'
 const WEBVIEW_REF = "WEBVIEW_REF";
@@ -32,7 +29,6 @@ class Meal extends Component {
     setMenuVisible(visible) {
         this.setState({menuVisible: visible});
     }
-
     render() {
         const {navigation} = this.props;
         return (
@@ -54,9 +50,10 @@ class Meal extends Component {
                     alignItems: 'center',
                     flexDirection: 'row'
                 }}>
+                    <View style={{flex:1}}>
                     <TouchableOpacity
                         style={{
-                        flex: 53,
+                        flex: 1,
                         backgroundColor: 'rgb(176,155,222)'
                     }}
                         onPress={() => {
@@ -78,6 +75,10 @@ class Meal extends Component {
                             }}>생협 식당 운영시간 전체보기</Text>
                         </View>
                     </TouchableOpacity>
+                    <TouchableOpacity style={{width:60, height:40, position:'absolute', right:5, margin:5}} onPress={()=> {this.forceUpdate()}}>
+                    <Image source={require('./src/reload.png')} style={{width:40, height:40, alignSelf:'flex-end'}} />
+                    </TouchableOpacity>
+                    </View>
                 </View>
 
                 <Modal
@@ -132,85 +133,6 @@ class Meal extends Component {
                 }}>
 
                     <Mealtable/>
-
-                    {/* <View
-                        style={{
-                        height: 50,
-                        backgroundColor: 'rgba(193,171,244,0.8)',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        flexDirection: 'row'
-                    }}>
-                        <TouchableOpacity
-                            style={{
-                            flex: 1,
-                            backgroundColor: 'rgba(193,171,244,0.8)'
-                        }}
-                            onPress={() => {
-                            this.setMenuVisible(true);
-                        }}>
-                            <View
-                                style={{
-                                height: 50,
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}>
-                                <Text
-                                    style={{
-                                    color: 'white',
-                                    fontSize: 22,
-                                    fontWeight: '600'
-                                }}>생협 식당 메뉴 보기</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-
-                    <Modal
-                        animationType="slide"
-                        transparent={false}
-                        visible={this.state.menuVisible}
-                        style={{
-                        marginTop: getStatusBarHeight()
-                    }}>
-                        <WebView
-                            source={{
-                            uri: 'http://snuco.snu.ac.kr/ko/foodmenu'
-                        }}
-                            style={{
-                            flex: 7
-                        }}/>
-                        <View
-                            style={{
-                            height: 50,
-                            backgroundColor: 'rgb(176,155,222)',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            flexDirection: 'row'
-                        }}>
-                            <TouchableOpacity
-                                style={{
-                                flex: 1,
-                                backgroundColor: 'rgb(176,155,222)'
-                            }}
-                                onPress={() => {
-                                this.setMenuVisible(false)
-                            }}>
-                                <View
-                                    style={{
-                                    height: 50,
-                                    justifyContent: 'center',
-                                    alignItems: 'center'
-                                }}>
-                                    <Text
-                                        style={{
-                                        color: 'white',
-                                        fontSize: 22,
-                                        fontWeight: '600'
-                                    }}>닫기</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    </Modal> */}
 
                 </View>
             </View>
