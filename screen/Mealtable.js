@@ -6,6 +6,7 @@ import {
     View,
     Text,
     TouchableOpacity,
+    Image
 } from 'react-native';
 const axios = require("axios");
 const cheerio = require("react-native-cheerio");
@@ -17,7 +18,7 @@ String.prototype.replaceAll = function(org, dest) {
 
 
 
-var checkmsg = '\n\n\n\n인터넷 연결 상태를 확인하신 후 상단의 새로고침 버튼을 눌러주세요!'
+var checkmsg = '\n\n\n\n인터넷 연결 상태를 확인하신 후 좌상단의 새로고침 버튼을 눌러주세요!'
 var menulist = [checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg];
 var menulist2 = [checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg,checkmsg];
 var meallist = ['학생회관식당(880-5543)','자하연식당(880-7888)','예술계식당(876-1006)','소담마루(880-8698)','샤반(871-6933)','라운지오(882-7005)','두레미담(880-9358)','동원관식당(880-8697)','기숙사식당(881-9072)','공대간이식당(889-8956)','감골식당(880-5544)','4식당(889-6946)','3식당(880-5545)','302동식당(880-1939)','301동식당(889-8955','220동식당(875-0240)'];
@@ -36,9 +37,6 @@ class Mealtable extends Component {
         this.setState({menu: visible});
     };
     Modals(number) {
-        var date = new Date()
-        var months = date.getMonth()
-        var days = date.getDate()
         return (
             <Modal
             animationType="slide"
@@ -102,36 +100,53 @@ class Mealtable extends Component {
 
 
         if (this.state.menuday == 1) {
-            return <ScrollView style={styles.modalinside}>
-            <Text style={styles.modalhead}>{meallist[number]}</Text>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-            <Text style={{fontSize: 17, fontWeight: '500', textAlign: 'center', lineHeight: 22}}>{'\n'}- {months}월 {days}일 메뉴 -</Text>
-            </View>
-            <View style={{position:'absolute', right:0}}>
+            return <View style={{flex:1}}>
+            <View style={{height: 50,justifyContent: 'center',alignItems: 'center', borderTopLeftRadius:15, borderTopRightRadius:15, borderBottomWidth:1, borderColor:'lightgray'}}>
+                <Text style={styles.modalhead}>{meallist[number]}</Text>
+                <View style={{position:'absolute', left:15}}>
+                    <TouchableOpacity onPress={ () => {this.forceUpdate()} } >
+                    <Image source={require('./src/reload.png')} style={{width:30, height:30}} />
+                    </TouchableOpacity>
+                </View>
+                <View style={{position:'absolute', right:15}}>
                 <TouchableOpacity onPress={ () => {this.state.menuday = 2; this.forceUpdate()} } >
-                <Text style={{fontSize: 15, fontWeight: '500', textAlign: 'center', lineHeight: 22, color:'blue', borderColor:'lightgray', borderWidth:1, borderRadius:3 ,paddingVertical:3, paddingHorizontal:7}} >내일{'\n'}메뉴{'\n'}보기</Text>
+                <Image source={require('./src/next.png')} style={{width:30, height:30}} />
                 </TouchableOpacity>
                 </View>
             </View>
-            <Text style={styles.modaltext}>{menulist[number]}</Text>
-        </ScrollView>
-    
-        } else if (this.state.menuday == 2) {
-            return <ScrollView style={styles.modalinside}>
-            <Text style={styles.modalhead}>{meallist[number]}</Text>
+            <ScrollView style={styles.modalinside}>
             <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-            <Text style={{fontSize: 17, fontWeight: '500', textAlign: 'center', lineHeight: 22}}>{'\n'}- {months2}월 {days2}일 메뉴 -</Text>
+            <View style={{flex:1}}>
+            <Text style={{fontSize: 17, fontWeight: '500', textAlign: 'center', lineHeight: 22}}>- {months}월 {days}일 -</Text>
             </View>
-                <View style={{position:'absolute', right:0}}>
+            </View>
+            <Text style={styles.modaltext}>{menulist[number]}{'\n\n(#) : no pork / (*) : vegetarian diet'}</Text>
+        </ScrollView>
+        </View>
+        } else if (this.state.menuday == 2) {
+            return <View style={{flex:1}}>
+            <View style={{height: 50,justifyContent: 'center',alignItems: 'center', borderTopLeftRadius:15, borderTopRightRadius:15, borderBottomWidth:1, borderColor:'lightgray'}}>
+                <Text style={styles.modalhead}>{meallist[number]}</Text>
+                <View style={{position:'absolute', left:15}}>
+                    <TouchableOpacity onPress={ () => {this.forceUpdate()} } >
+                    <Image source={require('./src/reload.png')} style={{width:30, height:30}} />
+                    </TouchableOpacity>
+                </View>
+                <View style={{position:'absolute', right:15}}>
                 <TouchableOpacity onPress={ () => {this.state.menuday = 1; this.forceUpdate()} } >
-                <Text style={{fontSize: 15, fontWeight: '500', textAlign: 'center', lineHeight: 22, color:'blue', borderColor:'lightgray', borderWidth:1, borderRadius:3 ,paddingVertical:3, paddingHorizontal:7}} >오늘{'\n'}메뉴{'\n'}보기</Text>
+                <Image source={require('./src/previous.png')} style={{width:30, height:30}} />
                 </TouchableOpacity>
                 </View>
             </View>
-            <Text style={styles.modaltext}>{menulist2[number]}</Text>
+            <ScrollView style={styles.modalinside}>
+            <View style={{flexDirection:'row'}}>
+            <View style={{flex:1}}>
+            <Text style={{fontSize: 17, fontWeight: '500', textAlign: 'center', lineHeight: 22}}>- {months2}월 {days2}일 -</Text>
+            </View>
+            </View>
+            <Text style={styles.modaltext}>{menulist2[number]}{'\n\n(#) : no pork / (*) : vegetarian diet'}</Text>
         </ScrollView>
+        </View>
         }
     }
     
@@ -588,19 +603,19 @@ class Mealtable extends Component {
             var firstletter = ['?', '자', '예', '소', '?', '?', '?', '?', '?', '공', '감', '4', '?', '?', '?', '2']
 
             if (day == 0 || day == 6) {
-                var checkmsg2 = '\n\n\n\n생활협동조합 식단 정보의 오류 혹은 해당 식당의 휴무로 메뉴 정보를 받아오지 못했습니다. '
-                menulist = [checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2];
+                var weekendmsg = '\n\n\n\n휴무'
+                menulist = [weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg];
                 for (var i = 0; i < menus.length; i++) {
                     if (menus[i].title.charAt(0) == '학'){
                         menulist[0] = `\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
                     } else if (menus[i].title.charAt(0) == '기'){
-                        menus[i].breakfast = menus[i].breakfast.replace('00원', '00원\n');
                         menus[i].lunch = menus[i].lunch.replace('00원', '00원\n');
-                        menus[i].dinner = menus[i].dinner.replaceAll('00원', '00원\n');        
                         menulist[8] = `\n아침\n${menus[i].breakfast}\n\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
                     } 
                 }
                 } else {
+                    var checkmsg2 = '\n\n\n\n해당 식단의 휴무 혹은 식단 정보의 오류로 메뉴 정보가 없습니다.'
+                    menulist2 = [checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2];        
             for (var i = 0; i < menus.length; i++) {
                 if (menus[i].title.charAt(0) == '4'){
                     menus[i].lunch = menus[i].lunch.replace('00원', '00원\n');
@@ -650,15 +665,13 @@ class Mealtable extends Component {
                 if (menus[i].title.charAt(0) == '학'){
                     menulist2[0] = `\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
                 } else if (menus[i].title.charAt(0) == '기'){
-                    menus[i].breakfast = menus[i].breakfast.replace('00원', '00원\n');
                     menus[i].lunch = menus[i].lunch.replace('00원', '00원\n');
-                    menus[i].dinner = menus[i].dinner.replaceAll('00원', '00원\n');        
                     menulist2[8] = `\n아침\n${menus[i].breakfast}\n\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
                 } 
             }
          } else {
-                var checkmsg2 = '\n\n\n\n생활협동조합 식단 정보의 오류 혹은 해당 식당의 휴무로 메뉴 정보를 받아오지 못했습니다. '
-                menulist2 = [checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2];    
+            var checkmsg2 = '\n\n\n\n해당 식단의 휴무 혹은 식단 정보의 오류로 메뉴 정보가 없습니다.'
+            menulist2 = [checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2];    
             for (var i = 0; i < menus.length; i++) {
                 if (menus[i].title.charAt(0) == '4'){
                     menus[i].lunch = menus[i].lunch.replace('00원', '00원\n');
@@ -1114,10 +1127,10 @@ const styles = StyleSheet.create({
     modalinside: {
         flex: 1,
         borderRadius: 15,
-        padding: 20
+        padding: 20,
     },
     modalhead: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: '600',
         textAlign: 'center',
         lineHeight: 22

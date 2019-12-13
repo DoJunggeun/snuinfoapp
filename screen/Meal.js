@@ -75,9 +75,6 @@ class Meal extends Component {
                             }}>생협 식당 운영시간 전체보기</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{width:60, height:40, position:'absolute', right:5, margin:5, padding:2}} onPress={()=> {this.forceUpdate()}}>
-                    <Image source={require('./src/reload.png')} style={{width:36, height:36, alignSelf:'flex-end'}} />
-                    </TouchableOpacity>
                     </View>
                 </View>
 

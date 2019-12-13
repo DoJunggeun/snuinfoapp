@@ -57,7 +57,7 @@ class Shuttle extends Component {
          <View style={{flex:1}} >
         <View style={styles.containerhead}>
           <View style={styles.th}><Text style={styles.thtext}>구간</Text></View>
-          <View style={styles.th}><Text style={styles.thtext}>운행시간</Text></View>
+          <View style={styles.th}><Text style={styles.thtext}>{`운행시간\n(학기중)`}</Text></View>
           <View style={styles.th}><Text style={styles.thtext}>{`배차간격\n(학기중)`}</Text></View>
           <View style={styles.th}><Text style={styles.thtext}>현재</Text></View>
         </View>
