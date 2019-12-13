@@ -487,10 +487,10 @@ function mug_inmun(){
   } else {
     if (hours<8) {
       return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시부터</Text></View>
-    } else if (hours >= 18) {
+    } else if (hours >= 20) {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   } else {
-    return <Text style={styles.nowon}>{`운영중\n18시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n20시까지`}</Text>
 }
 }
 }
