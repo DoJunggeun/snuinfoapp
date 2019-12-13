@@ -147,12 +147,13 @@ class Mealtable extends Component {
 
         var tomorrow = new Date()
         tomorrow.setDate(today.getDate() + 1)
+        var day2 = tomorrow.getDay()
         var days2 = tomorrow.getDate()
         var months2 = tomorrow.getMonth() + 1
         var years2 = tomorrow.getFullYear()
 
 
-        async function loadmenu(months, days, years) {
+        async function loadmenu(months, days, years, day) {
             var url_todaymenu = 'http://snuco.snu.ac.kr/ko/foodmenu?field_menu_date_value_1[value][date]=&field_menu_date_value[value][date]=' + months + '/' + days + '/' + years
             var html = await axios.get(url_todaymenu);
             let ulList = [];
@@ -582,12 +583,24 @@ class Mealtable extends Component {
             }
           }
         
-        loadmenu(months, days, years).then((data) => {
-            var checkmsg2 = '\n\n\n\n생활협동조합 식단 정보의 오류 혹은 해당 식당의 휴무로 메뉴 정보를 받아오지 못했습니다. '
-            menulist = [checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2];
-
+        loadmenu(months, days, years, day).then((data) => {
             var menus  = data;
             var firstletter = ['?', '자', '예', '소', '?', '?', '?', '?', '?', '공', '감', '4', '?', '?', '?', '2']
+
+            if (day == 0 || day == 6) {
+                var checkmsg2 = '\n\n\n\n생활협동조합 식단 정보의 오류 혹은 해당 식당의 휴무로 메뉴 정보를 받아오지 못했습니다. '
+                menulist = [checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2];
+                for (var i = 0; i < menus.length; i++) {
+                    if (menus[i].title.charAt(0) == '학'){
+                        menulist[0] = `\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
+                    } else if (menus[i].title.charAt(0) == '기'){
+                        menus[i].breakfast = menus[i].breakfast.replace('00원', '00원\n');
+                        menus[i].lunch = menus[i].lunch.replace('00원', '00원\n');
+                        menus[i].dinner = menus[i].dinner.replaceAll('00원', '00원\n');        
+                        menulist[8] = `\n아침\n${menus[i].breakfast}\n\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
+                    } 
+                }
+                } else {
             for (var i = 0; i < menus.length; i++) {
                 if (menus[i].title.charAt(0) == '4'){
                     menus[i].lunch = menus[i].lunch.replace('00원', '00원\n');
@@ -622,15 +635,30 @@ class Mealtable extends Component {
                 }
                 }
             }
-
+        }
         })
 
-        loadmenu(months2, days2, years2).then((data) => {
-            var checkmsg2 = '\n\n\n\n생활협동조합 식단 정보의 오류 혹은 해당 식당의 휴무로 메뉴 정보를 받아오지 못했습니다. '
-            menulist2 = [checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2];
+        loadmenu(months2, days2, years2, day2).then((data) => {
 
             var menus  = data;
             var firstletter = ['?', '자', '예', '소', '?', '?', '?', '?', '?', '공', '감', '4', '?', '?', '?', '2']
+
+            if (day2 == 0 || day2 == 6) { 
+                var weekendmsg = '\n\n\n\n휴무'
+                menulist2 = [weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg,weekendmsg];
+                for (var i = 0; i < menus.length; i++) {
+                if (menus[i].title.charAt(0) == '학'){
+                    menulist2[0] = `\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
+                } else if (menus[i].title.charAt(0) == '기'){
+                    menus[i].breakfast = menus[i].breakfast.replace('00원', '00원\n');
+                    menus[i].lunch = menus[i].lunch.replace('00원', '00원\n');
+                    menus[i].dinner = menus[i].dinner.replaceAll('00원', '00원\n');        
+                    menulist2[8] = `\n아침\n${menus[i].breakfast}\n\n점심\n${menus[i].lunch}\n\n저녁\n${menus[i].dinner}\n\n`;
+                } 
+            }
+         } else {
+                var checkmsg2 = '\n\n\n\n생활협동조합 식단 정보의 오류 혹은 해당 식당의 휴무로 메뉴 정보를 받아오지 못했습니다. '
+                menulist2 = [checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2];    
             for (var i = 0; i < menus.length; i++) {
                 if (menus[i].title.charAt(0) == '4'){
                     menus[i].lunch = menus[i].lunch.replace('00원', '00원\n');
@@ -665,7 +693,7 @@ class Mealtable extends Component {
                 }
                 }
             }
-
+        }
         })
 
         return (
