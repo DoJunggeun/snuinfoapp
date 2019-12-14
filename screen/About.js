@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { Modal, StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { WebView } from 'react-native-webview';
-import SafeAreaView from 'react-native-safe-area-view';
 import { NavigationActions } from 'react-navigation';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 
 const WEBVIEW_REF = "WEBVIEW_REF";

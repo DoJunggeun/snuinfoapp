@@ -55,7 +55,7 @@ class Mart extends Component {
           <View style={styles.td}>{hgmg()}</View>
         </View>
         <View style={styles.container2}>
-          <View style={styles.td}><Text style={styles.tdtext}>중도CU</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>중도 CU</Text></View>
           <View style={styles.td}><Text style={styles.tdtext}>중도(62동) 3층</Text></View>
           <View style={styles.td}>{jdCU()}</View>
         </View>
@@ -80,7 +80,7 @@ class Mart extends Component {
           <View style={styles.td}>{snuplex()}</View>
         </View>
         <View style={styles.container}>
-          <View style={styles.td}><Text style={styles.tdtext}>동원관매점</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>동원관 매점</Text></View>
           <View style={styles.td}><Text style={styles.tdtext}>동원관(113동){'\n'}1층</Text></View>
           <View style={styles.td}>{dwgconv()}</View>
         </View>
