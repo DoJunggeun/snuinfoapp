@@ -4,6 +4,7 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { WebView } from 'react-native-webview';
 import SafeAreaView from 'react-native-safe-area-view';
 import { NavigationActions } from 'react-navigation';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 const WEBVIEW_REF = "WEBVIEW_REF";
 
@@ -20,7 +21,12 @@ class Home extends Component {
     
     render() {
               const {navigation} = this.props;
-                return ( 
+                return ( <GestureRecognizer onSwipeLeft={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Home'}));}} 
+                onSwipeDown={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Home'}));}} 
+                config={{
+                  velocityThreshold: 0.2,
+                  directionalOffsetThreshold: 20
+                }} style={{flex:1}}>
         <View style={{flex:1, flexDirection:'column', justifyContent:'space-around'}}> 
           <View style={{height:getStatusBarHeight()}}/>
           <View style={{height:'22%', backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center'}}>
@@ -67,7 +73,7 @@ class Home extends Component {
 
         </View>
 
-       </View>
+       </View></GestureRecognizer>
         );
     };
     onNavigationStateChange(navState) {

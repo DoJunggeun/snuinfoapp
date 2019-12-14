@@ -14,7 +14,7 @@ import Mart from './screen/Mart';
 import About from './screen/About';
 import Etc from './screen/Etc';
 
-const Bottom = createMaterialTopTabNavigator(
+const tabs = createMaterialTopTabNavigator(
   {
     Home:{
       screen:Home,
@@ -50,7 +50,7 @@ const Bottom = createMaterialTopTabNavigator(
       screen:Shuttle,
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor, focused }) => (
-          focused ? <View style={styles.iconbg}><Image source={require('./screen/src/shuttle_w.png')} style={styles.icon} /></View> : <View style={styles.iconbg}><Image source={require('./screen/src/shuttle.png')} style={styles.icon} /></View>
+        focused ? <View style={styles.iconbg}><Image source={require('./screen/src/shuttle_w.png')} style={styles.icon} /></View> : <View style={styles.iconbg}><Image source={require('./screen/src/shuttle.png')} style={styles.icon} /></View>
       )}),
     }
   }, 
@@ -69,57 +69,77 @@ const Bottom = createMaterialTopTabNavigator(
 
 );
 
-const Cont = createMaterialTopTabNavigator(
-  {
+const App = createStackNavigator({
+
     tabs: {
-      screen:Bottom,
-      navigationOptions: () => ({
-        tabBarVisible:false,
-        swipeEnabled: false
-    }),
+      screen:tabs
     },
     Etc: {
-      screen:Etc,
-      navigationOptions: () => ({
-        tabBarVisible:false,
-    }),
+      screen:Etc
     },
+      About: {
+      screen:About
+    }
+  }, 
+  {headerMode:'none', 
+    defaultNavigationOptions: {
+      gesturesEnabled: true,
+      gestureResponseDistance : {horizontal:500, vertical:400}
   },
-    {
-      swipeEnabled: true,
-      }
+}
+);
+
+// const Cont = createMaterialTopTabNavigator(
+//   {
+//     tabs: {
+//       screen:tabs,
+//       navigationOptions: () => ({
+//         tabBarVisible:false,
+//         swipeEnabled: false
+//     }),
+//     },
+//     Etc: {
+//       screen:Etc,
+//       navigationOptions: () => ({
+//         tabBarVisible:false,
+//     }),
+//     },
+//   },
+//     {
+//       swipeEnabled: true,
+//       }
+// )
+
+// const Ab = createMaterialTopTabNavigator(
+//   {
+//     Cont: {
+//       screen:Cont,
+//       navigationOptions: () => ({
+//         tabBarVisible:false,
+//         swipeEnabled: false
+//     }),
+//     },
+//     About: {
+//       screen:About,
+//       navigationOptions: () => ({
+//         tabBarVisible:false,
+//     }),
+//     },
+//   },
+//     {
+//       swipeEnabled: true,
+//       }
     
-)
-const Ab = createMaterialTopTabNavigator(
-  {
-    Cont: {
-      screen:Cont,
-      navigationOptions: () => ({
-        tabBarVisible:false,
-        swipeEnabled: false
-    }),
-    },
-    About: {
-      screen:About,
-      navigationOptions: () => ({
-        tabBarVisible:false,
-    }),
-    },
-  },
-    {
-      swipeEnabled: true,
-      }
-    
-)
+// )
 
 
-const App = createStackNavigator(
-  {
-  tabs: Bottom,
-  Ab: Ab
-  },
-    {headerMode: 'none', mode:'card', lazy:false, gestureDirection:'vertical'}
-)
+// const App = createStackNavigator(
+//   {
+//   tabs: tabs,
+//   Ab: Ab
+//   },
+//     {headerMode: 'none', mode:'card', lazy:false, gestureDirection:'vertical'}
+// )
 
 
 const styles = StyleSheet.create({
