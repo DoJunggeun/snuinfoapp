@@ -123,7 +123,7 @@ class Mealtable extends Component {
             <ScrollView style={styles.modalinside}>
             <View style={{flexDirection:'row'}}>
             <View style={{flex:1}}>
-            <Text style={{fontSize: 17, fontWeight: '500', textAlign: 'center', lineHeight: 22}}>- {months}월 {days}일 -</Text>
+            <Text style={{fontSize: 17, fontWeight: '500', textAlign: 'center', lineHeight: 22}}>{'\n'}- {months}월 {days}일 -</Text>
             </View>
             </View>
             <Text style={styles.modaltext}>{menulist[number]}</Text>
@@ -144,10 +144,11 @@ class Mealtable extends Component {
                 </TouchableOpacity>
                 </View>
             </View>
+            <View style={{position:'absolute', top:53, left:3}}><Text style={{fontSize:13}}>{'(*) : vegetarian diet\n(#) : no pork'}</Text></View>    
             <ScrollView style={styles.modalinside}>
             <View style={{flexDirection:'row'}}>
             <View style={{flex:1}}>
-            <Text style={{fontSize: 17, fontWeight: '500', textAlign: 'center', lineHeight: 22}}>- {months2}월 {days2}일 -</Text>
+            <Text style={{fontSize: 17, fontWeight: '500', textAlign: 'center', lineHeight: 22}}>{'\n'}- {months2}월 {days2}일 -</Text>
             </View>
             </View>
             <Text style={styles.modaltext}>{menulist2[number]}</Text>
