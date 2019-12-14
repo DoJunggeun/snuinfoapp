@@ -37,7 +37,7 @@ class About extends Component {
              <View style={{flex:1, justifyContent:'center', backgroundColor:'white'}}><Text style={{left:15, fontSize:17}}>정보 수정, 기능 추가, 어플 개선을 원하시면</Text></View>
 
            <TouchableOpacity style={{flex:2, backgroundColor: 'rgba(176,155,222,0.4)', justifyContent:'center', alignItems:'center', borderBottomRightRadius:15,borderBottomLeftRadius:15}} onPress={() => {this.setModalVisible(true);}}>
-         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:25, fontWeight:'500',color:'black'}}>제보해주세요!</Text></View>
+         <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:26, fontWeight:'500',color:'black'}}>눌러서 제보하기</Text></View>
          </TouchableOpacity>
 
          <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} style={{marginTop :getStatusBarHeight()}}>

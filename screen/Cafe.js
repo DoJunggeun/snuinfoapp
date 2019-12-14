@@ -24,10 +24,10 @@ class Cafe extends Component {
 
          <View style={{height:50, backgroundColor:'#rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
          <TouchableOpacity style={{flex:1, backgroundColor:'#rgb(176,155,222)'}} onPress={() => {this.setModalVisible(true);}}>
-          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>생협 카페 운영시간 전체보기</Text></View>
+          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>학내 카페 운영시간</Text></View>
            </TouchableOpacity></View>
 
-           <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} style={{marginTop :getStatusBarHeight()}}>
+           <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} onRequestClose={() => {this.setModalVisible(false) }} style={{marginTop :getStatusBarHeight()}}>
            <WebView source={{uri: 'http://snuco.snu.ac.kr/ko/node/21'}} style={{flex:7}}/>
            <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
          <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setModalVisible(false) }}>
@@ -61,7 +61,7 @@ class Cafe extends Component {
         </View>
         <View style={styles.container}>
           <View style={styles.td}><Text style={styles.tdtext}>Fluid 카페</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>학생회관(63동) 1층</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>학생회관(63동){'\n'}1층</Text></View>
           <View style={styles.td}>{fluid()}</View>
         </View>
         <View style={styles.container2}>
@@ -134,7 +134,7 @@ class Cafe extends Component {
         </View>
         <View style={styles.container}>
           <View style={styles.td}><Text style={styles.tdtext}>라운지스낵</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>학생회관(63동) 2층</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>학생회관(63동){'\n'}2층</Text></View>
           <View style={styles.td}>{snack()}</View>
         </View>
         <View style={styles.container2}>
@@ -244,9 +244,9 @@ function musicnn() {
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else if ((day > 0 && day < 6) && (hours >= 9 && hours < 19)) {
-    return <Text style={styles.nowon}>{`운영중\n19시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n19:00 종료`}</Text>
   } else if (hours < 9) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:00 시작</Text></View>
   } else {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   }
@@ -256,9 +256,9 @@ function jhynn() {
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 9 && hours < 19) || (hours == 8 && minutes >= 30))) {
-    return <Text style={styles.nowon}>{`운영중\n19시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n19:00 종료`}</Text>
   } else if (hours < 8 || (hours == 8 && minutes < 30)) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시30분부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:30 시작</Text></View>
   } else {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   }
@@ -269,9 +269,9 @@ function cafe104() {
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 9 && hours < 18) || (hours == 8 && minutes >= 30) || (hours == 18 && minutes < 30))) {
-    return <Text style={styles.nowon}>{`운영중\n18시30분까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n18:30 종료`}</Text>
   } else if (hours < 8 || (hours == 8 && minutes < 30)) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시30분부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:30 시작</Text></View>
   } else {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   }
@@ -281,9 +281,9 @@ function moaart() {
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else if ((day > 0 && day < 6) && (hours >= 8 && hours < 17)) {
-    return <Text style={styles.nowon}>{`운영중\n17시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n17:00 종료`}</Text>
   } else if (hours < 8) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   }
@@ -293,9 +293,9 @@ function tea() {
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 10 && hours < 17) || (hours == 17 && minutes < 30))) {
-    return <Text style={styles.nowon}>{`운영중\n17시30분까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n17:30 종료`}</Text>
   } else if (hours < 10) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>10시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>10:00 시작</Text></View>
   } else {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   }
@@ -303,13 +303,13 @@ function tea() {
 
 function lannn() {
   if ((day == 6) && ((hours > 9 && hours < 16) || (hours == 9 && minutes >= 30))) {
-    return <Text style={styles.nowon}>{`운영중\n16시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n16:00 종료`}</Text>
   } else if ((day > 0 && day < 6) && (hours >= 8 && hours < 19)) {
-    return <Text style={styles.nowon}>{`운영중\n19시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n19:00 종료`}</Text>
   } else if ((day > 0 && day < 6) && hours < 8) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else if (day == 6 && hours < 10) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9시30분부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:30 시작</Text></View>
   } else if (day == 0) {
     return <Text style={styles.nowoff}>{`일요일은\n운영안함`}</Text>
   } else {
@@ -319,13 +319,13 @@ function lannn() {
 
 function dwgnn() {
   if ((day == 6) && (hours >= 9 && hours < 16)) {
-    return <Text style={styles.nowon}>{`운영중\n16시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n16:00 종료`}</Text>
   } else if ((day > 0 && day < 6) && ((hours > 8 && hours < 19) || (hours == 8 && minutes >= 30))) {
-    return <Text style={styles.nowon}>{`운영중\n19시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n19:00 종료`}</Text>
   } else if ((day > 0 && day < 6) && (hours < 8 || (hours == 8 && minutes < 30))) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시30분부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:30 시작</Text></View>
   } else if (day == 6 && hours < 9) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:00 시작</Text></View>
   } else if (day == 0) {
     return <Text style={styles.nowoff}>{`일요일은\n운영안함`}</Text>
   } else {
@@ -335,13 +335,13 @@ function dwgnn() {
 
 function belepi() {
   if ((day == 6) && (hours >= 8 && hours < 18)) {
-    return <Text style={styles.nowon}>{`운영중\n18시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n18:00 종료`}</Text>
   } else if ((day > 0 && day < 6) && (hours >= 8 && hours < 20)) {
-    return <Text style={styles.nowon}>{`운영중\n20시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n20:00 종료`}</Text>
   } else if ((day > 0 && day < 6) && hours < 8) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else if (day == 6 && hours < 8) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else if (day == 0) {
     return <Text style={styles.nowoff}>{`일요일은\n운영안함`}</Text>
   } else {
@@ -351,13 +351,13 @@ function belepi() {
 
 function eyagi() {
   if ((day == 6) && (hours >= 10 && hours < 18)) {
-    return <Text style={styles.nowon}>{`운영중\n18시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n18:00 종료`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 8 && hours < 19) || (hours == 19 && minutes < 30))) {
-    return <Text style={styles.nowon}>{`운영중\n9시30분까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n19:30 종료`}</Text>
   } else if ((day > 0 && day < 6) && hours < 8) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else if (day == 6 && hours < 10) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>10시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>10:00 시작</Text></View>
   } else if (day == 0) {
     return <Text style={styles.nowoff}>{`일요일은\n운영안함`}</Text>
   } else {
@@ -367,13 +367,13 @@ function eyagi() {
 
 function snack() {
   if ((day == 6) && ((hours >= 8 && hours < 15) || (hours == 7 && minutes >= 30))) {
-    return <Text style={styles.nowon}>{`운영중\n15시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n15:00 종료`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 8 && hours < 19) || (hours == 7 && minutes >= 30))) {
-    return <Text style={styles.nowon}>{`운영중\n19시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n19:00 종료`}</Text>
   } else if ((day > 0 && day < 6) && (hours < 7 || (hours == 7 && minutes >= 30))) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7시30분부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7:30 시작</Text></View>
   } else if (day == 6 && (hours < 7 || (hours == 7 && minutes >= 30))) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7시30분부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7:30 시작</Text></View>
   } else if (day == 0) {
     return <Text style={styles.nowoff}>{`일요일은\n운영안함`}</Text>
   } else {
@@ -383,13 +383,13 @@ function snack() {
 
 function vetsnack() {
   if ((day == 6) && (hours >= 9 && hours < 14)) {
-    return <Text style={styles.nowon}>{`운영중\n14시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n14:00 종료`}</Text>
   } else if ((day > 0 && day < 6) && (hours >= 9 && hours < 19)) {
-    return <Text style={styles.nowon}>{`운영중\n19시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n19:00 종료`}</Text>
   } else if ((day > 0 && day < 6) && hours < 9) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:00 시작</Text></View>
   } else if (day == 6 && hours < 9) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:00 시작</Text></View>
   } else if (day == 0) {
     return <Text style={styles.nowoff}>{`일요일은\n운영안함`}</Text>
   } else {
@@ -399,13 +399,13 @@ function vetsnack() {
 
 function libnn() {
   if ((day == 0 || day == 6) && (hours >= 11 && hours < 19)) {
-    return <Text style={styles.nowon}>{`운영중\n19시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n19:00 종료`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 8 && hours < 19) || (hours == 19 && minutes < 30))) {
-    return <Text style={styles.nowon}>{`운영중\n19시30분까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n19:30 종료`}</Text>
   } else if ((day == 0 || day == 6) && (hours < 11)) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11:00 시작</Text></View>
   } else if ((day > 0 && day < 6) && (hours < 8)) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   }
@@ -413,13 +413,13 @@ function libnn() {
 
 function fluid() {
   if ((day == 0 || day == 6) && (hours >= 10 && hours < 15)) {
-    return <Text style={styles.nowon}>{`운영중\n15시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n15:00 종료`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 8 && hours < 19) || (hours == 19 && minutes < 30))) {
-    return <Text style={styles.nowon}>{`운영중\n19시30분까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n19:30 종료`}</Text>
   } else if ((day == 0 || day == 6) && (hours < 10)) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>10시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>10:00 시작</Text></View>
   } else if ((day > 0 && day < 6) && (hours < 8)) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   }
@@ -427,9 +427,9 @@ function fluid() {
 
 function twosome() {
   if (hours >= 8 && hours < 22) {
-    return <Text style={styles.nowon}>{`운영중\n22시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n22:00 종료`}</Text>
   } else if (hours < 8) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   }
@@ -439,9 +439,9 @@ function pascucci() {
   var date = new Date();
   var hours = date.getHours()
   if (hours >= 8 && hours < 22) {
-    return <Text style={styles.nowon}>{`운영중\n22시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n22:00 종료`}</Text>
   } else if (hours < 8) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   }
@@ -449,9 +449,9 @@ function pascucci() {
 
 function hollys() {
   if (hours >= 8 && hours < 22) {
-    return <Text style={styles.nowon}>{`운영중\n22시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n22:00 종료`}</Text>
   } else if (hours < 8) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   }
@@ -459,13 +459,13 @@ function hollys() {
 
 function cafegran() {
   if ((day == 0 || day == 6) && ((hours >= 8 && hours < 21) || (hours == 7 && minutes >= 30))) {
-    return <Text style={styles.nowon}>{`운영중\n21시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n21:00 종료`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 8 && hours < 22) || (hours == 7 && minutes >= 30))) {
-    return <Text style={styles.nowon}>{`운영중\n22시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n22:00 종료`}</Text>
   } else if ((day == 0 || day == 6) && (hours < 7 || (hours == 7 && minutes < 30))) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7시30분부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7:30 시작</Text></View>
   } else if ((day > 0 && day < 6) && (hours < 7 || (hours == 7 && minutes < 30))) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7시30분부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7:30 시작</Text></View>
   } else {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   }
@@ -473,9 +473,9 @@ function cafegran() {
 
 function paba() {
   if (hours < 7){
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7:00 시작</Text></View>
   } else if (hours < 22) {
-    return <Text style={styles.nowon}>{`운영중\n22시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n22:00 종료`}</Text>
   } else {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   }
@@ -486,11 +486,11 @@ function mug_inmun(){
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else {
     if (hours<8) {
-      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시부터</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
     } else if (hours >= 20) {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   } else {
-    return <Text style={styles.nowon}>{`운영중\n20시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n20:00 종료`}</Text>
 }
 }
 }
@@ -498,19 +498,19 @@ function mug_inmun(){
 function mug_gong(){
   if ( day == 0 || day == 6) {
     if (hours<9) {
-      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9시부터</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:00 시작</Text></View>
     } else if (hours >= 18) {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   } else {
-    return <Text style={styles.nowon}>{`운영중\n18시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n18:00 종료`}</Text>
   }
   } else {
     if (hours<8) {
-      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시부터</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
     } else if (hours >= 20) {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   } else {
-    return <Text style={styles.nowon}>{`운영중\n20시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n20:00 종료`}</Text>
   }
 }
 }
@@ -521,19 +521,19 @@ function thelab_edu(){
   }
   else if ( day == 6) {
     if (hours<9) {
-      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9시부터</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:00 시작</Text></View>
     } else if (hours >= 18) {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   } else {
-    return <Text style={styles.nowon}>{`운영중\n18시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n18:00 종료`}</Text>
   }
   } else {
     if (hours<8) {
-      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8시부터</Text></View>
+      return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
     } else if (hours >= 21) {
     return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
   } else {
-    return <Text style={styles.nowon}>{`운영중\n21시까지`}</Text>
+    return <Text style={styles.nowon}>{`운영중\n21:00 종료`}</Text>
   }
 }
 }

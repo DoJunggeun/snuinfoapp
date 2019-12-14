@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {WebView} from 'react-native-webview';
-// import SafeAreaView from 'react-native-safe-area-view';
 import {NavigationActions} from 'react-navigation';
 import Mealtable from './Mealtable'
 const WEBVIEW_REF = "WEBVIEW_REF";
@@ -72,7 +71,7 @@ class Meal extends Component {
                                 color: 'white',
                                 fontSize: 22,
                                 fontWeight: 'bold'
-                            }}>생협 식당 운영시간 전체보기</Text>
+                            }}>학내 식당·음식점 운영 정보</Text>
                         </View>
                     </TouchableOpacity>
                     </View>
@@ -82,6 +81,7 @@ class Meal extends Component {
                     animationType="slide"
                     transparent={false}
                     visible={this.state.modalVisible}
+                    onRequestClose={() => {this.setModalVisible(false) }}
                     style={{
                     marginTop: getStatusBarHeight()
                 }}>
@@ -94,7 +94,7 @@ class Meal extends Component {
                     }}/>
                     <View
                         style={{
-                        height: 50,
+                        height: 60,
                         backgroundColor: 'rgb(176,155,222)',
                         justifyContent: 'center',
                         alignItems: 'center',

@@ -36,11 +36,15 @@ class Shuttle extends Component {
           <View style={{height:getStatusBarHeight()}}/>
 
          <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
-         <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setModalVisible(true);}}>
-          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>셔틀버스 운행시간 전체보기</Text></View>
-           </TouchableOpacity></View>
+         <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>셔틀버스 운행시간</Text></View>
+           <View style={{position:'absolute', right:15}}>
+                <TouchableOpacity onPress={() => {this.setModalVisible(true);}}>
+                <Image source={require('./src/info.png')} style={{width:36, height:36}} />
+                </TouchableOpacity>
+                </View>
+           </View>
 
-           <Modal animationType="slide" transparent={false} visible={this.state.modalVisible}>
+           <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} onRequestClose={() => {this.setModalVisible(false) }}>
             <ImageViewer imageUrls={sttt} style={{flex:7}}/>
             <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
               <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setModalVisible(false) }}>
@@ -65,61 +69,61 @@ class Shuttle extends Component {
          <ScrollView style={styles.scroll}>
         <View style={styles.container2}>
           <View style={styles.td}><Text style={styles.tdtext}>{`서울대입구역\n↔행정관`}</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>07:00~19:00</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>7:00~{'\n'}19:00</Text></View>
           <View style={styles.td}>{ststationinterval()}</View>
           <View style={styles.td}>{ststation()}</View>
         </View>
         <View style={styles.container}>
           <View style={styles.td}><Text style={styles.tdtext}>{`대학동\n↔행정관`}</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>07:00~19:00</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>7:00~{'\n'}19:00</Text></View>
           <View style={styles.td}>{stdhdinterval()}</View>
           <View style={styles.td}>{stdhd()}</View>
         </View>
         <View style={styles.container2}>
         <View style={styles.td}><Text style={styles.tdtext}>{`서울대입구역\n→윗공대`}</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>08:00~11:00</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>8:00~{'\n'}11:00</Text></View>
           <View style={styles.td}><Text style={styles.tdtext}>7~10분</Text></View>
           <View style={styles.td}>{steng()}</View>
         </View>
         <View style={styles.container}>
         <View style={styles.td}><Text style={styles.tdtext}>{`낙성대\n→윗공대`}</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>08:30~11:00</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>8:30~{'\n'}11:00</Text></View>
           <View style={styles.td}><Text style={styles.tdtext}>5분</Text></View>
           <View style={styles.td}>{stnsdstation()}</View>
         </View>
         <View style={styles.container2}>
         <View style={styles.td}><Text style={styles.tdtext}>{`사당역\n↔행정관`}</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>08:00~11:00</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>8:00~{'\n'}11:00</Text></View>
           <View style={styles.td}><Text style={styles.tdtext}>10분</Text></View>
           <View style={styles.td}>{stsdstation()}</View>
         </View>
         <View style={styles.container}>
         <View style={styles.td}><Text style={styles.tdtext}>교내순환</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>08:00~21:00</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>8:00~{'\n'}21:00</Text></View>
           <View style={styles.td}><Text style={styles.tdtext}>7분~20분</Text></View>
           <View style={styles.td}>{stinner()}</View>
         </View>
         <View style={styles.container2}>
         <View style={styles.td}><Text style={styles.tdtext}>{`교내순환\n역방향`}</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>09:50~17:50</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>9:50~{'\n'}17:50</Text></View>
           <View style={styles.td}><Text style={styles.tdtext}>30분</Text></View>
           <View style={styles.td}>{stinnerreverse()}</View>
         </View>
         <View style={styles.container}>
         <View style={styles.td}><Text style={styles.tdtext}>{`(야간)행정관→\n서울대입구역`}</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>21:10~23:10</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>21:10~{'\n'}23:10</Text></View>
           <View style={styles.td}><Text style={styles.tdtext}>30분</Text></View>
           <View style={styles.td}>{stnight()}</View>
         </View>
         <View style={styles.container2}>
         <View style={styles.td}><Text style={styles.tdtext}>{`(야간)행정관\n→대학동`}</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>21:10~23:10</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>21:10~{'\n'}23:10</Text></View>
           <View style={styles.td}><Text style={styles.tdtext}>30분</Text></View>
           <View style={styles.td}>{stnight()}</View>
         </View>
         <View style={styles.container}>
         <View style={styles.td}><Text style={styles.tdtext}>심야셔틀</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>00:00~02:00</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>24:00~{'\n'}02:00</Text></View>
           <View style={styles.td}><Text style={styles.tdtext}>30분</Text></View>
           <View style={styles.td}>{stnight2()}</View>
         </View>
@@ -209,12 +213,12 @@ function ststation() {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours >= 19) {
     return <Text style={styles.nowoff}>운행종료</Text>
-  } else if (hours == 19) {
-    return <Text style={styles.nowon}>{`학교→설입\n19시까지`}</Text>
+  } else if (hours == 18) {
+    return <Text style={styles.nowon}>{`학교→설입\n19:00 종료`}</Text>
   } else if (hours < 8) {
-    return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>7시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>07</Text></View>
   } else {
-    return <Text style={styles.nowon}>{`운행중\n19시까지`}</Text>
+    return <Text style={styles.nowon}>{`운행중\n19:00 종료`}</Text>
   }
 }
 
@@ -223,12 +227,12 @@ function stdhd() {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours >= 19) {
     return <Text style={styles.nowoff}>운행종료</Text>
-  } else if (hours == 19) {
-    return <Text style={styles.nowon}>{`학교→녹두\n19시까지`}</Text>
+  } else if (hours == 18) {
+    return <Text style={styles.nowon}>{`학교→녹두\n19:00 종료`}</Text>
   } else if (hours < 8) {
     return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>7시부터</Text></View>
   } else {
-    return <Text style={styles.nowon}>{`운행중\n19시까지`}</Text>
+    return <Text style={styles.nowon}>{`운행중\n19:00 종료`}</Text>
   }
 }
 
@@ -240,7 +244,7 @@ function stsdstation() {
   } else if (hours < 8) {
     return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8시부터</Text></View>
   } else {
-    return <Text style={styles.nowon}>{`운행중\n11시까지`}</Text>
+    return <Text style={styles.nowon}>{`운행중\n11:00 종료`}</Text>
   }
 }
 
@@ -252,7 +256,7 @@ function stinner() {
   } else if (hours < 8) {
     return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8시부터</Text></View>
   } else {
-    return <Text style={styles.nowon}>{`운행중\n21시까지`}</Text>
+    return <Text style={styles.nowon}>{`운행중\n21:00 종료`}</Text>
   }
 }
 
@@ -264,7 +268,7 @@ function stnight() {
   } else if (hours < 21 || ((hours == 21) && (minutes < 10))) {
     return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>21시10분부터</Text></View>
   } else {
-    return <Text style={styles.nowon}>{`운행중\n23시10분까지`}</Text>
+    return <Text style={styles.nowon}>{`운행중\n23:10 종료`}</Text>
   }
 }
 
@@ -276,7 +280,7 @@ function stnsdstation() {
   } else if (hours < 8 || (hours == 8 && minutes < 30)) {
     return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8시30분부터</Text></View>
   } else {
-    return <Text style={styles.nowon}>{`운행중\n11시까지`}</Text>
+    return <Text style={styles.nowon}>{`운행중\n11:00 종료`}</Text>
   }
 }
 
@@ -288,7 +292,7 @@ function steng() {
   } else if (hours < 8) {
   return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8시부터</Text></View>
 } else {
-  return <Text style={styles.nowon}>{`운행중\n11시까지`}</Text>
+  return <Text style={styles.nowon}>{`운행중\n11:00 종료`}</Text>
 }
 }
 
@@ -300,7 +304,7 @@ function stinnerreverse() {
   } else if (hours < 9 || (hours == 9 && minutes < 50)) {
   return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>9시50분부터</Text></View>
 } else {
-  return <Text style={styles.nowon}>{`운행중\n17시50분까지`}</Text>
+  return <Text style={styles.nowon}>{`운행중\n17:50 종료`}</Text>
 }
 }
 
@@ -310,7 +314,7 @@ function stnight2() {
   } else if (hours >= 2) {
     return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>자정부터</Text></View>
 } else {
-  return <Text style={styles.nowon}>{`운행중\n02시까지`}</Text>
+  return <Text style={styles.nowon}>{`운행중\n02:00 종료`}</Text>
 }
 }
 
