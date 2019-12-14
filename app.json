@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "snuinfo",
-    "slug": "snuinfo",
+    "name": "서울대학교 편의정보",
+    "slug": "서울대학교 편의정보",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
