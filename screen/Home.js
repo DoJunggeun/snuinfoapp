@@ -21,12 +21,7 @@ class Home extends Component {
     
     render() {
               const {navigation} = this.props;
-                return ( <GestureRecognizer onSwipeLeft={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Home'}));}} 
-                onSwipeDown={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Home'}));}} 
-                config={{
-                  velocityThreshold: 0.2,
-                  directionalOffsetThreshold: 20
-                }} style={{flex:1}}>
+                return ( 
         <View style={{flex:1, flexDirection:'column', justifyContent:'space-around'}}> 
           <View style={{height:getStatusBarHeight()}}/>
           <View style={{height:'22%', backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center'}}>
@@ -73,7 +68,7 @@ class Home extends Component {
 
         </View>
 
-       </View></GestureRecognizer>
+       </View>
         );
     };
     onNavigationStateChange(navState) {

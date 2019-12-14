@@ -42,7 +42,6 @@ class Contact extends Component {
     render() {
         const {navigation} = this.props;
         return ( <GestureRecognizer onSwipeLeft={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Home'}));}} 
-        onSwipeDown={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Home'}));}} 
         config={{
           velocityThreshold: 0.2,
           directionalOffsetThreshold: 20

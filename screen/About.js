@@ -20,7 +20,11 @@ class About extends Component {
 
     render() {
         const {navigation} = this.props;
-        return ( 
+        return ( <GestureRecognizer onSwipeLeft={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Home'}));}} 
+        config={{
+          velocityThreshold: 0.2,
+          directionalOffsetThreshold: 20
+        }} style={{flex:1}}>
         <View style={{flex:1, flexDirection:'column', backgroundColor:'rgb(244,244,244)'}}> 
           <View style={{height:getStatusBarHeight()}}/>
           <View style={{height:50, backgroundColor:'rgb(176,155,222)', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
@@ -59,7 +63,7 @@ class About extends Component {
            <Text style={{fontSize:12, color:'white', alignSelf:'center'}}>© 2019 도정근 All Rights Reserved</Text>
          </View>
  
-       </View>
+       </View></GestureRecognizer>
         );
     }
     onNavigationStateChange(navState) {
