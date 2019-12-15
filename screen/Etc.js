@@ -58,7 +58,7 @@ class Contact extends Component {
              <TouchableOpacity style={{flex:1, backgroundColor: 'rgba(176,155,222,0.45)', justifyContent:'center', alignItems:'center', borderRadius:15}} onPress={() => {this.setprintVisible(true);}}>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:20, fontWeight:'500',color:'black'}}>학내 인쇄소 정보</Text></View>
          </TouchableOpacity>
-         <Modal animationType="slide" transparent={true} visible={this.state.printVisible} style={{justifyContent:'center', alignItems:'center'}}>
+         <Modal animationType="slide" transparent={true} visible={this.state.printVisible} style={{justifyContent:'center', alignItems:'center'}} onRequestClose={() => {this.setprintVisible(false) }}>
            <View style={{height:'100%', width:'100%', justifyContent:'center', alignItems:'center', alignSelf:'center'}}> 
            <View style={{height:'80%', width:'95%', backgroundColor:'rgb(240,235,248)', padding:15, borderRadius:15,
                   shadowColor: "#000",
@@ -153,7 +153,8 @@ class Contact extends Component {
              <TouchableOpacity style={{flex:1, backgroundColor: 'rgba(176,155,222,0.45)', justifyContent:'center', alignItems:'center', borderRadius:15}} onPress={() => {this.setbankVisible(true);}}>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:20, fontWeight:'500',color:'black'}}>학내 은행·ATM 정보</Text></View>
          </TouchableOpacity>
-         <Modal animationType="slide" transparent={true} visible={this.state.bankVisible} style={{justifyContent:'center', alignItems:'center'}}>
+         <Modal animationType="slide" transparent={true} visible={this.state.bankVisible} style={{justifyContent:'center', alignItems:'center'}}
+         onRequestClose={() => {this.setbankVisible(false) }}>
            <View style={{height:'100%', width:'100%', justifyContent:'center', alignItems:'center', alignSelf:'center'}}> 
            <View style={{height:'80%', width:'95%', backgroundColor:'rgb(240,235,248)', padding:15, borderRadius:15,
                   shadowColor: "#000",
@@ -189,7 +190,8 @@ class Contact extends Component {
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:20, fontWeight:'500',color:'black'}}>우체국 운영 정보</Text></View>
          </TouchableOpacity>
 
-         <Modal animationType="slide" transparent={true} visible={this.state.postVisible} style={{justifyContent:'center', alignItems:'center'}}>
+         <Modal animationType="slide" transparent={true} visible={this.state.postVisible} style={{justifyContent:'center', alignItems:'center'}}
+         onRequestClose={() => {this.setpostVisible(false) }}>
            <View style={{height:'100%', width:'100%', justifyContent:'center', alignItems:'center', alignSelf:'center'}}> 
            <View style={{height:'50%', width:'95%', backgroundColor:'rgb(240,235,248)', padding:15, borderRadius:15,
                   shadowColor: "#000",
@@ -222,7 +224,8 @@ class Contact extends Component {
              <TouchableOpacity style={{flex:1, backgroundColor: 'rgba(176,155,222,0.45)', justifyContent:'center', alignItems:'center', borderRadius:15}} onPress={() => {this.setlibVisible(true);}}>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:20, fontWeight:'500',color:'black'}}>도서관 운영시간</Text></View>
          </TouchableOpacity>
-         <Modal animationType="slide" transparent={false} visible={this.state.libVisible} style={{marginTop :getStatusBarHeight()}}>
+         <Modal animationType="slide" transparent={false} visible={this.state.libVisible} style={{marginTop :getStatusBarHeight()}}
+         onRequestClose={() => {this.setlibVisible(false) }}>
            <WebView source={{uri: 'http://lib.snu.ac.kr/hours'}} style={{flex:7}}/>
            <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
          <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setlibVisible(false) }}>
@@ -235,7 +238,8 @@ class Contact extends Component {
              <TouchableOpacity style={{flex:1, backgroundColor: 'rgba(176,155,222,0.45)', justifyContent:'center', alignItems:'center', borderRadius:15}} onPress={() => {this.setdormVisible(true);}}>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:20, fontWeight:'500',color:'black'}}>기숙사 편의시설</Text></View>
          </TouchableOpacity>
-         <Modal animationType="slide" transparent={false} visible={this.state.dormVisible} style={{marginTop :getStatusBarHeight()}}>
+         <Modal animationType="slide" transparent={false} visible={this.state.dormVisible} style={{marginTop :getStatusBarHeight()}}
+         onRequestClose={() => {this.setdormVisible(false) }}>
            <WebView source={{uri: 'https://dorm.snu.ac.kr/dk_board/dk_dormitory/dorm_content.php?ht_id=snu2_1_1'}} style={{flex:7}}/>
            <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
          <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setdormVisible(false) }}>
@@ -315,6 +319,7 @@ var banklist =
   ['우리', 'ATM', '인문대 신양(4동) 1층'],
   ['우리', 'ATM', '학생회관 1층 앞'],
   ['우리', 'ATM', '기숙사 900동 지하1층 복도'],
+  ['우리', 'ATM', '자연대 500동 1층'],
   ['우리', 'ATM', '공대 해동(32-1동) 1층'],
   ['우리', 'ATM', '공대 302동 1층'],
   ['농협', '은행', '자하연(109동) 1층'],
@@ -341,6 +346,7 @@ var banklist =
   ['신한', '은행', '학생회관 1.5층'],
   ['신한', '은행', '공대 신양(44-1동) 1층'],
   ['신한', 'ATM', '학생회관 1.5층'],
+  ['신한', 'ATM', '자연대 500동 1층'],
   ['신한', 'ATM', '공대 신양(44-1동) 1층'],
   ['신한', 'ATM', '기숙사 900동 지하 2층 출입구'],
   ['신한', 'ATM', '기숙사 919동 1층 매점 옆'],
