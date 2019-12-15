@@ -192,16 +192,16 @@ const styles = StyleSheet.create({
     textAlign:'center'
   },
   tdtext : {
-    color:'black', textAlign:'center', fontSize:14, fontWeight:'500'
+    color:'black', textAlign:'center', fontSize:14, fontWeight:'400'
   },
   nowon : {
-    color:'blue', textAlign:'center', fontSize:14, fontWeight:'500'
+    color:'blue', textAlign:'center', fontSize:14, fontWeight:'400'
   },
   nowwait : {
-    color:'green',  textAlign:'center', fontSize:14, fontWeight:'500'
+    color:'green',  textAlign:'center', fontSize:14, fontWeight:'400'
   },
   nowoff :{
-    color:'red', textAlign:'center', fontSize:14, fontWeight:'500'
+    color:'crimson', textAlign:'center', fontSize:14, fontWeight:'400'
   },
   icon:{
     width:40, height:40
@@ -216,7 +216,7 @@ function ststation() {
   } else if (hours == 18) {
     return <Text style={styles.nowon}>{`학교→설입\n19:00 종료`}</Text>
   } else if (hours < 8) {
-    return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>07</Text></View>
+    return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>7:00 시작</Text></View>
   } else {
     return <Text style={styles.nowon}>{`운행중\n19:00 종료`}</Text>
   }
@@ -230,7 +230,7 @@ function stdhd() {
   } else if (hours == 18) {
     return <Text style={styles.nowon}>{`학교→녹두\n19:00 종료`}</Text>
   } else if (hours < 8) {
-    return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>7시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>7:00 시작</Text></View>
   } else {
     return <Text style={styles.nowon}>{`운행중\n19:00 종료`}</Text>
   }
@@ -242,7 +242,7 @@ function stsdstation() {
   } else if (hours > 10) {
     return <Text style={styles.nowoff}>운행종료</Text>
   } else if (hours < 8) {
-    return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else {
     return <Text style={styles.nowon}>{`운행중\n11:00 종료`}</Text>
   }
@@ -254,7 +254,7 @@ function stinner() {
   } else if (hours > 20) {
     return <Text style={styles.nowoff}>운행종료</Text>
   } else if (hours < 8) {
-    return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8시부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else {
     return <Text style={styles.nowon}>{`운행중\n21:00 종료`}</Text>
   }
@@ -266,7 +266,7 @@ function stnight() {
   } else if (hours > 23 && minutes > 10) {
     return <Text style={styles.nowoff}>운행종료</Text>
   } else if (hours < 21 || ((hours == 21) && (minutes < 10))) {
-    return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>21시10분부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>21:10 시작</Text></View>
   } else {
     return <Text style={styles.nowon}>{`운행중\n23:10 종료`}</Text>
   }
@@ -278,7 +278,7 @@ function stnsdstation() {
   } else if (hours > 10) {
     return <Text style={styles.nowoff}>운행종료</Text>
   } else if (hours < 8 || (hours == 8 && minutes < 30)) {
-    return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8시30분부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8:30 시작</Text></View>
   } else {
     return <Text style={styles.nowon}>{`운행중\n11:00 종료`}</Text>
   }
@@ -290,7 +290,7 @@ function steng() {
   } else if (hours > 10) {
     return <Text style={styles.nowoff}>운행종료</Text>
   } else if (hours < 8) {
-  return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8시부터</Text></View>
+  return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
 } else {
   return <Text style={styles.nowon}>{`운행중\n11:00 종료`}</Text>
 }
@@ -302,7 +302,7 @@ function stinnerreverse() {
   } else if (hours > 17 || (hours == 17 && minutes > 50)) {
     return <Text style={styles.nowoff}>운행종료</Text>
   } else if (hours < 9 || (hours == 9 && minutes < 50)) {
-  return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>9시50분부터</Text></View>
+  return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>9:50 시작</Text></View>
 } else {
   return <Text style={styles.nowon}>{`운행중\n17:50 종료`}</Text>
 }
@@ -312,7 +312,7 @@ function stnight2() {
   if (day == 0 || (day == 6 && hours >= 2)) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours >= 2) {
-    return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>자정부터</Text></View>
+    return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>자정 시작</Text></View>
 } else {
   return <Text style={styles.nowon}>{`운행중\n02:00 종료`}</Text>
 }

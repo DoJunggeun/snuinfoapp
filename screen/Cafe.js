@@ -219,18 +219,18 @@ const styles = StyleSheet.create({
     textAlign:'center'
   },
   tdtext : {
-    color:'black', textAlign:'center', fontSize:15, fontWeight:'500'
+    color:'black', textAlign:'center', fontSize:15, fontWeight:'400'
   },
   nowon : {
-    color:'blue', textAlign:'center', fontSize:15, fontWeight:'500'
+    color:'blue', textAlign:'center', fontSize:15, fontWeight:'400'
   },
   nowwait : {
-    color:'green',  textAlign:'center', fontSize:15, fontWeight:'500'
+    color:'green',  textAlign:'center', fontSize:15, fontWeight:'400'
   },
   nowoff :{
-    color:'red', textAlign:'center', fontSize:15, fontWeight:'500'
+    color:'crimson', textAlign:'center', fontSize:15, fontWeight:'400'
   },
-  icon:{
+icon:{
     width:40, height:40
   }
 });

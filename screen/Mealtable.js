@@ -544,7 +544,7 @@ class Mealtable extends Component {
         
         function tenk(){
             if (day == 0) {
-                return <Text style={styles.nowoff}>{`일요일은\n운영함함`}</Text>
+                return <Text style={styles.nowoff}>{`일요일은\n운영안함`}</Text>
             } else {
                 if (hours < 11){
                     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11:00 시작</Text></View>
@@ -895,7 +895,7 @@ class Mealtable extends Component {
                         <View style={styles.td}>{dormmeal()}</View>
                         <View
                             style={styles.td}>
-                            <Text style={[styles.menuon, {color:'red'}]}>{`메뉴보기\n미지원`}</Text>
+                            <Text style={[styles.menuon, {color:'gray', fontWeight:'400'}]}>{`메뉴보기\n미지원`}</Text>
                         </View>
                     </View>
 
@@ -1047,41 +1047,30 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         textAlign: 'center'
     },
-    tdtext: {
-        color: 'black',
-        textAlign: 'center',
-        fontSize: 15,
-        fontWeight: '500'
-    },
     menuon: {
         color: 'blue',
         textAlign: 'center',
-        fontSize: 17,
-        fontWeight: '600'
+        fontSize: 16,
+        fontWeight: '500'
         },
-    nowon: {
-        color: 'blue',
-        textAlign: 'center',
-        fontSize: 16,
-        fontWeight: '500'
-    },
-    nowwait: {
-        color: 'green',
-        textAlign: 'center',
-        fontSize: 16,
-        fontWeight: '500'
-    },
-    nowoff: {
-        color: 'red',
-        textAlign: 'center',
-        fontSize: 16,
-        fontWeight: '500'
-    },
+        tdtext : {
+            color:'black', textAlign:'center', fontSize:15, fontWeight:'400'
+          },
+          nowon : {
+            color:'blue', textAlign:'center', fontSize:15, fontWeight:'400'
+          },
+          nowwait : {
+            color:'green',  textAlign:'center', fontSize:15, fontWeight:'400'
+          },
+          nowoff :{
+            color:'crimson', textAlign:'center', fontSize:15, fontWeight:'400'
+          },
+    
     menu: {
         color: 'black',
         textAlign: 'center',
-        fontSize: 16,
-        fontWeight: '500'
+        fontSize: 15,
+        fontWeight: '400'
     },
 
     icon: {
