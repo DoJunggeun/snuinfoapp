@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Dimensions, Modal, ScrollView, StyleSheet, Linking, View, Text, TouchableOpacity, Image} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 // import { WebView } from 'react-native-webview';
-// import SafeAreaView from 'react-native-safe-area-view';
+import SafeAreaView from 'react-native-safe-area-view';
 // import { NavigationActions } from 'react-navigation';
 import ImageViewer from 'react-native-image-zoom-viewer';
 
@@ -33,8 +33,6 @@ class Shuttle extends Component {
         const {navigation} = this.props;
         return ( 
         <View style={{flex:1, flexDirection:'column'}}> 
-          <View style={{height:getStatusBarHeight()}}/>
-
          <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
          <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>셔틀버스 운행시간</Text></View>
            <View style={{position:'absolute', right:15}}>
@@ -324,7 +322,7 @@ function stnight2() {
 function ststationinterval() {
   if (day == 0 || day == 6) {
     return <Text style={styles.tdtext}>5~15분</Text>
-  } else if (hours > 19 || hours < 7) {
+  } else if (hours >= 19 || hours < 7) {
     return <Text style={styles.tdtext}>5~15분</Text>
   } else if (hours == 7) {
     return <Text style={styles.tdtext}>15분</Text>
@@ -336,14 +334,16 @@ function ststationinterval() {
     return <Text style={styles.tdtext}>7~10분</Text>
   } else if (hours == 17 || hours == 18) {
     return <Text style={styles.tdtext}>5~7분</Text>
+  } else {
+    return <Text style={styles.tdtext}>5~15분</Text>
   }
 }
 
 function stdhdinterval() {
   if (day == 0 || day == 6) {
     return <Text style={styles.tdtext}>6~15분</Text>
-  } else if (hours > 19 || hours < 7) {
-    return <Text style={styles.tdtext}>5~15분</Text>
+  } else if (hours >= 19 || hours < 7) {
+    return <Text style={styles.tdtext}>6~15분</Text>
   } else if (hours == 7) {
     return <Text style={styles.tdtext}>15분</Text>
   } else if (hours >= 8 && hours < 10) {
@@ -356,6 +356,8 @@ function stdhdinterval() {
     return <Text style={styles.tdtext}>10분</Text>
   } else if (hours == 17 || hours == 18) {
     return <Text style={styles.tdtext}>6분</Text>
+  } else {
+    return <Text style={styles.tdtext}>6~15분</Text>
   }
 }
 

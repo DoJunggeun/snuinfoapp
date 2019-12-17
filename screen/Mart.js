@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Dimensions, Modal, ScrollView, StyleSheet, Linking, View, Text, TouchableOpacity, Image} from 'react-native';
+import { Dimensions, Modal, ScrollView, StyleSheet, Linking, View, Text, TouchableOpacity, Image,
+  ActivityIndicator} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { WebView } from 'react-native-webview';
 import SafeAreaView from 'react-native-safe-area-view';
@@ -15,20 +16,34 @@ class Mart extends Component {
       setModalVisible(visible) {
         this.setState({modalVisible: visible});
       }
+      hideSpinner=()=> {
+        this.setState({ visible: false });
+      }
+      showSpinner=()=> {
+        this.setState({ visible: true });
+      }
 
     render() {
         const {navigation} = this.props;
         return ( 
         <View style={{flex:1, flexDirection:'column'}}> 
-          <View style={{height:getStatusBarHeight()}}/>
 
          <View style={{height:50, backgroundColor:'#rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
-         <TouchableOpacity style={{flex:1, backgroundColor:'#rgb(176,155,222)'}} onPress={() => {this.setModalVisible(true);}}>
           <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>학내 편의점·매점 운영시간</Text></View>
-           </TouchableOpacity></View>
+          <View style={{position:'absolute', right:15}}>
+                <TouchableOpacity onPress={() => {this.setModalVisible(true);}}>
+                <Image source={require('./src/info.png')} style={{width:36, height:36}} />
+                </TouchableOpacity>
+                </View>
+          </View>
 
            <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} style={{marginTop :getStatusBarHeight()}} onRequestClose={() => {this.setModalVisible(false) }}>
-           <WebView source={{uri: 'http://snuco.snu.ac.kr/ko/node/19'}} style={{flex:7}}/>
+           <WebView source={{uri: 'http://snuco.snu.ac.kr/ko/node/19'}} style={{flex:7}} onLoadStart={() => (this.showSpinner())}
+                     onLoad={() => this.hideSpinner()}/>
+           {this.state.visible && ( <ActivityIndicator color="#B09BDE"
+            style={{flex: 1, left: 0, right: 0, top: 0, bottom: 0, position: 'absolute',
+            alignItems: 'center', justifyContent: 'center' }}
+            size="large"/> )}
            <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
          <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setModalVisible(false) }}>
           <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
@@ -228,7 +243,7 @@ function hgconv() {
   } else if ((day > 0 && day < 6) && hours < 8) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else {
-    return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
@@ -244,7 +259,7 @@ function hgmg() {
   } else if (day == 0) {
     return <Text style={styles.nowoff}>{`일요일은\n운영안함`}</Text>
   } else {
-    return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
@@ -256,7 +271,7 @@ function jdCU() {
   } else if (hours < 8) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else {
-    return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
@@ -268,7 +283,7 @@ function nsconv() {
   } else if (hours < 10) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>10:00 시작</Text></View>
   } else {
-    return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
@@ -280,7 +295,7 @@ function snuplex() {
   } else if (hours < 9) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:00 시작</Text></View>
   } else {
-    return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
@@ -296,7 +311,7 @@ function dwgconv() {
   } else if ((day > 0 && day < 6) && (hours < 8)) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else {
-    return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
@@ -309,7 +324,7 @@ function eeoconv() {
   } else if (hours < 9) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:00 시작</Text></View>
   } else {
-    return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
@@ -324,7 +339,7 @@ function engCU() {
   } else if ((day > 0 && day < 6) && (hours < 8)) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else {
-    return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
@@ -341,7 +356,7 @@ function cnsconv() {
   } else if ((day > 0 && day < 6) && ((hours < 8) || (hours == 8 && minutes < 30))) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:30 시작</Text></View>
   } else {
-    return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
@@ -365,7 +380,7 @@ function vetconv() {
   } else if (hours < 9) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:00 시작</Text></View>
   } else {
-    return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
@@ -381,7 +396,7 @@ function medconv() {
   } else if ((day > 0 && day < 6) && (hours < 8)) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else {
-    return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
@@ -393,7 +408,7 @@ function haedong() {
   if ( hours < 8 ) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else if (hours>22 || (hours==22 && minutes >30 )) {
-    return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
+    return <Text style={styles.nowoff}>운영종료</Text>
   } else {
     return <Text style={styles.nowon}>{`운영중\n22:30 종료`}</Text>
   }

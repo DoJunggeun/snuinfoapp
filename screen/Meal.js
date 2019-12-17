@@ -5,12 +5,14 @@ import {
     View,
     Text,
     TouchableOpacity,
-    Image
+    Image, ActivityIndicator
 } from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {WebView} from 'react-native-webview';
-import {NavigationActions} from 'react-navigation';
+import {NavigationActions, SafeAreaView} from 'react-navigation';
 import Mealtable from './Mealtable'
+// import SafeAreaView from 'react-native-safe-area-view';
+
 const WEBVIEW_REF = "WEBVIEW_REF";
 
 class Meal extends Component {
@@ -28,19 +30,21 @@ class Meal extends Component {
     setMenuVisible(visible) {
         this.setState({menuVisible: visible});
     }
+    hideSpinner=()=> {
+        this.setState({ visible: false });
+      }
+      showSpinner=()=> {
+        this.setState({ visible: true });
+      }
+
     render() {
         const {navigation} = this.props;
         return (
             <View
                 style={{
                 flex: 1,
-                flexDirection: 'column'
+                flexDirection: 'column',
             }}>
-                <View
-                    style={{
-                    height: getStatusBarHeight()
-                }}/>
-
                 <View
                     style={{
                     height: 50,
@@ -49,15 +53,6 @@ class Meal extends Component {
                     alignItems: 'center',
                     flexDirection: 'row'
                 }}>
-                    <View style={{flex:1}}>
-                    <TouchableOpacity
-                        style={{
-                        flex: 1,
-                        backgroundColor: 'rgb(176,155,222)'
-                    }}
-                        onPress={() => {
-                        this.setModalVisible(true);
-                    }}>
                         <View
                             style={{
                             height: 50,
@@ -73,8 +68,12 @@ class Meal extends Component {
                                 fontWeight: 'bold'
                             }}>학내 식당·음식점 운영 정보</Text>
                         </View>
-                    </TouchableOpacity>
-                    </View>
+                        <View style={{position:'absolute', right:15}}>
+                <TouchableOpacity onPress={() => {this.setModalVisible(true);}}>
+                <Image source={require('./src/info.png')} style={{width:36, height:36}} />
+                </TouchableOpacity>
+                </View>
+
                 </View>
 
                 <Modal
@@ -91,7 +90,12 @@ class Meal extends Component {
                     }}
                         style={{
                         flex: 7
-                    }}/>
+                    }} onLoadStart={() => (this.showSpinner())}
+                    onLoad={() => this.hideSpinner()}/>
+          {this.state.visible && ( <ActivityIndicator color="#B09BDE"
+           style={{flex: 1, left: 0, right: 0, top: 0, bottom: 0, position: 'absolute',
+           alignItems: 'center', justifyContent: 'center' }}
+           size="large"/> )}
                     <View
                         style={{
                         height: 60,

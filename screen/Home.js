@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { NavigationActions } from 'react-navigation';
+import SafeAreaView from 'react-native-safe-area-view';
 
 const WEBVIEW_REF = "WEBVIEW_REF";
 
@@ -20,7 +21,6 @@ class Home extends Component {
               const {navigation} = this.props;
                 return ( 
         <View style={{flex:1, flexDirection:'column', justifyContent:'space-around'}}> 
-          <View style={{height:getStatusBarHeight()}}/>
           <View style={{height:'22%', backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center'}}>
            <Text style={{fontSize:40, color:'white', fontWeight:'bold'}}>서울대학교 편의정보</Text>
          </View>

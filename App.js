@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Image, ScrollView, TextInput, StyleSheet, Text, View } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import {createAppContainer, withOrientation} from 'react-navigation';
+import {createAppContainer, withOrientation, SafeAreaView} from 'react-navigation';
 import { createMaterialTopTabNavigator  } from 'react-navigation-tabs';
 
 import {createStackNavigator } from 'react-navigation-stack';
@@ -69,7 +69,7 @@ const tabs = createMaterialTopTabNavigator(
 
 );
 
-const App = createStackNavigator({
+const Preapp = createStackNavigator({
 
     tabs: {
       screen:tabs
@@ -89,57 +89,17 @@ const App = createStackNavigator({
 }
 );
 
-// const Cont = createMaterialTopTabNavigator(
-//   {
-//     tabs: {
-//       screen:tabs,
-//       navigationOptions: () => ({
-//         tabBarVisible:false,
-//         swipeEnabled: false
-//     }),
-//     },
-//     Etc: {
-//       screen:Etc,
-//       navigationOptions: () => ({
-//         tabBarVisible:false,
-//     }),
-//     },
-//   },
-//     {
-//       swipeEnabled: true,
-//       }
-// )
+const Apppre = createAppContainer(Preapp);
 
-// const Ab = createMaterialTopTabNavigator(
-//   {
-//     Cont: {
-//       screen:Cont,
-//       navigationOptions: () => ({
-//         tabBarVisible:false,
-//         swipeEnabled: false
-//     }),
-//     },
-//     About: {
-//       screen:About,
-//       navigationOptions: () => ({
-//         tabBarVisible:false,
-//     }),
-//     },
-//   },
-//     {
-//       swipeEnabled: true,
-//       }
-    
-// )
-
-
-// const App = createStackNavigator(
-//   {
-//   tabs: tabs,
-//   Ab: Ab
-//   },
-//     {headerMode: 'none', mode:'card', lazy:false, gestureDirection:'vertical'}
-// )
+class App extends Component {
+  render() {
+    return (
+      <SafeAreaView style={{flex:1}} forceInset={{bottom:'always', top:'always'}}>
+        <Apppre/>
+      </SafeAreaView>
+    );
+  }
+}
 
 
 const styles = StyleSheet.create({
@@ -151,4 +111,5 @@ iconbg:{
 }
 });
 
-export default createAppContainer(App);
+// export default createAppContainer(App);
+export default App;

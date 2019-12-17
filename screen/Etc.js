@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import { Modal, ScrollView, StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
+import { Modal, ScrollView, StyleSheet, View, Text, TouchableOpacity, Image, ActivityIndicator} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { WebView } from 'react-native-webview';
 import { NavigationActions } from 'react-navigation';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+import SafeAreaView from 'react-native-safe-area-view';
 
 const WEBVIEW_REF = "WEBVIEW_REF";
 
@@ -38,7 +39,13 @@ class Contact extends Component {
       setdormVisible(visible) {
         this.setState({dormVisible: visible});
       }
-
+      hideSpinner=()=> {
+        this.setState({ visible: false });
+      }
+      showSpinner=()=> {
+        this.setState({ visible: true });
+      }
+    
     render() {
         const {navigation} = this.props;
         return ( <GestureRecognizer onSwipeLeft={()=> {this.props.navigation.dispatch(NavigationActions.navigate({routeName: 'Home'}));}} 
@@ -47,7 +54,6 @@ class Contact extends Component {
           directionalOffsetThreshold: 20
         }} style={{flex:1}}>
         <View style={{flex:1, flexDirection:'column', backgroundColor:'rgb(244,244,244)'}}> 
-          <View style={{height:getStatusBarHeight()}}/>
           <View style={{height:50, backgroundColor:'rgb(176,155,222)', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
            <Text style={{fontSize:22, color:'white', fontWeight:'bold'}}>기타 편의정보</Text>
          </View>
@@ -226,8 +232,13 @@ class Contact extends Component {
          </TouchableOpacity>
          <Modal animationType="slide" transparent={false} visible={this.state.libVisible} style={{marginTop :getStatusBarHeight()}}
          onRequestClose={() => {this.setlibVisible(false) }}>
-           <WebView source={{uri: 'http://lib.snu.ac.kr/hours'}} style={{flex:7}}/>
-           <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
+           <WebView source={{uri: 'http://lib.snu.ac.kr/hours'}} style={{flex:7}} onLoadStart={() => (this.showSpinner())}
+                     onLoad={() => this.hideSpinner()}/>
+           {this.state.visible && ( <ActivityIndicator color="#B09BDE"
+            style={{flex: 1, left: 0, right: 0, top: 0, bottom: 0, position: 'absolute',
+            alignItems: 'center', justifyContent: 'center' }}
+            size="large"/> )}
+               <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
          <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setlibVisible(false) }}>
           <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
            </TouchableOpacity></View>
@@ -240,7 +251,13 @@ class Contact extends Component {
          </TouchableOpacity>
          <Modal animationType="slide" transparent={false} visible={this.state.dormVisible} style={{marginTop :getStatusBarHeight()}}
          onRequestClose={() => {this.setdormVisible(false) }}>
-           <WebView source={{uri: 'https://dorm.snu.ac.kr/dk_board/dk_dormitory/dorm_content.php?ht_id=snu2_1_1'}} style={{flex:7}}/>
+           <WebView source={{uri: 'https://dorm.snu.ac.kr/dk_board/dk_dormitory/dorm_content.php?ht_id=snu2_1_1'}} style={{flex:7}} onLoadStart={() => (this.showSpinner())}
+                     onLoad={() => this.hideSpinner()}/>
+           {this.state.visible && ( <ActivityIndicator color="#B09BDE"
+            style={{flex: 1, left: 0, right: 0, top: 0, bottom: 0, position: 'absolute',
+            alignItems: 'center', justifyContent: 'center' }}
+            size="large"/> )}
+
            <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
          <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setdormVisible(false) }}>
           <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>

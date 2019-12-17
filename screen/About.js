@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import { Modal, StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
+import { Modal, StyleSheet, View, Text, TouchableOpacity, Image, ActivityIndicator} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { WebView } from 'react-native-webview';
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions, SafeAreaView } from 'react-navigation';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
-
+// import SafeAreaView from 'react-native-safe-area-view';
 
 const WEBVIEW_REF = "WEBVIEW_REF";
 
@@ -17,6 +17,12 @@ class About extends Component {
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
+  hideSpinner=()=> {
+    this.setState({ visible: false });
+  }
+  showSpinner=()=> {
+    this.setState({ visible: true });
+  }
 
     render() {
         const {navigation} = this.props;
@@ -26,7 +32,6 @@ class About extends Component {
           directionalOffsetThreshold: 20
         }} style={{flex:1}}>
         <View style={{flex:1, flexDirection:'column', backgroundColor:'rgb(244,244,244)'}}> 
-          <View style={{height:getStatusBarHeight()}}/>
           <View style={{height:50, backgroundColor:'rgb(176,155,222)', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
            <Text style={{fontSize:22, color:'white', fontWeight:'bold'}}>앱 정보</Text>
          </View>
@@ -45,7 +50,12 @@ class About extends Component {
          </TouchableOpacity>
 
          <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} style={{marginTop :getStatusBarHeight()}}>
-           <WebView source={{uri: 'https://docs.google.com/forms/d/e/1FAIpQLSeAOS1F3bnfkikIPH11mf6EhPD0qEypeqeey7_4QkSMBaD8nw/viewform?usp=sf_link'}} style={{flex:7, backgroundColor:'rgb(240,235,248)'}}/>
+           <WebView source={{uri: 'https://docs.google.com/forms/d/e/1FAIpQLSeAOS1F3bnfkikIPH11mf6EhPD0qEypeqeey7_4QkSMBaD8nw/viewform?usp=sf_link'}} style={{flex:7, backgroundColor:'rgb(240,235,248)'}} onLoadStart={() => (this.showSpinner())}
+                     onLoad={() => this.hideSpinner()}/>
+           {this.state.visible && ( <ActivityIndicator color="#B09BDE"
+            style={{flex: 1, left: 0, right: 0, top: 0, bottom: 0, position: 'absolute',
+            alignItems: 'center', justifyContent: 'center' }}
+            size="large"/> )}
            <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
          <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setModalVisible(false) }}>
           <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>

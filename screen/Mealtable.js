@@ -30,7 +30,8 @@ class Mealtable extends Component {
         super(props);
         this.state = {
             menu: -1,
-            menuday: 1
+            menuday: 1,
+            menuloaded: false
         };
     }
     setModal(visible) {
@@ -157,12 +158,9 @@ class Mealtable extends Component {
         }
     }
     
-
-    render() {
+    componentDidMount(){
         var today = new Date();
         var day = today.getDay()
-        var hours = today.getHours()
-        var minutes = today.getMinutes()
         var days = today.getDate()
         var months = today.getMonth() + 1
         var years = today.getFullYear()
@@ -204,383 +202,9 @@ class Mealtable extends Component {
             const data = ulList.filter(n => n.title);
             return data;
         };
-        
-        function dormmeal() {
-            if (day == 0 || day == 6) {
-                if (hours < 8) {
-                    return <View>
-                        <Text style={styles.nowoff}>미운영</Text>
-                        <Text style={styles.nowwait}>8:00 아침시작</Text>
-                    </View>
-                } else if (hours == 8 || (hours == 9 && minutes < 30)) {
-                    return <Text style={styles.nowon}>운영중{'\n'}9:30 아침종료</Text>
-                } else if ((hours == 9 && minutes >= 30) || hours == 10 || (hours == 11 && minutes < 30)) {
-                    return <View>
-                        <Text style={styles.nowoff}>미운영</Text>
-                        <Text style={styles.nowwait}>11:30 점심시작</Text>
-                    </View>
-                } else if ((hours == 11 && minutes >= 30) || hours == 12 || (hours == 13 && minutes < 30)) {
-                    return <Text style={styles.nowon}>운영중{'\n'}13:30 점심종료</Text>
-                } else if ((hours == 13 && minutes >= 30) || (hours >= 14 && hours < 17) || (hours == 17 && minutes < 30)) {
-                    return <View>
-                        <Text style={styles.nowoff}>미운영</Text>
-                        <Text style={styles.nowwait}>17:30 저녁시작</Text>
-                    </View>
-                } else if ((hours == 17 && minutes >= 30) || hours == 18 || (hours == 19 && minutes < 30)) {
-                    return <Text style={styles.nowon}>운영중{'\n'}19:30 종료</Text>
-                } else {
-                    return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
-                }
-            } else {
-                if (hours < 7 || (hours == 7 && minutes < 30)) {
-                    return <View>
-                        <Text style={styles.nowoff}>미운영</Text>
-                        <Text style={styles.nowwait}>7:30 아침시작</Text>
-                    </View>
-                } else if ((hours == 7 && minutes >= 30) || (hours == 9 && minutes < 30)) {
-                    return <Text style={styles.nowon}>운영중{'\n'}9:30 아침종료</Text>
-                } else if ((hours == 9 && minutes >= 30) || hours == 10 || (hours == 11 && minutes < 30)) {
-                    return <View>
-                        <Text style={styles.nowoff}>미운영</Text>
-                        <Text style={styles.nowwait}>11:30 점심시작</Text>
-                    </View>
-                } else if ((hours == 11 && minutes >= 30) || hours == 12 || (hours == 13 && minutes < 30)) {
-                    return <Text style={styles.nowon}>운영중{'\n'}13:30 점심종료</Text>
-                } else if ((hours == 13 && minutes >= 30) || (hours >= 14 && hours < 17) || (hours == 17 && minutes < 30)) {
-                    return <View>
-                        <Text style={styles.nowoff}>미운영</Text>
-                        <Text style={styles.nowwait}>17:30 저녁시작</Text>
-                    </View>
-                } else if ((hours == 17 && minutes >= 30) || hours == 18 || (hours == 19 && minutes < 30)) {
-                    return <Text style={styles.nowon}>운영중{'\n'}19:30 종료</Text>
-                } else {
-                    return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
-                }
-            }
-        }
-        
-        function hgmeal() {
-            if (day > 0 && day < 6) {
-                if (hours < 8) {
-                    return <View>
-                        <Text style={styles.nowoff}>미운영</Text>
-                        <Text style={styles.nowwait}>8:00 아침시작</Text>
-                    </View>
-                } else if (hours >= 8 && hours < 10) {
-                    return <Text
-                        style={styles.nowon}>운영중{'\n'}10:00 아침종료</Text>
-                } else if (hours == 10) {
-                    return <View>
-                        <Text style={styles.nowoff}>미운영</Text>
-                        <Text style={styles.nowwait}>11:00 점심시작</Text>
-                    </View>
-                } else if (hours >= 11 && hours < 15) {
-                    return <Text style={styles.nowon}>운영중{'\n'}15:00 점심종료</Text>
-                } else if (hours == 16) {
-                    return <View>
-                        <Text style={styles.nowoff}>미운영</Text>
-                        <Text style={styles.nowwait}>17:00 저녁시작</Text>
-                    </View>
-                } else if (hours == 17 || hours == 18 || (hours == 19 && minutes < 1)) {
-                    return <Text
-                        style={styles.nowon}>운영중{'\n'}19:00 종료</Text>
-                } else {
-                    return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
-                }
-            } else {
-                if (hours < 11 || (hours == 11 && minutes < 30)) {
-                    return <View>
-                        <Text style={styles.nowoff}>미운영</Text>
-                        <Text style={styles.nowwait}>11:30 점심시작</Text>
-                    </View>
-                } else if ((hours == 11 && minutes >= 30) || hours == 12 || hours == 13) {
-                    return <Text
-                        style={styles.nowon}>운영중{'\n'}14:00 점심종료</Text>
-                } else if (hours >= 14 && hours < 17) {
-                    return <View>
-                        <Text style={styles.nowoff}>미운영</Text>
-                        <Text
-                            style={styles.nowwait}>17:00 저녁시작</Text>
-                    </View>
-                } else if (hours >= 17 && hours < 19) {
-                    return <Text
-                        style={styles.nowon}>운영중{'\n'}19:00 종료</Text>
-                } else {
-                    return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
-                }
-            }
-        }
-        
-        function gongmeal() {
-            if (day == 0 || day == 6) {
-                return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
-            } else if (hours >= 11 && hours < 19) {
-                return <Text style={styles.nowon}>운영중{'\n'}19:: 종료</Text>
-            } else if (hours < 11) {
-                return <View>
-                    <Text style={styles.nowoff}>미운영</Text>
-                    <Text style={styles.nowwait}>11:00 시작</Text>
-                </View>
-            } else {
-                return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
-            }
-        }
-        
-        function eng302meal() {
-            if (day == 0 || day == 6) {
-                return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
-            } else if ((hours > 11 && hours < 14) || (hours == 11 && minutes >= 15)) {
-                return <Text style={styles.nowon}>운영중{'\n'}14:00 점심종료</Text>
-            } else if (hours >= 17 && hours < 19) {
-                return <Text style={styles.nowon}>운영중{'\n'}19:00 종료</Text>
-            } else if (hours < 11 || (hours == 11 && minutes < 15)) {
-                return <View>
-                    <Text style={styles.nowoff}>미운영</Text>
-                    <Text style={styles.nowwait}>11:15 점심시작</Text>
-                </View>
-            } else if (hours < 17 && hours >= 14) {
-                return <View>
-                    <Text style={styles.nowoff}>미운영</Text>
-                    <Text style={styles.nowwait}>17:00 저녁시작</Text>
-                </View>
-            } else {
-                return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
-            }
-        }
-        
-        function eng301meal() {
-            if (day == 0 || day == 6) {
-                return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
-            } else if (hours >= 11 && hours < 14) {
-                return <Text style={styles.nowon}>운영중{'\n'}14:00 점심종료</Text>
-            } else if (hours >= 17 && hours < 19) {
-                return <Text style={styles.nowon}>운영중{'\n'}19:00 종료</Text>
-            } else if (hours < 11) {
-                return <View>
-                    <Text style={styles.nowoff}>미운영</Text>
-                    <Text style={styles.nowwait}>11:00 점심시작</Text>
-                </View>
-            } else if (hours < 17 && hours >= 14) {
-                return <View>
-                    <Text style={styles.nowoff}>미운영</Text>
-                    <Text style={styles.nowwait}>17:00 저녁시작</Text>
-                </View>
-            } else {
-                return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
-            }
-        }
-        
-        function artmeal() {
-            if (day == 0 || day == 6) {
-                return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
-            } else if ((hours == 11 && minutes >= 30) || (hours > 11 && hours < 14)) {
-                return <Text style={styles.nowon}>운영중{'\n'}14:00 점심종료</Text>
-            } else if (hours >= 17 && hours < 19) {
-                return <Text style={styles.nowon}>운영중{'\n'}19:00 종료</Text>
-            } else if (hours < 11 || (hours == 11 && minutes < 30)) {
-                return <View>
-                    <Text style={styles.nowoff}>미운영</Text>
-                    <Text style={styles.nowwait}>11:30 점심시작</Text>
-                </View>
-            } else if (hours < 17 && hours >= 14) {
-                return <View>
-                    <Text style={styles.nowoff}>미운영</Text>
-                    <Text style={styles.nowwait}>17:00 저녁시작</Text>
-                </View>
-            } else {
-                return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
-            }
-        }
-        
-        function ggmeal() {
-            if (day == 0 || day == 6) {
-                return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
-            } else if (hours >= 11 && hours < 14) {
-                return <Text style={styles.nowon}>운영중{'\n'}14:00 점심종료</Text>
-            } else if ((hours >= 17 && hours < 18) || (hours == 18 && minutes < 30)) {
-                return <Text style={styles.nowon}>운영중{'\n'}18:30 종료</Text>
-            } else if (hours < 11) {
-                return <View>
-                    <Text style={styles.nowoff}>미운영</Text>
-                    <Text style={styles.nowwait}>11:00 점심시작</Text>
-                </View>
-            } else if (hours < 17 && hours >= 14) {
-                return <View>
-                    <Text style={styles.nowoff}>미운영</Text>
-                    <Text style={styles.nowwait}>17:00 저녁시작</Text>
-                </View>
-            } else {
-                return <Text style={styles.nowoff}>미운영</Text>
-            }
-        }
-        
-        function nsmeal() {
-            return m11141719()
-        }
-        
-        function nhmeal() {
-            return m11141719()
-        }
-        
-        function dwgmeal() {
-            if (day == 0 || day == 6) {
-                return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
-            } else if (hours >= 11 && hours < 14) {
-                return <Text style={styles.nowon}>운영중{'\n'}14:00 종료</Text>
-            } else if (hours < 11) {
-                return <View>
-                    <Text style={styles.nowoff}>미운영</Text>
-                    <Text style={styles.nowwait}>11:00 점심시작</Text>
-                </View>
-            } else {
-                return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
-            }
-        }
-        
-        function edumeal() {
-            return m11141719()
-        }
-        
-        function meal220() {
-            return m11141719()
-        }
-        
-        function m11141719() {
-            if (day == 0 || day == 6) {
-                return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
-            } else if (hours >= 11 && hours < 14) {
-                return <Text style={styles.nowon}>운영중{'\n'}14:00 점심종료</Text>
-            } else if (hours >= 17 && hours < 19) {
-                return <Text style={styles.nowon}>운영중{'\n'}19:00 종료</Text>
-            } else if (hours < 11) {
-                return <View>
-                    <Text style={styles.nowoff}>미운영</Text>
-                    <Text style={styles.nowwait}>11:00 점심시작</Text>
-                </View>
-            } else if (hours < 17 && hours >= 14) {
-                return <View>
-                    <Text style={styles.nowoff}>미운영</Text>
-                    <Text style={styles.nowwait}>17:00 저녁시작</Text>
-                </View>
-            } else {
-                return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
-            }
-        }
-        
-        function loungeo() {
-            if (hours >= 11 && hours < 21) {
-                return <Text style={styles.nowon}>운영중{'\n'}21:00 종료</Text>
-            } else if (hours < 11) {
-                return <View>
-                    <Text style={styles.nowoff}>미운영</Text>
-                    <Text style={styles.nowwait}>11:00 시작</Text>
-                </View>
-            } else {
-                return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
-            }
-        }
-        
-        function shaban() {
-            if (day == 0) {
-                return <Text style={styles.nowoff}>일요일은{'\n'}운영안함</Text>
-            } else if (day == 6) {
-                if (hours < 11 || (hours == 11 && minutes < 30)) {
-                    return <View>
-                        <Text style={styles.nowoff}>미운영</Text>
-                        <Text style={styles.nowwait}>11:30 시작</Text>
-                    </View>
-                } else if ((hours >= 12 && hours < 14) || (hours == 11 && minutes >= 30)) {
-                    return <Text style={styles.nowon}>운영중{'\n'}14:00 종료</Text>
-                } else {
-                    return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
-                }
-            } else if (hours < 11) {
-                return <View>
-                    <Text style={styles.nowoff}>미운영</Text>
-                    <Text style={styles.nowwait}>11:00 점심시작</Text>
-                </View>
-            } else if ((hours >= 11 && hours < 14) || (hours == 14 && minutes < 30)) {
-                return <Text style={styles.nowon}>운영중{'\n'}14:30 점심종료</Text>
-            } else if ((hours == 14 && minutes >= 30) || hours == 15 || (hours == 16 && minutes < 30)) {
-                return <View>
-                    <Text style={styles.nowoff}>미운영</Text>
-                    <Text style={styles.nowwait}>16:30{'\n'}저녁시작</Text>
-                </View>
-            } else if ((hours >= 17 && hours < 20) || (hours == 16 && minutes >= 30)) {
-                return <Text style={styles.nowon}>운영중{'\n'}20:00 종료</Text>
-            } else {
-                return <Text style={styles.nowoff}>운영종료{'\n'}오늘은끝</Text>
-            }
-        }
-        
-        function lotte() {
-            if (hours < 8){
-                return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
-              } else if (hours < 22) {
-                return <Text style={styles.nowon}>{`운영중\n22:00 종료`}</Text>
-              } else {
-                return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
-              }
-            }
-        
-        function hyu() {
-            if ( (hours < 9) || (hours == 9 && minutes < 20 )  ){
-                return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:20 시작</Text></View>
-              } else if (hours < 22) {
-                return <Text style={styles.nowon}>{`운영중\n22:00 종료`}</Text>
-              } else {
-                return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
-              }
-            }
-        function bbq(){
-            if (hours < 11){
-                return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11:00 시작</Text></View>
-              } else if (hours < 21) {
-                return <Text style={styles.nowon}>{`운영중\n21:00 종료`}</Text>
-              } else {
-                return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
-              }
-        }
-        
-        function tenk(){
-            if (day == 0) {
-                return <Text style={styles.nowoff}>{`일요일은\n운영안함`}</Text>
-            } else {
-                if (hours < 11){
-                    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11:00 시작</Text></View>
-                  } else if (hours < 20) {
-                    return <Text style={styles.nowon}>{`운영중\n20:00 종료`}</Text>
-                  } else {
-                    return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
-                  }    
-            }
-        }
-        
-        function pho(){
-            if (hours < 10){
-                return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>10:00 시작</Text></View>
-              } else if (hours < 21) {
-                return <Text style={styles.nowon}>{`운영중\n21:00 종료`}</Text>
-              } else {
-                return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
-              }
-        }
-        
-        function quiz() {
-            if ((day == 0 || day == 6) && (hours >= 9 && hours < 19)) {
-              return <Text style={styles.nowon}>{`운영중\n19:00 종료`}</Text>
-            } else if ((day > 0 && day < 6) && (hours >= 7 && hours < 20)) {
-              return <Text style={styles.nowon}>{`운영중\n20:00 종료`}</Text>
-            } else if ((day == 0 || day == 6) && (hours < 9)) {
-              return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:00 시작</Text></View>
-            } else if ((day > 0 && day < 6) && (hours < 7)) {
-              return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7:00 시작</Text></View>
-            } else {
-              return <Text style={styles.nowoff}>{`운영종료\n오늘은끝`}</Text>
-            }
-          }
-        
-        loadmenu(months, days, years, day).then((data) => {
+
+        if (this.state.menuloaded == false) {
+        loadmenu(months, days, years, day).then( async (data) => {
             var menus  = data;
             var firstletter = ['?', '자', '예', '소', '?', '?', '?', '?', '?', '공', '감', '4', '?', '?', '?', '2']
 
@@ -633,9 +257,10 @@ class Mealtable extends Component {
                 }
             }
         }
-        })
+        }
+        )
 
-        loadmenu(months2, days2, years2, day2).then((data) => {
+        loadmenu(months2, days2, years2, day2).then( async (data) => {
 
             var menus  = data;
             var firstletter = ['?', '자', '예', '소', '?', '?', '?', '?', '?', '공', '감', '4', '?', '?', '?', '2']
@@ -690,7 +315,395 @@ class Mealtable extends Component {
             }
         }
         })
+        this.setState({menuloaded: true});
+    }
 
+    }
+
+    render() {
+        var today = new Date();
+        var day = today.getDay()
+        var hours = today.getHours()
+        var minutes = today.getMinutes()
+
+        var tomorrow = new Date()
+        tomorrow.setDate(today.getDate() + 1)
+
+        function dormmeal() {
+            if (day == 0 || day == 6) {
+                if (hours < 8) {
+                    return <View>
+                        <Text style={styles.nowoff}>미운영</Text>
+                        <Text style={styles.nowwait}>8:00 아침시작</Text>
+                    </View>
+                } else if (hours == 8 || (hours == 9 && minutes < 30)) {
+                    return <Text style={styles.nowon}>운영중{'\n'}9:30 아침종료</Text>
+                } else if ((hours == 9 && minutes >= 30) || hours == 10 || (hours == 11 && minutes < 30)) {
+                    return <View>
+                        <Text style={styles.nowoff}>미운영</Text>
+                        <Text style={styles.nowwait}>11:30 점심시작</Text>
+                    </View>
+                } else if ((hours == 11 && minutes >= 30) || hours == 12 || (hours == 13 && minutes < 30)) {
+                    return <Text style={styles.nowon}>운영중{'\n'}13:30 점심종료</Text>
+                } else if ((hours == 13 && minutes >= 30) || (hours >= 14 && hours < 17) || (hours == 17 && minutes < 30)) {
+                    return <View>
+                        <Text style={styles.nowoff}>미운영</Text>
+                        <Text style={styles.nowwait}>17:30 저녁시작</Text>
+                    </View>
+                } else if ((hours == 17 && minutes >= 30) || hours == 18 || (hours == 19 && minutes < 30)) {
+                    return <Text style={styles.nowon}>운영중{'\n'}19:30 종료</Text>
+                } else {
+                    return <Text style={styles.nowoff}>운영종료</Text>
+                }
+            } else {
+                if (hours < 7 || (hours == 7 && minutes < 30)) {
+                    return <View>
+                        <Text style={styles.nowoff}>미운영</Text>
+                        <Text style={styles.nowwait}>7:30 아침시작</Text>
+                    </View>
+                } else if ((hours == 7 && minutes >= 30) || (hours == 9 && minutes < 30)) {
+                    return <Text style={styles.nowon}>운영중{'\n'}9:30 아침종료</Text>
+                } else if ((hours == 9 && minutes >= 30) || hours == 10 || (hours == 11 && minutes < 30)) {
+                    return <View>
+                        <Text style={styles.nowoff}>미운영</Text>
+                        <Text style={styles.nowwait}>11:30 점심시작</Text>
+                    </View>
+                } else if ((hours == 11 && minutes >= 30) || hours == 12 || (hours == 13 && minutes < 30)) {
+                    return <Text style={styles.nowon}>운영중{'\n'}13:30 점심종료</Text>
+                } else if ((hours == 13 && minutes >= 30) || (hours >= 14 && hours < 17) || (hours == 17 && minutes < 30)) {
+                    return <View>
+                        <Text style={styles.nowoff}>미운영</Text>
+                        <Text style={styles.nowwait}>17:30 저녁시작</Text>
+                    </View>
+                } else if ((hours == 17 && minutes >= 30) || hours == 18 || (hours == 19 && minutes < 30)) {
+                    return <Text style={styles.nowon}>운영중{'\n'}19:30 종료</Text>
+                } else {
+                    return <Text style={styles.nowoff}>운영종료</Text>
+                }
+            }
+        }
+        
+        function hgmeal() {
+            if (day > 0 && day < 6) {
+                if (hours < 8) {
+                    return <View>
+                        <Text style={styles.nowoff}>미운영</Text>
+                        <Text style={styles.nowwait}>8:00 아침시작</Text>
+                    </View>
+                } else if (hours >= 8 && hours < 10) {
+                    return <Text
+                        style={styles.nowon}>운영중{'\n'}10:00 아침종료</Text>
+                } else if (hours == 10) {
+                    return <View>
+                        <Text style={styles.nowoff}>미운영</Text>
+                        <Text style={styles.nowwait}>11:00 점심시작</Text>
+                    </View>
+                } else if (hours >= 11 && hours < 15) {
+                    return <Text style={styles.nowon}>운영중{'\n'}15:00 점심종료</Text>
+                } else if (hours == 16) {
+                    return <View>
+                        <Text style={styles.nowoff}>미운영</Text>
+                        <Text style={styles.nowwait}>17:00 저녁시작</Text>
+                    </View>
+                } else if (hours == 17 || hours == 18 || (hours == 19 && minutes < 1)) {
+                    return <Text
+                        style={styles.nowon}>운영중{'\n'}19:00 종료</Text>
+                } else {
+                    return <Text style={styles.nowoff}>운영종료</Text>
+                }
+            } else {
+                if (hours < 11 || (hours == 11 && minutes < 30)) {
+                    return <View>
+                        <Text style={styles.nowoff}>미운영</Text>
+                        <Text style={styles.nowwait}>11:30 점심시작</Text>
+                    </View>
+                } else if ((hours == 11 && minutes >= 30) || hours == 12 || hours == 13) {
+                    return <Text
+                        style={styles.nowon}>운영중{'\n'}14:00 점심종료</Text>
+                } else if (hours >= 14 && hours < 17) {
+                    return <View>
+                        <Text style={styles.nowoff}>미운영</Text>
+                        <Text
+                            style={styles.nowwait}>17:00 저녁시작</Text>
+                    </View>
+                } else if (hours >= 17 && hours < 19) {
+                    return <Text
+                        style={styles.nowon}>운영중{'\n'}19:00 종료</Text>
+                } else {
+                    return <Text style={styles.nowoff}>운영종료</Text>
+                }
+            }
+        }
+        
+        function gongmeal() {
+            if (day == 0 || day == 6) {
+                return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
+            } else if (hours >= 11 && hours < 19) {
+                return <Text style={styles.nowon}>운영중{'\n'}19:0ccc0 종료</Text>
+            } else if (hours < 11) {
+                return <View>
+                    <Text style={styles.nowoff}>미운영</Text>
+                    <Text style={styles.nowwait}>11:00 시작</Text>
+                </View>
+            } else {
+                return <Text style={styles.nowoff}>운영종료</Text>
+            }
+        }
+        
+        function eng302meal() {
+            if (day == 0 || day == 6) {
+                return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
+            } else if ((hours > 11 && hours < 14) || (hours == 11 && minutes >= 15)) {
+                return <Text style={styles.nowon}>운영중{'\n'}14:00 점심종료</Text>
+            } else if (hours >= 17 && hours < 19) {
+                return <Text style={styles.nowon}>운영중{'\n'}19:00 종료</Text>
+            } else if (hours < 11 || (hours == 11 && minutes < 15)) {
+                return <View>
+                    <Text style={styles.nowoff}>미운영</Text>
+                    <Text style={styles.nowwait}>11:15 점심시작</Text>
+                </View>
+            } else if (hours < 17 && hours >= 14) {
+                return <View>
+                    <Text style={styles.nowoff}>미운영</Text>
+                    <Text style={styles.nowwait}>17:00 저녁시작</Text>
+                </View>
+            } else {
+                return <Text style={styles.nowoff}>운영종료</Text>
+            }
+        }
+        
+        function eng301meal() {
+            if (day == 0 || day == 6) {
+                return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
+            } else if (hours >= 11 && hours < 14) {
+                return <Text style={styles.nowon}>운영중{'\n'}14:00 점심종료</Text>
+            } else if (hours >= 17 && hours < 19) {
+                return <Text style={styles.nowon}>운영중{'\n'}19:00 종료</Text>
+            } else if (hours < 11) {
+                return <View>
+                    <Text style={styles.nowoff}>미운영</Text>
+                    <Text style={styles.nowwait}>11:00 점심시작</Text>
+                </View>
+            } else if (hours < 17 && hours >= 14) {
+                return <View>
+                    <Text style={styles.nowoff}>미운영</Text>
+                    <Text style={styles.nowwait}>17:00 저녁시작</Text>
+                </View>
+            } else {
+                return <Text style={styles.nowoff}>운영종료</Text>
+            }
+        }
+        
+        function artmeal() {
+            if (day == 0 || day == 6) {
+                return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
+            } else if ((hours == 11 && minutes >= 30) || (hours > 11 && hours < 14)) {
+                return <Text style={styles.nowon}>운영중{'\n'}14:00 점심종료</Text>
+            } else if (hours >= 17 && hours < 19) {
+                return <Text style={styles.nowon}>운영중{'\n'}19:00 종료</Text>
+            } else if (hours < 11 || (hours == 11 && minutes < 30)) {
+                return <View>
+                    <Text style={styles.nowoff}>미운영</Text>
+                    <Text style={styles.nowwait}>11:30 점심시작</Text>
+                </View>
+            } else if (hours < 17 && hours >= 14) {
+                return <View>
+                    <Text style={styles.nowoff}>미운영</Text>
+                    <Text style={styles.nowwait}>17:00 저녁시작</Text>
+                </View>
+            } else {
+                return <Text style={styles.nowoff}>운영종료</Text>
+            }
+        }
+        
+        function ggmeal() {
+            if (day == 0 || day == 6) {
+                return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
+            } else if (hours >= 11 && hours < 14) {
+                return <Text style={styles.nowon}>운영중{'\n'}14:00 점심종료</Text>
+            } else if ((hours >= 17 && hours < 18) || (hours == 18 && minutes < 30)) {
+                return <Text style={styles.nowon}>운영중{'\n'}18:30 종료</Text>
+            } else if (hours < 11) {
+                return <View>
+                    <Text style={styles.nowoff}>미운영</Text>
+                    <Text style={styles.nowwait}>11:00 점심시작</Text>
+                </View>
+            } else if (hours < 17 && hours >= 14) {
+                return <View>
+                    <Text style={styles.nowoff}>미운영</Text>
+                    <Text style={styles.nowwait}>17:00 저녁시작</Text>
+                </View>
+            } else {
+                return <Text style={styles.nowoff}>운영종료</Text>
+            }
+        }
+        
+        function nsmeal() {
+            return m11141719()
+        }
+        
+        function nhmeal() {
+            return m11141719()
+        }
+        
+        function dwgmeal() {
+            if (day == 0 || day == 6) {
+                return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
+            } else if (hours >= 11 && hours < 14) {
+                return <Text style={styles.nowon}>운영중{'\n'}14:00 종료</Text>
+            } else if (hours < 11) {
+                return <View>
+                    <Text style={styles.nowoff}>미운영</Text>
+                    <Text style={styles.nowwait}>11:00 점심시작</Text>
+                </View>
+            } else {
+                return <Text style={styles.nowoff}>운영종료</Text>
+            }
+        }
+        
+        function edumeal() {
+            return m11141719()
+        }
+        
+        function meal220() {
+            return m11141719()
+        }
+        
+        function m11141719() {
+            if (day == 0 || day == 6) {
+                return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
+            } else if (hours >= 11 && hours < 14) {
+                return <Text style={styles.nowon}>운영중{'\n'}14:00 점심종료</Text>
+            } else if (hours >= 17 && hours < 19) {
+                return <Text style={styles.nowon}>운영중{'\n'}19:00 종료</Text>
+            } else if (hours < 11) {
+                return <View>
+                    <Text style={styles.nowoff}>미운영</Text>
+                    <Text style={styles.nowwait}>11:00 점심시작</Text>
+                </View>
+            } else if (hours < 17 && hours >= 14) {
+                return <View>
+                    <Text style={styles.nowoff}>미운영</Text>
+                    <Text style={styles.nowwait}>17:00 저녁시작</Text>
+                </View>
+            } else {
+                return <Text style={styles.nowoff}>운영종료</Text>
+            }
+        }
+        
+        function loungeo() {
+            if (hours >= 11 && hours < 21) {
+                return <Text style={styles.nowon}>운영중{'\n'}21:00 종료</Text>
+            } else if (hours < 11) {
+                return <View>
+                    <Text style={styles.nowoff}>미운영</Text>
+                    <Text style={styles.nowwait}>11:00 시작</Text>
+                </View>
+            } else {
+                return <Text style={styles.nowoff}>운영종료</Text>
+            }
+        }
+        
+        function shaban() {
+            if (day == 0) {
+                return <Text style={styles.nowoff}>일요일은{'\n'}운영안함</Text>
+            } else if (day == 6) {
+                if (hours < 11 || (hours == 11 && minutes < 30)) {
+                    return <View>
+                        <Text style={styles.nowoff}>미운영</Text>
+                        <Text style={styles.nowwait}>11:30 시작</Text>
+                    </View>
+                } else if ((hours >= 12 && hours < 14) || (hours == 11 && minutes >= 30)) {
+                    return <Text style={styles.nowon}>운영중{'\n'}14:00 종료</Text>
+                } else {
+                    return <Text style={styles.nowoff}>운영종료</Text>
+                }
+            } else if (hours < 11) {
+                return <View>
+                    <Text style={styles.nowoff}>미운영</Text>
+                    <Text style={styles.nowwait}>11:00 점심시작</Text>
+                </View>
+            } else if ((hours >= 11 && hours < 14) || (hours == 14 && minutes < 30)) {
+                return <Text style={styles.nowon}>운영중{'\n'}14:30 점심종료</Text>
+            } else if ((hours == 14 && minutes >= 30) || hours == 15 || (hours == 16 && minutes < 30)) {
+                return <View>
+                    <Text style={styles.nowoff}>미운영</Text>
+                    <Text style={styles.nowwait}>16:30{'\n'}저녁시작</Text>
+                </View>
+            } else if ((hours >= 17 && hours < 20) || (hours == 16 && minutes >= 30)) {
+                return <Text style={styles.nowon}>운영중{'\n'}20:00 종료</Text>
+            } else {
+                return <Text style={styles.nowoff}>운영종료</Text>
+            }
+        }
+        
+        function lotte() {
+            if (hours < 8){
+                return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
+              } else if (hours < 22) {
+                return <Text style={styles.nowon}>{`운영중\n22:00 종료`}</Text>
+              } else {
+                return <Text style={styles.nowoff}>운영종료</Text>
+              }
+            }
+        
+        function hyu() {
+            if ( (hours < 9) || (hours == 9 && minutes < 20 )  ){
+                return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:20 시작</Text></View>
+              } else if (hours < 22) {
+                return <Text style={styles.nowon}>{`운영중\n22:00 종료`}</Text>
+              } else {
+                return <Text style={styles.nowoff}>운영종료</Text>
+              }
+            }
+        function bbq(){
+            if (hours < 11){
+                return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11:00 시작</Text></View>
+              } else if (hours < 21) {
+                return <Text style={styles.nowon}>{`운영중\n21:00 종료`}</Text>
+              } else {
+                return <Text style={styles.nowoff}>운영종료</Text>
+              }
+        }
+        
+        function tenk(){
+            if (day == 0) {
+                return <Text style={styles.nowoff}>{`일요일은\n운영안함`}</Text>
+            } else {
+                if (hours < 11){
+                    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11:00 시작</Text></View>
+                  } else if (hours < 20) {
+                    return <Text style={styles.nowon}>{`운영중\n20:00 종료`}</Text>
+                  } else {
+                    return <Text style={styles.nowoff}>운영종료</Text>
+                  }    
+            }
+        }
+        
+        function pho(){
+            if (hours < 10){
+                return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>10:00 시작</Text></View>
+              } else if (hours < 21) {
+                return <Text style={styles.nowon}>{`운영중\n21:00 종료`}</Text>
+              } else {
+                return <Text style={styles.nowoff}>운영종료</Text>
+              }
+        }
+        
+        function quiz() {
+            if ((day == 0 || day == 6) && (hours >= 9 && hours < 19)) {
+              return <Text style={styles.nowon}>{`운영중\n19:00 종료`}</Text>
+            } else if ((day > 0 && day < 6) && (hours >= 7 && hours < 20)) {
+              return <Text style={styles.nowon}>{`운영중\n20:00 종료`}</Text>
+            } else if ((day == 0 || day == 6) && (hours < 9)) {
+              return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:00 시작</Text></View>
+            } else if ((day > 0 && day < 6) && (hours < 7)) {
+              return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7:00 시작</Text></View>
+            } else {
+              return <Text style={styles.nowoff}>운영종료</Text>
+            }
+          }
+        
         return (
             <View style={{
                 flex: 1
