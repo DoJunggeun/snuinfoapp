@@ -33,6 +33,12 @@ class Mealtable extends Component {
             menuday: 1,
             menuloaded: false
         };
+        this.loadmenu();
+    }
+    componentDidMount(){
+        this.setState({
+            menuloaded: true
+        })
     }
     setModal(visible) {
         this.setState({menu: visible});
@@ -158,7 +164,7 @@ class Mealtable extends Component {
         }
     }
     
-    componentDidMount(){
+    loadmenu(){
         var today = new Date();
         var day = today.getDay()
         var days = today.getDate()
@@ -173,7 +179,7 @@ class Mealtable extends Component {
         var years2 = tomorrow.getFullYear()
 
 
-        async function loadmenu(months, days, years, day) {
+        async function getmenus(months, days, years, day) {
             var url_todaymenu = 'http://snuco.snu.ac.kr/ko/foodmenu?field_menu_date_value_1[value][date]=&field_menu_date_value[value][date]=' + months + '/' + days + '/' + years
             var html = await axios.get(url_todaymenu);
             let ulList = [];
@@ -204,7 +210,7 @@ class Mealtable extends Component {
         };
 
         if (this.state.menuloaded == false) {
-        loadmenu(months, days, years, day).then( async (data) => {
+        getmenus(months, days, years, day).then( async (data) => {
             var menus  = data;
             var firstletter = ['?', '자', '예', '소', '?', '?', '?', '?', '?', '공', '감', '4', '?', '?', '?', '2']
 
@@ -220,7 +226,7 @@ class Mealtable extends Component {
                     } 
                 }
                 } else {
-                    var checkmsg2 = '\n\n\n\n해당 식단의 휴무 혹은 식단 정보의 오류로 메뉴 정보가 없습니다.'
+                    var checkmsg2 = '\n\n\n\n해당 식단의 휴무 / 식단 정보의 오류 / 인터넷 연결 불안정으로 인해 메뉴 정보를 받아오지 못했습니다. 좌상단의 새로고침 버튼을 눌러주세요!'
                     menulist2 = [checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2];        
             for (var i = 0; i < menus.length; i++) {
                 if (menus[i].title.charAt(0) == '4'){
@@ -260,7 +266,7 @@ class Mealtable extends Component {
         }
         )
 
-        loadmenu(months2, days2, years2, day2).then( async (data) => {
+        getmenus(months2, days2, years2, day2).then( async (data) => {
 
             var menus  = data;
             var firstletter = ['?', '자', '예', '소', '?', '?', '?', '?', '?', '공', '감', '4', '?', '?', '?', '2']
@@ -277,7 +283,7 @@ class Mealtable extends Component {
                 } 
             }
          } else {
-            var checkmsg2 = '\n\n\n\n해당 식단의 휴무 혹은 식단 정보의 오류로 메뉴 정보가 없습니다.'
+            var checkmsg2 = '\n\n\n\n해당 식단의 휴무 / 식단 정보의 오류 / 인터넷 연결 불안정으로 인해 메뉴 정보를 받아오지 못했습니다. 좌상단의 새로고침 버튼을 눌러주세요!'
             menulist2 = [checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2,checkmsg2];    
             for (var i = 0; i < menus.length; i++) {
                 if (menus[i].title.charAt(0) == '4'){
@@ -315,12 +321,12 @@ class Mealtable extends Component {
             }
         }
         })
-        this.setState({menuloaded: true});
     }
 
     }
 
     render() {
+
         var today = new Date();
         var day = today.getDay()
         var hours = today.getHours()
