@@ -37,7 +37,10 @@ class Mart extends Component {
                 </View>
           </View>
 
-           <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} style={{marginTop :getStatusBarHeight()}} onRequestClose={() => {this.setModalVisible(false) }}>
+           <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} 
+           onRequestClose={() => {this.setModalVisible(false) }}>
+           <View style={{height: getStatusBarHeight(true)}}/>
+           <SafeAreaView style={{flex:1, marginTop: -getStatusBarHeight()}}>
            <WebView source={{uri: 'http://snuco.snu.ac.kr/ko/node/19'}} style={{flex:7}} onLoadStart={() => (this.showSpinner())}
                      onLoad={() => this.hideSpinner()}/>
            {this.state.visible && ( <ActivityIndicator color="#B09BDE"
@@ -47,7 +50,7 @@ class Mart extends Component {
            <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
          <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setModalVisible(false) }}>
           <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
-           </TouchableOpacity></View>
+           </TouchableOpacity></View></SafeAreaView>
            </Modal>
 
 

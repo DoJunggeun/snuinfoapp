@@ -36,7 +36,7 @@
     },
     "android": {
       "package": "com.dojunggeun.snuinfo",
-      "versionCode": 10,
+      "versionCode": 11,
       "permissions": [],
       "splash": {
         "mdpi": "./assets/splash.png",

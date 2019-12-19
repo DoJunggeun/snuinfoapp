@@ -230,8 +230,10 @@ class Contact extends Component {
              <TouchableOpacity style={{flex:1, backgroundColor: 'rgba(176,155,222,0.45)', justifyContent:'center', alignItems:'center', borderRadius:15}} onPress={() => {this.setlibVisible(true);}}>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:20, fontWeight:'500',color:'black'}}>도서관 운영시간</Text></View>
          </TouchableOpacity>
-         <Modal animationType="slide" transparent={false} visible={this.state.libVisible} style={{marginTop :getStatusBarHeight()}}
+         <Modal animationType="slide" transparent={false} visible={this.state.libVisible} 
          onRequestClose={() => {this.setlibVisible(false) }}>
+           <View style={{height: getStatusBarHeight(true)}}/>
+           <SafeAreaView style={{flex:1, marginTop: -getStatusBarHeight()}}>
            <WebView source={{uri: 'http://lib.snu.ac.kr/hours'}} style={{flex:7}} onLoadStart={() => (this.showSpinner())}
                      onLoad={() => this.hideSpinner()}/>
            {this.state.visible && ( <ActivityIndicator color="#B09BDE"
@@ -241,7 +243,7 @@ class Contact extends Component {
                <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
          <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setlibVisible(false) }}>
           <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
-           </TouchableOpacity></View>
+           </TouchableOpacity></View></SafeAreaView>
            </Modal>
          </View>
 
@@ -249,8 +251,10 @@ class Contact extends Component {
              <TouchableOpacity style={{flex:1, backgroundColor: 'rgba(176,155,222,0.45)', justifyContent:'center', alignItems:'center', borderRadius:15}} onPress={() => {this.setdormVisible(true);}}>
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:20, fontWeight:'500',color:'black'}}>기숙사 편의시설</Text></View>
          </TouchableOpacity>
-         <Modal animationType="slide" transparent={false} visible={this.state.dormVisible} style={{marginTop :getStatusBarHeight()}}
+         <Modal animationType="slide" transparent={false} visible={this.state.dormVisible} 
          onRequestClose={() => {this.setdormVisible(false) }}>
+           <View style={{height: getStatusBarHeight(true)}}/>
+           <SafeAreaView style={{flex:1, marginTop: -getStatusBarHeight()}}>
            <WebView source={{uri: 'https://dorm.snu.ac.kr/dk_board/dk_dormitory/dorm_content.php?ht_id=snu2_1_1'}} style={{flex:7}} onLoadStart={() => (this.showSpinner())}
                      onLoad={() => this.hideSpinner()}/>
            {this.state.visible && ( <ActivityIndicator color="#B09BDE"
@@ -261,7 +265,7 @@ class Contact extends Component {
            <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
          <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setdormVisible(false) }}>
           <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
-           </TouchableOpacity></View>
+           </TouchableOpacity></View></SafeAreaView>
            </Modal>
          </View>
 

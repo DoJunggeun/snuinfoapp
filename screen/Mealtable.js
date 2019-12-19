@@ -439,7 +439,7 @@ class Mealtable extends Component {
             if (day == 0 || day == 6) {
                 return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
             } else if (hours >= 11 && hours < 19) {
-                return <Text style={styles.nowon}>운영중{'\n'}19:0ccc0 종료</Text>
+                return <Text style={styles.nowon}>운영중{'\n'}19:00 종료</Text>
             } else if (hours < 11) {
                 return <View>
                     <Text style={styles.nowoff}>미운영</Text>

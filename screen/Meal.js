@@ -5,7 +5,7 @@ import {
     View,
     Text,
     TouchableOpacity,
-    Image, ActivityIndicator
+    Image, ActivityIndicator, Platform, StatusBar
 } from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {WebView} from 'react-native-webview';
@@ -80,10 +80,9 @@ class Meal extends Component {
                     animationType="slide"
                     transparent={false}
                     visible={this.state.modalVisible}
-                    onRequestClose={() => {this.setModalVisible(false) }}
-                    style={{
-                    marginTop: getStatusBarHeight()
-                }}>
+                    onRequestClose={() => {this.setModalVisible(false) }}>
+           <View style={{height: getStatusBarHeight(true)}}/>
+           <SafeAreaView style={{flex:1, marginTop: -getStatusBarHeight()}}>
                     <WebView
                         source={{
                         uri: 'http://snuco.snu.ac.kr/ko/node/20'
@@ -126,7 +125,7 @@ class Meal extends Component {
                                 }}>닫기</Text>
                             </View>
                         </TouchableOpacity>
-                    </View>
+                    </View></SafeAreaView>
                 </Modal>
 
                 <View style={{

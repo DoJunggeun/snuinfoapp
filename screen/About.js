@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Modal, StyleSheet, View, Text, TouchableOpacity, Image, ActivityIndicator} from 'react-native';
+import { Modal, StyleSheet, View, Text, TouchableOpacity, Image, ActivityIndicator,
+  Platform} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { WebView } from 'react-native-webview';
 import { NavigationActions, SafeAreaView } from 'react-navigation';
@@ -49,9 +50,12 @@ class About extends Component {
          <View style={{justifyContent:'center', alignItems:'center'}}><Text style={{fontSize:26, fontWeight:'500',color:'black'}}>눌러서 제보하기</Text></View>
          </TouchableOpacity>
 
-         <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} style={{marginTop :getStatusBarHeight()}}>
-           <WebView source={{uri: 'https://docs.google.com/forms/d/e/1FAIpQLSeAOS1F3bnfkikIPH11mf6EhPD0qEypeqeey7_4QkSMBaD8nw/viewform?usp=sf_link'}} style={{flex:7, backgroundColor:'rgb(240,235,248)'}} onLoadStart={() => (this.showSpinner())}
-                     onLoad={() => this.hideSpinner()}/>
+         <Modal animationType="slide" transparent={false} visible={this.state.modalVisible}>
+           <View style={{height: getStatusBarHeight(true)}}/>
+           <SafeAreaView style={{flex:1, marginTop: -getStatusBarHeight()}}>
+          
+           <WebView source={{uri: 'https://docs.google.com/forms/d/e/1FAIpQLSeAOS1F3bnfkikIPH11mf6EhPD0qEypeqeey7_4QkSMBaD8nw/viewform?usp=sf_link'}} style={{flex:7, backgroundColor:'rgb(240,235,248)' }} 
+           onLoadStart={() => (this.showSpinner())} onLoad={() => this.hideSpinner()}/>
            {this.state.visible && ( <ActivityIndicator color="#B09BDE"
             style={{flex: 1, left: 0, right: 0, top: 0, bottom: 0, position: 'absolute',
             alignItems: 'center', justifyContent: 'center' }}
@@ -59,7 +63,7 @@ class About extends Component {
            <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
          <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setModalVisible(false) }}>
           <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
-           </TouchableOpacity></View>
+           </TouchableOpacity></View></SafeAreaView>
            </Modal>
 
                  </View>

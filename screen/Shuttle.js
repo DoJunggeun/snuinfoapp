@@ -43,12 +43,14 @@ class Shuttle extends Component {
            </View>
 
            <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} onRequestClose={() => {this.setModalVisible(false) }}>
+           <View style={{height: getStatusBarHeight(true), backgroundColor:'black'}}/>
+           <SafeAreaView style={{flex:1, backgroundColor:'black'}}>
             <ImageViewer imageUrls={sttt} style={{flex:7}}/>
             <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
               <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setModalVisible(false) }}>
              <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
               </TouchableOpacity>
-            </View>
+            </View></SafeAreaView>
            </Modal>
 
 

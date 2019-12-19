@@ -36,7 +36,9 @@ class Cafe extends Component {
                 </View>
                 </View>
 
-           <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} onRequestClose={() => {this.setModalVisible(false) }} style={{marginTop :getStatusBarHeight()}}>
+           <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} onRequestClose={() => {this.setModalVisible(false) }}>
+           <View style={{height: getStatusBarHeight(true)}}/>
+           <SafeAreaView style={{flex:1, marginTop: -getStatusBarHeight()}}>
            <WebView source={{uri: 'http://snuco.snu.ac.kr/ko/node/21'}} style={{flex:7}} onLoadStart={() => (this.showSpinner())}
                      onLoad={() => this.hideSpinner()}/>
            {this.state.visible && ( <ActivityIndicator color="#B09BDE"
@@ -46,7 +48,7 @@ class Cafe extends Component {
            <View style={{height:50, backgroundColor:'rgb(176,155,222)', justifyContent:'center', alignItems:'center', flexDirection:'row'}}>
          <TouchableOpacity style={{flex:1, backgroundColor:'rgb(176,155,222)'}} onPress={() => {this.setModalVisible(false) }}>
           <View style={{height:50,justifyContent:'center', alignItems:'center'}}><Text style={{color:'white', fontSize:22, fontWeight:'600'}}>닫기</Text></View>
-           </TouchableOpacity></View>
+           </TouchableOpacity></View></SafeAreaView>
            </Modal>
 
 
@@ -384,7 +386,7 @@ function snack() {
     return <Text style={styles.nowon}>{`운영중\n15:00 종료`}</Text>
   } else if ((day > 0 && day < 6) && ((hours >= 8 && hours < 19) || (hours == 7 && minutes >= 30))) {
     return <Text style={styles.nowon}>{`운영중\n19:00 종료`}</Text>
-  } else if ((day > 0 && day < 6) && (hours < 7 || (hours == 7 && minutes >= 30))) {
+  } else if ((day > 0 && day < 6) && (hours < 7 || (hours == 7 && minutes <= 30))) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7:30 시작</Text></View>
   } else if (day == 6 && (hours < 7 || (hours == 7 && minutes >= 30))) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>7:30 시작</Text></View>
