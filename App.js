@@ -65,6 +65,7 @@ const tabs = createMaterialTopTabNavigator(
     },
     swipeEnabled: true,
     tabBarPosition:'bottom',
+    lazy:false
     }
 
 );
@@ -84,7 +85,8 @@ const Preapp = createStackNavigator({
   {headerMode:'none', 
     defaultNavigationOptions: {
       gesturesEnabled: true,
-      gestureResponseDistance : {horizontal:500, vertical:400}
+      gestureResponseDistance : {horizontal:500, vertical:400},
+      lazy:false
   },
 }
 );

@@ -8,9 +8,9 @@ import ImageViewer from 'react-native-image-zoom-viewer';
 
 const WEBVIEW_REF = "WEBVIEW_REF";
 const sttt = [{
-  url: "require('./lib/img/sttt.jpg')",
+  url: "require('./lib/img/winter.jpg')",
   props: {
-    source: require('./lib/img/sttt.jpg')
+    source: require('./lib/img/winter.jpg')
   }
 }]
 
@@ -18,6 +18,8 @@ var date = new Date();
 var day = date.getDay();
 var hours = date.getHours();
 var minutes = date.getMinutes();
+var month = date.getMonth() + 1;
+var days = date.getDate();
 
 
 class Shuttle extends Component { 
@@ -61,8 +63,8 @@ class Shuttle extends Component {
          <View style={{flex:1}} >
         <View style={styles.containerhead}>
           <View style={styles.th}><Text style={styles.thtext}>구간</Text></View>
-          <View style={styles.th}><Text style={styles.thtext}>{`운행시간\n(학기중)`}</Text></View>
-          <View style={styles.th}><Text style={styles.thtext}>{`배차간격\n(학기중)`}</Text></View>
+          <View style={styles.th}><Text style={styles.thtext}>{time()}</Text></View>
+          <View style={styles.th}><Text style={styles.thtext}>{interval()}</Text></View>
           <View style={styles.th}><Text style={styles.thtext}>현재</Text></View>
         </View>
 
@@ -81,14 +83,14 @@ class Shuttle extends Component {
         </View>
         <View style={styles.container2}>
         <View style={styles.td}><Text style={styles.tdtext}>{`서울대입구역\n→윗공대`}</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>8:00~{'\n'}11:00</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>7~10분</Text></View>
+          <View style={styles.td}><Text style={styles.tdtextoff}>{`계절학기\n운행안함`}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtextoff}>{`계절학기\n운행안함`}</Text></View>
           <View style={styles.td}>{steng()}</View>
         </View>
         <View style={styles.container}>
         <View style={styles.td}><Text style={styles.tdtext}>{`낙성대\n→윗공대`}</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>8:30~{'\n'}11:00</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>5분</Text></View>
+          <View style={styles.td}><Text style={styles.tdtextoff}>{`계절학기\n운행안함`}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtextoff}>{`계절학기\n운행안함`}</Text></View>
           <View style={styles.td}>{stnsdstation()}</View>
         </View>
         <View style={styles.container2}>
@@ -99,14 +101,14 @@ class Shuttle extends Component {
         </View>
         <View style={styles.container}>
         <View style={styles.td}><Text style={styles.tdtext}>교내순환</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>8:00~{'\n'}21:00</Text></View>
+          <View style={styles.td}><Text style={styles.tdtext}>8:00~{'\n'}18:00</Text></View>
           <View style={styles.td}><Text style={styles.tdtext}>7분~20분</Text></View>
           <View style={styles.td}>{stinner()}</View>
         </View>
         <View style={styles.container2}>
         <View style={styles.td}><Text style={styles.tdtext}>{`교내순환\n역방향`}</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>9:50~{'\n'}17:50</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>30분</Text></View>
+          <View style={styles.td}><Text style={styles.tdtextoff}>{`계절학기\n운행안함`}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtextoff}>{`계절학기\n운행안함`}</Text></View>
           <View style={styles.td}>{stinnerreverse()}</View>
         </View>
         <View style={styles.container}>
@@ -123,8 +125,8 @@ class Shuttle extends Component {
         </View>
         <View style={styles.container}>
         <View style={styles.td}><Text style={styles.tdtext}>심야셔틀</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>24:00~{'\n'}02:00</Text></View>
-          <View style={styles.td}><Text style={styles.tdtext}>30분</Text></View>
+          <View style={styles.td}><Text style={styles.tdtextoff}>{`계절학기\n운행안함`}</Text></View>
+          <View style={styles.td}><Text style={styles.tdtextoff}>{`계절학기\n운행안함`}</Text></View>
           <View style={styles.td}>{stnight2()}</View>
         </View>
       </ScrollView>
@@ -179,7 +181,7 @@ const styles = StyleSheet.create({
   thtext: {
     alignItems: 'center',
     justifyContent:'center',
-    fontSize:18, 
+    fontSize:17, 
     fontWeight:'800'
   },
   td: {
@@ -193,6 +195,9 @@ const styles = StyleSheet.create({
   },
   tdtext : {
     color:'black', textAlign:'center', fontSize:14, fontWeight:'400'
+  },
+  tdtextoff : {
+    color:'gray', textAlign:'center', fontSize:14, fontWeight:'400'
   },
   nowon : {
     color:'blue', textAlign:'center', fontSize:14, fontWeight:'400'
@@ -208,6 +213,27 @@ const styles = StyleSheet.create({
   }
 });
 
+function interval() {
+  if ( (month == 12 && days >= 23) || (month == 1 && days > 28) ) {
+    return '배차간격\n(계절학기)'
+  }
+  else if ( month ==1 || month == 2 ) {
+    return '배차간격\n(방학)'
+  } else {
+    return '배차간격\n(학기중)'
+  }
+}
+function time() {
+  if ( (month == 12 && days >= 23) || (month == 1 && days > 28) ) {
+    return '운행시간\n(계절학기)'
+  }
+  else if ( month ==1 || month == 2 ) {
+    return '운행시간\n(방학)'
+  } else {
+    return '운행시간\n(학기중)'
+  }
+}
+
 function ststation() {
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
@@ -215,12 +241,13 @@ function ststation() {
     return <Text style={styles.nowoff}>운행종료</Text>
   } else if (hours == 18) {
     return <Text style={styles.nowon}>{`학교→설입\n19:00 종료`}</Text>
-  } else if (hours < 8) {
+  } else if (hours < 7) {
     return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>7:00 시작</Text></View>
   } else {
     return <Text style={styles.nowon}>{`운행중\n19:00 종료`}</Text>
   }
 }
+
 
 function stdhd() {
   if (day == 0 || day == 6) {
@@ -229,7 +256,7 @@ function stdhd() {
     return <Text style={styles.nowoff}>운행종료</Text>
   } else if (hours == 18) {
     return <Text style={styles.nowon}>{`학교→녹두\n19:00 종료`}</Text>
-  } else if (hours < 8) {
+  } else if (hours < 7) {
     return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>7:00 시작</Text></View>
   } else {
     return <Text style={styles.nowon}>{`운행중\n19:00 종료`}</Text>
@@ -249,6 +276,19 @@ function stsdstation() {
 }
 
 function stinner() {
+  if ( (month == 12 && days >= 23) || (month == 1 && days > 28) ) {
+    if (day == 0 || day == 6) {
+      return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
+    } else if (hours > 18) {
+      return <Text style={styles.nowoff}>운행종료</Text>
+    } else if (hours < 8) {
+      return <View><Text style={styles.nowoff}>미운행</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
+    } else {
+      return <Text style={styles.nowon}>{`운행중\n18:00 종료`}</Text>
+    }
+    }
+
+  else {
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours > 20) {
@@ -258,6 +298,7 @@ function stinner() {
   } else {
     return <Text style={styles.nowon}>{`운행중\n21:00 종료`}</Text>
   }
+}
 }
 
 function stnight() {
@@ -272,7 +313,13 @@ function stnight() {
   }
 }
 
+
 function stnsdstation() {
+  if ( (month == 12 && days >= 23) || (month == 1 && days > 28) ) {
+    return <Text style={styles.tdtextoff}>{`계절학기\n운행안함`}</Text>
+  }
+
+  else {
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours > 10) {
@@ -283,8 +330,13 @@ function stnsdstation() {
     return <Text style={styles.nowon}>{`운행중\n11:00 종료`}</Text>
   }
 }
+}
 
 function steng() {
+  if ( (month == 12 && days >= 23) || (month == 1 && days > 28) ) {
+    return <Text style={styles.tdtextoff}>{`계절학기\n운행안함`}</Text>
+  }
+  else {
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours > 10) {
@@ -295,8 +347,13 @@ function steng() {
   return <Text style={styles.nowon}>{`운행중\n11:00 종료`}</Text>
 }
 }
+}
 
 function stinnerreverse() {
+  if ( (month == 12 && days >= 23) || (month == 1 && days > 28) ) {
+    return <Text style={styles.tdtextoff}>{`계절학기\n운행안함`}</Text>
+  }
+  else {
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours > 17 || (hours == 17 && minutes > 50)) {
@@ -307,8 +364,14 @@ function stinnerreverse() {
   return <Text style={styles.nowon}>{`운행중\n17:50 종료`}</Text>
 }
 }
+}
 
 function stnight2() {
+  if ( (month == 12 && days >= 23) || (month == 1 && days > 28) ) {
+    return <Text style={styles.tdtextoff}>{`계절학기\n운행안함`}</Text>
+  }
+  else {
+
   if (day == 0 || (day == 6 && hours >= 2)) {
     return <Text style={styles.nowoff}>{`주말에는\n운행안함`}</Text>
   } else if (hours >= 2) {
@@ -317,11 +380,32 @@ function stnight2() {
   return <Text style={styles.nowon}>{`운행중\n02:00 종료`}</Text>
 }
 }
-
+}
 
 
 
 function ststationinterval() {
+  if ( (month == 12 && days >= 23) || (month == 1 && days > 28) ) {
+    if (day == 0 || day == 6) {
+      return <Text style={styles.tdtext}>5~15분</Text>
+    } else if (hours >= 19 || hours < 7) {
+      return <Text style={styles.tdtext}>5~15분</Text>
+    } else if (hours == 7) {
+      return <Text style={styles.tdtext}>15분</Text>
+    } else if (hours >= 8 && hours < 11) {
+      return <Text style={styles.tdtext}>5~7분</Text>
+    } else if ((hours >= 11 && hours < 15) || (hours == 15 && minutes < 30)) {
+      return <Text style={styles.tdtext}>10분</Text>
+    } else if (hours >= 15 || hours <= 17) {
+      return <Text style={styles.tdtext}>5~6분</Text>
+    } else if (hours == 18) {
+      return <Text style={styles.tdtext}>5~7분</Text>
+    } else {
+      return <Text style={styles.tdtext}>5~15분</Text>
+    }
+    }
+  else {
+
   if (day == 0 || day == 6) {
     return <Text style={styles.tdtext}>5~15분</Text>
   } else if (hours >= 19 || hours < 7) {
@@ -340,8 +424,31 @@ function ststationinterval() {
     return <Text style={styles.tdtext}>5~15분</Text>
   }
 }
+}
 
 function stdhdinterval() {
+  if ( (month == 12 && days >= 23) || (month == 1 && days > 28) ) {
+    if (day == 0 || day == 6) {
+      return <Text style={styles.tdtext}>6~15분</Text>
+    } else if (hours >= 19 || hours < 7) {
+      return <Text style={styles.tdtext}>6~15분</Text>
+    } else if (hours == 7) {
+      return <Text style={styles.tdtext}>15분</Text>
+    } else if (hours >= 8 && hours < 10) {
+      return <Text style={styles.tdtext}>7분</Text>
+    } else if (hours >= 10 && hours < 12) {
+      return <Text style={styles.tdtext}>10분</Text>
+    } else if (hours == 12 || hours == 13) {
+      return <Text style={styles.tdtext}>15분</Text>
+    } else if (hours == 14 || hours == 15 || hours == 16) {
+      return <Text style={styles.tdtext}>10분</Text>
+    } else if (hours == 17 || hours == 18) {
+      return <Text style={styles.tdtext}>7분</Text>
+    } else {
+      return <Text style={styles.tdtext}>7~15분</Text>
+    }
+  
+  } else {
   if (day == 0 || day == 6) {
     return <Text style={styles.tdtext}>6~15분</Text>
   } else if (hours >= 19 || hours < 7) {
@@ -362,8 +469,12 @@ function stdhdinterval() {
     return <Text style={styles.tdtext}>6~15분</Text>
   }
 }
+}
 
 function stinnerinterval() {
+  if ( (month == 12 && days >= 23) || (month == 1 && days > 28) ) {
+    return <Text style={styles.tdtext}>6분</Text> 
+  } else {
   if (day == 0 || day == 6) {
     return <Text style={styles.tdtext}>7~20분</Text>
   } else if (hours > 20 || hours < 7) {
@@ -373,6 +484,7 @@ function stinnerinterval() {
   } else if (hours == 19 || hours == 20) {
     return <Text style={styles.tdtext}>20분</Text>
   }
+}
 }
 
 export default Shuttle;

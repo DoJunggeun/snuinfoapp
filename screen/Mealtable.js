@@ -6,8 +6,13 @@ import {
     View,
     Text,
     TouchableOpacity,
-    Image
+    Image,
+    Alert,
+    ActivityIndicator
 } from 'react-native';
+
+import { NavigationActions, withNavigationFocus } from 'react-navigation';
+
 const axios = require("axios");
 const cheerio = require("react-native-cheerio");
 global.Buffer = require('buffer').Buffer;
@@ -33,12 +38,11 @@ class Mealtable extends Component {
             menuday: 1,
             menuloaded: false
         };
-        this.loadmenu();
+        
     }
     componentDidMount(){
-        this.setState({
-            menuloaded: true
-        })
+        this.loadmenu();
+        
     }
     setModal(visible) {
         this.setState({menu: visible});
@@ -164,7 +168,7 @@ class Mealtable extends Component {
         }
     }
     
-    loadmenu(){
+    async loadmenu(){
         var today = new Date();
         var day = today.getDay()
         var days = today.getDate()
@@ -210,7 +214,7 @@ class Mealtable extends Component {
         };
 
         if (this.state.menuloaded == false) {
-        getmenus(months, days, years, day).then( async (data) => {
+        await getmenus(months, days, years, day).then( async (data) => {
             var menus  = data;
             var firstletter = ['?', '자', '예', '소', '?', '?', '?', '?', '?', '공', '감', '4', '?', '?', '?', '2']
 
@@ -266,7 +270,7 @@ class Mealtable extends Component {
         }
         )
 
-        getmenus(months2, days2, years2, day2).then( async (data) => {
+        await getmenus(months2, days2, years2, day2).then( async (data) => {
 
             var menus  = data;
             var firstletter = ['?', '자', '예', '소', '?', '?', '?', '?', '?', '공', '감', '4', '?', '?', '?', '2']
@@ -322,7 +326,22 @@ class Mealtable extends Component {
         }
         })
     }
+    this.setState({menuloaded: true})
+}
 
+    loadingscreen(){
+        if ( this.state.menuloaded == false  ) {
+            return (
+                <Modal visible={true} transparent={true}>
+                    <View style={{flex:1, justifyContent: 'center', alignItems: 'center',}}>
+                    <View style={styles.loadscreen}>
+                    <ActivityIndicator/>
+                        <Text style={{fontSize:16, color:'black', fontWeight:'600', marginLeft:10}}>
+                        정보를 불러오는 중입니다</Text>
+                    </View>
+                    </View>
+                </Modal>
+        )} 
     }
 
     render() {
@@ -336,7 +355,7 @@ class Mealtable extends Component {
         tomorrow.setDate(today.getDate() + 1)
 
         function dormmeal() {
-            if (day == 0 || day == 6) {
+            // if (day == 0 || day == 6) {
                 if (hours < 8) {
                     return <View>
                         <Text style={styles.nowoff}>미운영</Text>
@@ -361,33 +380,33 @@ class Mealtable extends Component {
                 } else {
                     return <Text style={styles.nowoff}>운영종료</Text>
                 }
-            } else {
-                if (hours < 7 || (hours == 7 && minutes < 30)) {
-                    return <View>
-                        <Text style={styles.nowoff}>미운영</Text>
-                        <Text style={styles.nowwait}>7:30 아침시작</Text>
-                    </View>
-                } else if ((hours == 7 && minutes >= 30) || (hours == 9 && minutes < 30)) {
-                    return <Text style={styles.nowon}>운영중{'\n'}9:30 아침종료</Text>
-                } else if ((hours == 9 && minutes >= 30) || hours == 10 || (hours == 11 && minutes < 30)) {
-                    return <View>
-                        <Text style={styles.nowoff}>미운영</Text>
-                        <Text style={styles.nowwait}>11:30 점심시작</Text>
-                    </View>
-                } else if ((hours == 11 && minutes >= 30) || hours == 12 || (hours == 13 && minutes < 30)) {
-                    return <Text style={styles.nowon}>운영중{'\n'}13:30 점심종료</Text>
-                } else if ((hours == 13 && minutes >= 30) || (hours >= 14 && hours < 17) || (hours == 17 && minutes < 30)) {
-                    return <View>
-                        <Text style={styles.nowoff}>미운영</Text>
-                        <Text style={styles.nowwait}>17:30 저녁시작</Text>
-                    </View>
-                } else if ((hours == 17 && minutes >= 30) || hours == 18 || (hours == 19 && minutes < 30)) {
-                    return <Text style={styles.nowon}>운영중{'\n'}19:30 종료</Text>
-                } else {
-                    return <Text style={styles.nowoff}>운영종료</Text>
-                }
+            // } else {
+            //     if (hours < 7 || (hours == 7 && minutes < 30)) {
+            //         return <View>
+            //             <Text style={styles.nowoff}>미운영</Text>
+            //             <Text style={styles.nowwait}>7:30 아침시작</Text>
+            //         </View>
+            //     } else if ((hours == 7 && minutes >= 30) || (hours == 9 && minutes < 30)) {
+            //         return <Text style={styles.nowon}>운영중{'\n'}9:30 아침종료</Text>
+            //     } else if ((hours == 9 && minutes >= 30) || hours == 10 || (hours == 11 && minutes < 30)) {
+            //         return <View>
+            //             <Text style={styles.nowoff}>미운영</Text>
+            //             <Text style={styles.nowwait}>11:30 점심시작</Text>
+            //         </View>
+            //     } else if ((hours == 11 && minutes >= 30) || hours == 12 || (hours == 13 && minutes < 30)) {
+            //         return <Text style={styles.nowon}>운영중{'\n'}13:30 점심종료</Text>
+            //     } else if ((hours == 13 && minutes >= 30) || (hours >= 14 && hours < 17) || (hours == 17 && minutes < 30)) {
+            //         return <View>
+            //             <Text style={styles.nowoff}>미운영</Text>
+            //             <Text style={styles.nowwait}>17:30 저녁시작</Text>
+            //         </View>
+            //     } else if ((hours == 17 && minutes >= 30) || hours == 18 || (hours == 19 && minutes < 30)) {
+            //         return <Text style={styles.nowon}>운영중{'\n'}19:30 종료</Text>
+            //     } else {
+            //         return <Text style={styles.nowoff}>운영종료</Text>
+            //     }
             }
-        }
+        
         
         function hgmeal() {
             if (day > 0 && day < 6) {
@@ -396,17 +415,17 @@ class Mealtable extends Component {
                         <Text style={styles.nowoff}>미운영</Text>
                         <Text style={styles.nowwait}>8:00 아침시작</Text>
                     </View>
-                } else if (hours >= 8 && hours < 10) {
+                } else if (hours == 8 || (hours == 9 && minutes < 30 ) ) {
                     return <Text
-                        style={styles.nowon}>운영중{'\n'}10:00 아침종료</Text>
-                } else if (hours == 10) {
+                        style={styles.nowon}>운영중{'\n'}9:30 아침종료</Text>
+                } else if (hours == 9 || hours == 10) {
                     return <View>
                         <Text style={styles.nowoff}>미운영</Text>
                         <Text style={styles.nowwait}>11:00 점심시작</Text>
                     </View>
                 } else if (hours >= 11 && hours < 15) {
                     return <Text style={styles.nowon}>운영중{'\n'}15:00 점심종료</Text>
-                } else if (hours == 16) {
+                } else if (hours == 15 || hours == 16) {
                     return <View>
                         <Text style={styles.nowoff}>미운영</Text>
                         <Text style={styles.nowwait}>17:00 저녁시작</Text>
@@ -459,16 +478,17 @@ class Mealtable extends Component {
         function eng302meal() {
             if (day == 0 || day == 6) {
                 return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
-            } else if ((hours > 11 && hours < 14) || (hours == 11 && minutes >= 15)) {
-                return <Text style={styles.nowon}>운영중{'\n'}14:00 점심종료</Text>
-            } else if (hours >= 17 && hours < 19) {
-                return <Text style={styles.nowon}>운영중{'\n'}19:00 종료</Text>
+            } else if ((hours > 11 && hours < 13) || (hours == 11 && minutes >= 15) 
+            || (hours==13 && minutes <30)) {
+                return <Text style={styles.nowon}>운영중{'\n'}13:30 점심종료</Text>
+            } else if (hours == 17 || (hours == 18 && minutes < 30) ) {
+                return <Text style={styles.nowon}>운영중{'\n'}18:30 종료</Text>
             } else if (hours < 11 || (hours == 11 && minutes < 15)) {
                 return <View>
                     <Text style={styles.nowoff}>미운영</Text>
                     <Text style={styles.nowwait}>11:15 점심시작</Text>
                 </View>
-            } else if (hours < 17 && hours >= 14) {
+            } else if ((hours < 17 && hours >= 14 ) || (hours==13 && minutes>=30)) {
                 return <View>
                     <Text style={styles.nowoff}>미운영</Text>
                     <Text style={styles.nowwait}>17:00 저녁시작</Text>
@@ -481,16 +501,16 @@ class Mealtable extends Component {
         function eng301meal() {
             if (day == 0 || day == 6) {
                 return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
-            } else if (hours >= 11 && hours < 14) {
-                return <Text style={styles.nowon}>운영중{'\n'}14:00 점심종료</Text>
-            } else if (hours >= 17 && hours < 19) {
-                return <Text style={styles.nowon}>운영중{'\n'}19:00 종료</Text>
+            } else if (hours == 11 || hours == 12 || (hours == 13 && minutes < 30)) {
+                return <Text style={styles.nowon}>운영중{'\n'}13:30 점심종료</Text>
+            } else if (hours == 17 || (hours == 18 && minutes <30)) {
+                return <Text style={styles.nowon}>운영중{'\n'}18:30 종료</Text>
             } else if (hours < 11) {
                 return <View>
                     <Text style={styles.nowoff}>미운영</Text>
                     <Text style={styles.nowwait}>11:00 점심시작</Text>
                 </View>
-            } else if (hours < 17 && hours >= 14) {
+            } else if ((hours < 17 && hours >= 14) || (hours == 13 && minutes >=30)) {
                 return <View>
                     <Text style={styles.nowoff}>미운영</Text>
                     <Text style={styles.nowwait}>17:00 저녁시작</Text>
@@ -505,8 +525,8 @@ class Mealtable extends Component {
                 return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
             } else if ((hours == 11 && minutes >= 30) || (hours > 11 && hours < 14)) {
                 return <Text style={styles.nowon}>운영중{'\n'}14:00 점심종료</Text>
-            } else if (hours >= 17 && hours < 19) {
-                return <Text style={styles.nowon}>운영중{'\n'}19:00 종료</Text>
+            } else if (hours == 17 || (hours == 18 && minutes<30) ) {
+                return <Text style={styles.nowon}>운영중{'\n'}18:30 종료</Text>
             } else if (hours < 11 || (hours == 11 && minutes < 30)) {
                 return <View>
                     <Text style={styles.nowoff}>미운영</Text>
@@ -525,8 +545,8 @@ class Mealtable extends Component {
         function ggmeal() {
             if (day == 0 || day == 6) {
                 return <Text style={styles.nowoff}>주말에는{'\n'}운영안함</Text>
-            } else if (hours >= 11 && hours < 14) {
-                return <Text style={styles.nowon}>운영중{'\n'}14:00 점심종료</Text>
+            } else if (hours == 11 || hours == 12 || (hours==13 && minutes <30 ) ) {
+                return <Text style={styles.nowon}>운영중{'\n'}13:30 점심종료</Text>
             } else if ((hours >= 17 && hours < 18) || (hours == 18 && minutes < 30)) {
                 return <Text style={styles.nowon}>운영중{'\n'}18:30 종료</Text>
             } else if (hours < 11) {
@@ -534,7 +554,7 @@ class Mealtable extends Component {
                     <Text style={styles.nowoff}>미운영</Text>
                     <Text style={styles.nowwait}>11:00 점심시작</Text>
                 </View>
-            } else if (hours < 17 && hours >= 14) {
+            } else if ((hours < 17 && hours >= 14) || (hours==13 && minutes >= 30)) {
                 return <View>
                     <Text style={styles.nowoff}>미운영</Text>
                     <Text style={styles.nowwait}>17:00 저녁시작</Text>
@@ -711,15 +731,17 @@ class Mealtable extends Component {
           }
         
         return (
-            <View style={{
-                flex: 1
-            }}>
+            <View style={{flex: 1}}>
+                {this.loadingscreen()}
+                
+            
+
                 <View style={styles.containerhead}>
                     <View style={styles.th}>
                         <Text style={styles.thtext}>식당</Text>
                     </View>
                     <View style={styles.th}>
-                        <Text style={styles.thtext}>{`운영시간\n(학기중)`}</Text>
+                        <Text style={styles.thtext}>{`운영시간\n(계절학기)`}</Text>
                     </View>
                     <View style={styles.th}>
                         <Text style={styles.thtext}>오늘의식단</Text>
@@ -1011,6 +1033,7 @@ class Mealtable extends Component {
                     </View>
 
                 </ScrollView>
+                
             </View>
         );
     };
@@ -1130,7 +1153,21 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         textAlign: 'center',
         lineHeight: 22
-    }
+    },
+    loadscreen: {
+        width:300, height:75, backgroundColor: 'rgb(244,244,244)', 
+        justifyContent:'center', alignItems:'center', borderRadius:12,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.4,
+        shadowRadius: 4,
+        elevation: 5,
+        flexDirection:'row'
+      },
+    
 });
   
 export default Mealtable;

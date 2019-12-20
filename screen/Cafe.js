@@ -56,7 +56,7 @@ class Cafe extends Component {
         <View style={styles.containerhead}>
           <View style={styles.th}><Text style={styles.thtext}>매장</Text></View>
           <View style={styles.th}><Text style={styles.thtext}>위치</Text></View>
-          <View style={styles.th}><Text style={styles.thtext}>{`운영시간\n(학기중)`}</Text></View>
+          <View style={styles.th}><Text style={styles.thtext}>{`운영시간\n(계절학기)`}</Text></View>
         </View>
 
          <ScrollView style={styles.scroll}>
@@ -259,8 +259,8 @@ var minutes = date.getMinutes()
 function musicnn() {
   if (day == 0 || day == 6) {
     return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
-  } else if ((day > 0 && day < 6) && (hours >= 9 && hours < 19)) {
-    return <Text style={styles.nowon}>{`운영중\n19:00 종료`}</Text>
+  } else if ((day > 0 && day < 6) && (hours >= 9 && hours < 18)) {
+    return <Text style={styles.nowon}>{`운영중\n18:00 종료`}</Text>
   } else if (hours < 9) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:00 시작</Text></View>
   } else {
@@ -318,32 +318,24 @@ function tea() {
 }
 
 function lannn() {
-  if ((day == 6) && ((hours > 9 && hours < 16) || (hours == 9 && minutes >= 30))) {
-    return <Text style={styles.nowon}>{`운영중\n16:00 종료`}</Text>
+  if ((day > 0 && day < 6) && (hours < 8 || (hours==8 && minutes<30)) ) {
+    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:30 시작</Text></View>
   } else if ((day > 0 && day < 6) && (hours >= 8 && hours < 19)) {
     return <Text style={styles.nowon}>{`운영중\n19:00 종료`}</Text>
-  } else if ((day > 0 && day < 6) && hours < 8) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
-  } else if (day == 6 && hours < 10) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:30 시작</Text></View>
-  } else if (day == 0) {
-    return <Text style={styles.nowoff}>{`일요일은\n운영안함`}</Text>
+  } else if (day == 0 || day ==6) {
+    return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else {
     return <Text style={styles.nowoff}>운영종료</Text>
   }
 }
 
 function dwgnn() {
-  if ((day == 6) && (hours >= 9 && hours < 16)) {
-    return <Text style={styles.nowon}>{`운영중\n16:00 종료`}</Text>
-  } else if ((day > 0 && day < 6) && ((hours > 8 && hours < 19) || (hours == 8 && minutes >= 30))) {
+  if ((day > 0 && day < 6) && ((hours > 8 && hours < 19) || (hours == 8 && minutes >= 30))) {
     return <Text style={styles.nowon}>{`운영중\n19:00 종료`}</Text>
   } else if ((day > 0 && day < 6) && (hours < 8 || (hours == 8 && minutes < 30))) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:30 시작</Text></View>
-  } else if (day == 6 && hours < 9) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>9:00 시작</Text></View>
-  } else if (day == 0) {
-    return <Text style={styles.nowoff}>{`일요일은\n운영안함`}</Text>
+  } else if (day == 0 || day == 6) {
+    return <Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text>
   } else {
     return <Text style={styles.nowoff}>운영종료</Text>
   }
@@ -414,12 +406,10 @@ function vetsnack() {
 }
 
 function libnn() {
-  if ((day == 0 || day == 6) && (hours >= 11 && hours < 19)) {
-    return <Text style={styles.nowon}>{`운영중\n19:00 종료`}</Text>
-  } else if ((day > 0 && day < 6) && ((hours >= 8 && hours < 19) || (hours == 19 && minutes < 30))) {
+  if ((day > 0 && day < 6) && ((hours >= 8 && hours < 19) || (hours == 19 && minutes < 30))) {
     return <Text style={styles.nowon}>{`운영중\n19:30 종료`}</Text>
-  } else if ((day == 0 || day == 6) && (hours < 11)) {
-    return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>11:00 시작</Text></View>
+  } else if (day == 0 || day == 6) {
+    return <View><Text style={styles.nowoff}>{`주말에는\n운영안함`}</Text></View>
   } else if ((day > 0 && day < 6) && (hours < 8)) {
     return <View><Text style={styles.nowoff}>미운영</Text><Text style={styles.nowwait}>8:00 시작</Text></View>
   } else {

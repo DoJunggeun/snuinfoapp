@@ -58,7 +58,7 @@ class Mart extends Component {
         <View style={styles.containerhead}>
           <View style={styles.th}><Text style={styles.thtext}>매장</Text></View>
           <View style={styles.th}><Text style={styles.thtext}>위치</Text></View>
-          <View style={styles.th}><Text style={styles.thtext}>{`운영시간\n(학기중)`}</Text></View>
+          <View style={styles.th}><Text style={styles.thtext}>{`운영시간`}</Text></View>
         </View>
 
          <ScrollView style={styles.scroll}>
